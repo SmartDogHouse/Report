@@ -111,7 +111,7 @@ jobs:
             
   EmailJob:
     needs: [TelegramJobFailure] #when finished this job
-    #if: failure() # if its failed
+    if: always() 
     runs-on: ubuntu-latest
     steps:
     - name: Clone Repo with Checkout # first step
