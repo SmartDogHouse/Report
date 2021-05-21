@@ -93,17 +93,12 @@ jobs:
       - name: Extract relese message if present
         shell: bash
         id: relese_msg
-        env:
-          MY_TAG: ${{ echo ${{github.event.head_commit.message}} | grep -o -P '(?<=-TAG{).*(?=})' }} 
-      - name: Print TAG
-        shell: bash
-        id: print_tag
         run: |
-          echo "$MY_TAG"
+          echo "::set-output name=RELESE_NAME::$(echo ${{github.event.head_commit.message}} | grep -o -P '(?<=-TAG{).*(?=})')"
   
   DeployJob:
     needs: FindTagJob
-    if: ${{ env.MY_TAG }} #if environment variable is set
+    if: ${{ needs.FindTagJob.relese_msg.outputs.RELESE_NAME != '' }} #if environment variable is set
     runs-on: ubuntu-20.04
     steps:
       - name: Clone Repo with Checkout 
