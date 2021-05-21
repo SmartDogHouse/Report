@@ -95,6 +95,9 @@ jobs:
         id: relese_msg
         env:
           MY_TAG: ${{ echo ${{github.event.head_commit.message}} | grep -o -P '(?<=-TAG{).*(?=})' }} 
+      - name: Print TAG
+        shell: bash
+        id: print_tag
         run: |
           echo "$MY_TAG"
   
