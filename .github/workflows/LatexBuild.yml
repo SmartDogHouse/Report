@@ -79,7 +79,13 @@ jobs:
       if: failure() # if its failed
       runs-on: ubuntu-latest
       steps:
-      - name: send custom message with args
+      - name: Clone Repo with Checkout 
+        uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: Artifacts
+      - name: Send custom Telegram message
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
@@ -90,3 +96,4 @@ jobs:
               by ${{ github.actor }}.
               /!\ FAILED /!\
           disable_web_page_preview: true
+          document: small.log
