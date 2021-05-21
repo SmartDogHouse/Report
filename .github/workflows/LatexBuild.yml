@@ -87,6 +87,9 @@ jobs:
     needs: BuildLatexJob
     if: success()
     runs-on: ubuntu-20.04
+    # Map a step output to a job output
+    outputs:
+      outputTagJob: ${{ steps.relese_msg.outputs.RELESE_NAME }}
     steps:
       - name: Clone Repo with Checkout 
         uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
@@ -98,7 +101,7 @@ jobs:
   
   DeployJob:
     needs: FindTagJob
-    if: ${{ needs.FindTagJob.relese_msg.outputs.RELESE_NAME != '' }} #if environment variable is set
+    if: ${{ needs.FindTagJob.outputs.outputTagJob != '' }} #if environment variable is set
     runs-on: ubuntu-20.04
     steps:
       - name: Clone Repo with Checkout 
