@@ -11,7 +11,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build_latek:
+  BuildLatexJob:
     # The type of runner that the job will run on
     runs-on: ubuntu-20.04
 
@@ -59,6 +59,7 @@ jobs:
         id: check_tag
         run: echo "::set-output name=HEAD_TAG::$(git describe --tags --exact-match HEAD)"
         #echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//} alternativa da testare?
+        
       - name: Deploy only if tag is present
         shell: bash
         if: ${{steps.check_tag.outputs.HEAD_TAG != '' && success() }}
@@ -72,3 +73,20 @@ jobs:
             echo "\n\nDelivering file $pdfs \n\n"
             hub release edit -m '' -a "$pdfs" "$TAG"
           done
+          
+  TelegramJobFailure:
+      needs: [BuildLatexJob] #when finished this job
+      if: failure() # if its failed
+      runs-on: ubuntu-latest
+      steps:
+      - name: send custom message with args
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              ${{ github.event_name }} event,
+              on github.com/${{ github.repository }}, 
+              by ${{ github.actor }}.
+              /!\ FAILED /!\
+          disable_web_page_preview: true
