@@ -3,9 +3,8 @@ name: Latek Build
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+    tags:
+      - '**'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -18,11 +17,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    
-      #- name: Set selected color
-       # run: |
-        #  alias echo='echo -e'
-
       - name: Setup Git repo
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@v2
@@ -34,26 +28,47 @@ jobs:
           pre_compile: "tlmgr update --self --all"
           args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -logfilewarninglist -Werror"
           post_compile: "latexmk -c"
+      
       - name: Split log
-        run: cat main.log | grep -n -E 'LaTeX Error|LaTeX Warning' --group-separator======================== > small.log
         if: failure()
-
+        shell: bash
+        run: cat main.log | grep -n -E 'LaTeX Error|LaTeX Warning|Undefined' > small.log
+      
       - name: Upload Logs
+        if: failure()
         uses: actions/upload-artifact@v2
         with:
           name: Logs
           path: |
             main.log
             small.log
-        if: failure()
-        
+            
       - name: Print small log
-        run: cat small.log > &2
         if: failure()
+        shell: bash
+        run: cat small.log >&2
         
       - name: Upload Artifacts
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts
           path: main.pdf
-        if: always()
+          
+      - name: Check if Git tag exists
+        id: check_tag
+        run: echo "::set-output name=HEAD_TAG::$(git describe --tags --exact-match HEAD)"
+        #echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//} alternativa da testare?
+      - name: Deploy only if tag is present
+        shell: bash
+        if: ${{steps.check_tag.outputs.HEAD_TAG != '' && success() }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch --tags -f
+          TAG=$(git describe --tags --exact-match HEAD)
+          hub release create -m "$(git tag -l --format='%(contents)' "$TAG")" "$TAG" || true   
+          for pdfs in *.pdf; do 
+            echo "\n\nDelivering file $pdfs \n\n"
+            hub release edit -m '' -a "$pdfs" "$TAG"
+          done
