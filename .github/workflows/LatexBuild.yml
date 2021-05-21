@@ -152,7 +152,7 @@ jobs:
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
         # Optional plain body:
-        body: Build job of ${{github.repository}} FAILED! Log in the annexes.
+        body: Congrats! Release job of ${{github.repository}} SUCCESS! Document in the annexes.
         # Optional carbon copy recipients:
         cc: gxe23786@eoopy.com
         # Optional recipient of the email response:
@@ -163,3 +163,25 @@ jobs:
         convert_markdown: true
         # Optional attachments:
         attachments: main.pdf
+
+  TelegramJobDeploy:
+      needs: [DeployJob] #when finished this job
+      if: success() # if its failed
+      runs-on: ubuntu-20.04
+      steps:
+      - name: Clone Repo with Checkout # first step
+        uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: Artifacts
+      - name: Send custom Telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+              RELEASE, with commit ${{github.event.head_commit.message}}
+              on github.com/${{ github.repository }}.
+          disable_web_page_preview: true
+          document: main.pdf
