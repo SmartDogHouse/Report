@@ -162,7 +162,7 @@ jobs:
         # Required mail subject:
         subject: Github Actions job result
         # Required recipients' addresses:
-        to: heloce4170@itwbuy.com
+        to: ${{ secrets.MAIL_RECIPIENTS }}
         # Required sender full name (address can be skipped):
         from: SmartDoggo # <user@example.com>
         # Optional whether this connection use TLS (default is true if server_port is 465)
@@ -172,7 +172,7 @@ jobs:
         # Optional carbon copy recipients:
         cc: gxe23786@eoopy.com
         # Optional recipient of the email response:
-        reply_to: pefeki6901@frnla.com
+        reply_to: ${{ secrets.MAIL_RECIPIENTS }}
         # Optional unsigned/invalid certificates allowance:
         ignore_cert: true
         # Optional converting Markdown to HTML (set content_type to text/html too):
