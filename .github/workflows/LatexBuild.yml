@@ -202,25 +202,20 @@ jobs:
           disable_web_page_preview: true
           document: main.pdf
           
-          
-          
   PandocConverter:
-    #needs: DeployJob
+    needs: DeployJob
     runs-on: ubuntu-20.04
     steps:
       - name: Clone git repo
         uses: actions/checkout@v2
-        
       - name: Setup git repo 
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch --all
-          
       - name: Clone Pandoc dependency 
         run: |
           git clone https://github.com/SmartDogHouse/pandoc-uikit.git
-      
       - name: Pandoc tex conversion
         uses: docker://pandoc/latex:2.9.0
         with:
