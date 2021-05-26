@@ -1,8 +1,59 @@
 % -*- root: ../main.tex -*-
 \chapter{Introduzione}
+Si vuole realizzare una soluzione in grado di fornire supporto alla
+\textbf{gestione di un canile} comunale, al fine di migliorarne le condizioni e alleggerire il carico di lavoro che grava sui gestori, il quale numero risulta essere sottodimensionato.
 
-\section{Breve descrizione del dominio}
+\section{Overview}
+Come riferimento è stato preso in considerazione il  canile comunale di Pisa, il quale gestore si è offerto di indirizzarci permettendoci di rivolgerci a lui per avere feedback e indicazioni basate su esperienze reali.
+
+L'idea ha avuto origine dopo un colloquio con il gestore del canile che, raccontando la propria esperienza, ha evidenziato alcuni problemi che riscontra nello svolgimento del proprio lavoro, molti dei quali sono risolvibili attraverso gli strumenti e le competenze che abbiamo a disposizione. Tuttavia, per motivi burocratici, questo non può essere considerato un progetto su commissione, ma abbiamo fede nel fatto che una volta sviluppata la nostra soluzione questa possa essere utilizzato come base per sviluppare altri sistemi o rendere più tecnologici canili e gattili che riscontrano le stesse difficoltà.
+
+\section{Problemi}
+Il canile di Pisa ospita circa una sessantina di cani e gatti di diversa taglia, randagi o abbandonati, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono adottati, mentre i gatti vengono rilasciati subito dopo aver ricevuto le cure  mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un veterinario che accorre in caso di necessità.
+
+I principali problemi che vengono attualmente riscontrati sono i seguenti:
+\begin{itemize}
+    \item \textbf{Veterinario:} il canile si rivolge a dei veterinari che si occupano del monitoraggio dello stato di salute degli animali, che spesso vengono trovati in gravi condizioni fisiche e psicologiche. Il problema principale è che questa figura non risiede fisicamente nel canile. In caso di necessità viene convocato il veterinario che ha disponibilità in quel momento, di conseguenza non è detto che un cane venga seguito sempre dallo stesso veterinario. 
+    \item \textbf{Rifornimento e consumi di cibo ed acqua:} la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.
+    \item \textbf{Sorveglianza:} il canile di Pisa, attualmente, non dispone di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole, che potrebbe nascondersi anche nel gruppo dei volontari, data la natura del ruolo.
+    
+    \item \textbf{Assenza di supporto informatico}: attualmente il canile non dispone di un'infrastruttura informatica già presente,da poter integrare; inoltre non dispone nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.
+\end{itemize}
+ 
+
+
+
+
 \section{Obiettivi}
+L'obiettivo è quello di rendere il canile più "Smart", introducendo della strumentazione che permetta di risolvere in maniera parziale o totale le problematiche descritte precedentemente, mantenendo un costo accessibile. 
+Nello specifico si vogliono incontrare le esigenze del gestore e degli addetti, agevolando le operazioni di:
+\begin{itemize}
+    \item \textbf{monitoraggio dello stato di salute dei cani} tramite:
+    \begin{itemize}
+        \item rilevazione dei \textbf{consumi} di cibo e acqua;
+        \item monitoraggio del \textbf{comportamento} del cane.
+    \end{itemize}
+    In questo modo è possibile cogliere in maniera preventiva segnali che possono indicare un problema di salute e avvisare il veterinario. 
+    \item automatizzazione delle operazioni di
+\textbf{cura quotidiana} attraverso:
+    \begin{itemize}
+        \item automatizzazione del \textbf{rifornimento} di cibo e acqua
+        \item possibilità di scegliere, per ciascun cane, la \textbf{quantità} del cibo da somministrare e la \textbf{frequenza}.
+    \end{itemize}
+    In questo modo è possibile gestire in maniera più precisa l'alimentazione dei cani e impostare delle quantità di cibo particolari in caso di condizioni di salute che richiedono un particolare piano alimentare, sollevando da questo incarico i volontari, che svolgono un'attività non tracciabile e discontinua. Inoltre, sarà possibile per il veterinario consultare i dati riguardanti l'alimentazione del cane e, di conseguenza, fornire diagnosi più precise. 
+    \item \textbf{sorveglianza
+globale del canile da remoto}: l'introduzione di un sistema di sorveglianza permetterà a chi di competenza di monitorare lo stato del canile anche da casa.
+\item \textbf{Mantenimento dello storico dei dati registrati}: in questo modo sarà possibile consultare sia le informazioni riguardanti i cani che i dati che riguardano le condizioni del canile, permettendo anche di fare dei confronti su base temporale;
+\item \textbf{consultazione dei dati acquisiti ed elaborati:} verrà fornita la possibilità di accedere allo storico dei dati medici su un Database, affinché il veterinario abbia una visione globale del quadro medico e possa velocemente filtrare le informazioni anche se non ha seguito il paziente dall'inizio. 
+\item \emph{{[}optional{]}} 
+\textbf{monitoraggio approfondito dei parametri
+vitali}: attraverso l'installazione di sensoristica che permetta il monitoraggio di temperatura, battiti, movimento, ecc\ldots{} sarà possibile tenere ulteriormente sott'occhio cani che si trovano in condizioni di salute che necessitano di particolari attenzioni.
+
+\item \textbf{Introduzione di un sistema informatico: } poiché non vi è un sistema informatico preesistente da integrare e vi sono poche disponibilità economiche, si è pensato di avvalersi di una piattaforma cloud sulla quale è possibile mantenere lo storico ed operare tramite l'utilizzo di un broker MQTT per la comunicazione  con sensori e attuatori. Questa soluzione è stata indicata come preferibile dal canile che ritiene più accessibile pagare mensilmente un servizio piuttosto che investire in una soluzione ad hoc. 
+
+\end{itemize}
+
+
 
 
 
