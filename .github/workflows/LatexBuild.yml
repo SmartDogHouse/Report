@@ -231,11 +231,11 @@ jobs:
             -f latex+smart+auto_identifiers 
             -t html5  
             --filter=pandoc-citeproc 
-            --bibliography=./references.bib 
+            --bibliography=./References.bib 
             --listings 
             --pdf-engine=pdflatex  
             --template=./pandoc-uikit/standalone.html
-            --variable abstract="I'm an abstract"
+            --variable abstract="Abstract"
             --wrap=auto
             --mathjax 
             --toc 
@@ -269,9 +269,6 @@ jobs:
               git rm -r  ./pandoc-uikit/
               git commit -m 'Removed old pandoc dependency'
           fi
-          echo -----------------------------------
-          ls -al
-          echo -----------------------------------
           git status
           git cherry-pick main~1
           git cherry-pick main
