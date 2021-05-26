@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Smart DogHouse </title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="./pandoc-uikit/uikit.css">
+
+        <link rel="stylesheet" href="style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script src="./pandoc-uikit/uikit.js"></script>
+        <script src="./pandoc-uikit/scripts.js"></script>
+        <script src="./pandoc-uikit/jquery.sticky-kit.js"></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                <meta name="author" content="Kiade Sara sara.kiade@studio.unibo.it" />
+                <meta name="author" content="Caminati Gyordan gyordan.caminati@studio.unibo.it" />
+                <meta name="author" content="Lirussi Igor igor.lirussi@studio.unibo.it" />
+                        <title> Smart DogHouse </title>
+        <style type="text/css">code{white-space: pre;}</style>
+                                                       
+    </head>
+
+    <body>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large"> Smart DogHouse </h1>
+                                                            <p class="uk-text-large">Kiade Sara<br />
+<a href="mailto:sara.kiade@studio.unibo.it"><code>sara.kiade@studio.unibo.it</code></a></p>
+                                        <p class="uk-text-large">Caminati Gyordan<br />
+<a href="mailto:gyordan.caminati@studio.unibo.it"><code>gyordan.caminati@studio.unibo.it</code></a></p>
+                                        <p class="uk-text-large">Lirussi Igor<br />
+<a href="mailto:igor.lirussi@studio.unibo.it"><code>igor.lirussi@studio.unibo.it</code></a></p>
+                                    </div>
+            </div>
+            
+            <div class="uk-grid" data-uk-grid-margin >          
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul class="incremental">
+                                                        <li><a href="#introduzione"><span class="toc-section-number">1</span> Introduzione</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#overview"><span class="toc-section-number">1.1</span> Overview</a></li>
+                                                        <li><a href="#problemi"><span class="toc-section-number">1.2</span> Problemi</a></li>
+                                                        <li><a href="#obiettivi"><span class="toc-section-number">1.3</span> Obiettivi</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#processo-di-sviluppo"><span class="toc-section-number">2</span> Processo di Sviluppo</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#metodologia-di-sviluppo"><span class="toc-section-number">2.1</span> Metodologia di Sviluppo</a></li>
+                                                        <li><a href="#gestione-di-progetto"><span class="toc-section-number">2.2</span> Gestione di Progetto</a></li>
+                                                        <li><a href="#continuous-integration-e-automatizzazione"><span class="toc-section-number">2.3</span> Continuous Integration e Automatizzazione</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#analisi-dello-spazio-del-problema"><span class="toc-section-number">3</span> Analisi dello spazio del problema</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#knowledge-crunching"><span class="toc-section-number">3.1</span> Knowledge crunching</a></li>
+                                                        <li><a href="#definizione-ubiquitus-language"><span class="toc-section-number">3.2</span> Definizione Ubiquitus language</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#analisi-dei-requisiti"><span class="toc-section-number">4</span> Analisi dei Requisiti</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#requisiti-di-business"><span class="toc-section-number">4.1</span> Requisiti di Business</a></li>
+                                                        <li><a href="#requisiti-utente"><span class="toc-section-number">4.2</span> Requisiti Utente</a></li>
+                                                        <li><a href="#requisiti-funzionali"><span class="toc-section-number">4.3</span> Requisiti Funzionali</a></li>
+                                                        <li><a href="#requisiti-non-funzionali"><span class="toc-section-number">4.4</span> Requisiti non Funzionali</a></li>
+                                                        <li><a href="#requisiti-implementativi"><span class="toc-section-number">4.5</span> Requisiti Implementativi</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#aspetti-di-domain-driven-design"><span class="toc-section-number">5</span> Aspetti di Domain Driven Design</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#individuazione-del-core-domain"><span class="toc-section-number">5.1</span> Individuazione del Core Domain</a></li>
+                                                        <li><a href="#identificazione-dei-subdomain"><span class="toc-section-number">5.2</span> Identificazione dei Subdomain</a></li>
+                                                        <li><a href="#definizione-dei-bounded-context"><span class="toc-section-number">5.3</span> Definizione dei Bounded Context</a></li>
+                                                        <li><a href="#definizione-delle-context-map"><span class="toc-section-number">5.4</span> Definizione delle Context Map</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#design-architetturale"><span class="toc-section-number">6</span> Design Architetturale</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#architettura-generale"><span class="toc-section-number">6.1</span> Architettura Generale</a></li>
+                                                        <li><a href="#pattern-architetturali-utilizzati"><span class="toc-section-number">6.2</span> Pattern Architetturali Utilizzati</a></li>
+                                                        <li><a href="#scelte-tecnologiche-cruciali"><span class="toc-section-number">6.3</span> Scelte Tecnologiche Cruciali</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#design-di-dettaglio"><span class="toc-section-number">7</span> Design di Dettaglio</a></li>
+                                                        <li><a href="#implementazione"><span class="toc-section-number">8</span> Implementazione</a></li>
+                                                        <li><a href="#iterazioni"><span class="toc-section-number">9</span> Iterazioni</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#sprint-1"><span class="toc-section-number">9.1</span> Sprint 1</a></li>
+                                                        <li><a href="#sprint-2"><span class="toc-section-number">9.2</span> Sprint 2</a></li>
+                                                        <li><a href="#sprint-3"><span class="toc-section-number">9.3</span> Sprint 3</a></li>
+                                                        <li><a href="#sprint-4"><span class="toc-section-number">9.4</span> Sprint 4</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#conclusioni">Conclusioni</a></li>
+                                                        </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<section id="introduzione" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduzione</h1>
+<p>Si vuole realizzare una soluzione in grado di fornire supporto alla <strong>gestione di un canile</strong> comunale, al fine di migliorarne le condizioni e alleggerire il carico di lavoro che grava sui gestori, il quale numero risulta essere sottodimensionato.</p>
+<section id="overview" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> Overview</h2>
+<p>Come riferimento è stato preso in considerazione il canile comunale di Pisa, il quale gestore si è offerto di indirizzarci permettendoci di rivolgerci a lui per avere feedback e indicazioni basate su esperienze reali.</p>
+<p>L’idea ha avuto origine dopo un colloquio con il gestore del canile che, raccontando la propria esperienza, ha evidenziato alcuni problemi che riscontra nello svolgimento del proprio lavoro, molti dei quali sono risolvibili attraverso gli strumenti e le competenze che abbiamo a disposizione. Tuttavia, per motivi burocratici, questo non può essere considerato un progetto su commissione, ma abbiamo fede nel fatto che una volta sviluppata la nostra soluzione questa possa essere utilizzato come base per sviluppare altri sistemi o rendere più tecnologici canili e gattili che riscontrano le stesse difficoltà.</p>
+</section>
+<section id="problemi" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> Problemi</h2>
+<p>Il canile di Pisa ospita circa una sessantina di cani e gatti di diversa taglia, randagi o abbandonati, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono adottati, mentre i gatti vengono rilasciati subito dopo aver ricevuto le cure mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un veterinario che accorre in caso di necessità.</p>
+<p>I principali problemi che vengono attualmente riscontrati sono i seguenti:</p>
+<ul class="incremental">
+<li><p><strong>Veterinario:</strong> il canile si rivolge a dei veterinari che si occupano del monitoraggio dello stato di salute degli animali, che spesso vengono trovati in gravi condizioni fisiche e psicologiche. Il problema principale è che questa figura non risiede fisicamente nel canile. In caso di necessità viene convocato il veterinario che ha disponibilità in quel momento, di conseguenza non è detto che un cane venga seguito sempre dallo stesso veterinario.</p></li>
+<li><p><strong>Rifornimento e consumi di cibo ed acqua:</strong> la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.</p></li>
+<li><p><strong>Sorveglianza:</strong> il canile di Pisa, attualmente, non dispone di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole, che potrebbe nascondersi anche nel gruppo dei volontari, data la natura del ruolo.</p></li>
+<li><p><strong>Assenza di supporto informatico</strong>: attualmente il canile non dispone di un’infrastruttura informatica già presente,da poter integrare; inoltre non dispone nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.</p></li>
+</ul>
+</section>
+<section id="obiettivi" data-number="1.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> Obiettivi</h2>
+<p>L’obiettivo è quello di rendere il canile più "Smart", introducendo della strumentazione che permetta di risolvere in maniera parziale o totale le problematiche descritte precedentemente, mantenendo un costo accessibile. Nello specifico si vogliono incontrare le esigenze del gestore e degli addetti, agevolando le operazioni di:</p>
+<ul class="incremental">
+<li><p><strong>monitoraggio dello stato di salute dei cani</strong> tramite:</p>
+<ul class="incremental">
+<li><p>rilevazione dei <strong>consumi</strong> di cibo e acqua;</p></li>
+<li><p>monitoraggio del <strong>comportamento</strong> del cane.</p></li>
+</ul>
+<p>In questo modo è possibile cogliere in maniera preventiva segnali che possono indicare un problema di salute e avvisare il veterinario.</p></li>
+<li><p>automatizzazione delle operazioni di <strong>cura quotidiana</strong> attraverso:</p>
+<ul class="incremental">
+<li><p>automatizzazione del <strong>rifornimento</strong> di cibo e acqua</p></li>
+<li><p>possibilità di scegliere, per ciascun cane, la <strong>quantità</strong> del cibo da somministrare e la <strong>frequenza</strong>.</p></li>
+</ul>
+<p>In questo modo è possibile gestire in maniera più precisa l’alimentazione dei cani e impostare delle quantità di cibo particolari in caso di condizioni di salute che richiedono un particolare piano alimentare, sollevando da questo incarico i volontari, che svolgono un’attività non tracciabile e discontinua. Inoltre, sarà possibile per il veterinario consultare i dati riguardanti l’alimentazione del cane e, di conseguenza, fornire diagnosi più precise.</p></li>
+<li><p><strong>sorveglianza globale del canile da remoto</strong>: l’introduzione di un sistema di sorveglianza permetterà a chi di competenza di monitorare lo stato del canile anche da casa.</p></li>
+<li><p><strong>Mantenimento dello storico dei dati registrati</strong>: in questo modo sarà possibile consultare sia le informazioni riguardanti i cani che i dati che riguardano le condizioni del canile, permettendo anche di fare dei confronti su base temporale;</p></li>
+<li><p><strong>consultazione dei dati acquisiti ed elaborati:</strong> verrà fornita la possibilità di accedere allo storico dei dati medici su un Database, affinché il veterinario abbia una visione globale del quadro medico e possa velocemente filtrare le informazioni anche se non ha seguito il paziente dall’inizio.</p></li>
+<li><p><em><span>[</span>optional<span>]</span></em> <strong>monitoraggio approfondito dei parametri vitali</strong>: attraverso l’installazione di sensoristica che permetta il monitoraggio di temperatura, battiti, movimento, ecc… sarà possibile tenere ulteriormente sott’occhio cani che si trovano in condizioni di salute che necessitano di particolari attenzioni.</p></li>
+<li><p><strong>Introduzione di un sistema informatico:</strong> poiché non vi è un sistema informatico preesistente da integrare e vi sono poche disponibilità economiche, si è pensato di avvalersi di una piattaforma cloud sulla quale è possibile mantenere lo storico ed operare tramite l’utilizzo di un broker MQTT per la comunicazione con sensori e attuatori. Questa soluzione è stata indicata come preferibile dal canile che ritiene più accessibile pagare mensilmente un servizio piuttosto che investire in una soluzione ad hoc.</p></li>
+</ul>
+</section>
+</section>
+<section id="processo-di-sviluppo" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Processo di Sviluppo</h1>
+<section id="metodologia-di-sviluppo" data-number="2.1">
+<h2 data-number="2.1"><span class="header-section-number">2.1</span> Metodologia di Sviluppo</h2>
+<section id="scrum" data-number="2.1.1">
+<h3 data-number="2.1.1"><span class="header-section-number">2.1.1</span> Scrum</h3>
+</section>
+</section>
+<section id="gestione-di-progetto" data-number="2.2">
+<h2 data-number="2.2"><span class="header-section-number">2.2</span> Gestione di Progetto</h2>
+<section id="gantt-chart" data-number="2.2.0.0.1">
+<h5 data-number="2.2.0.0.1"><span class="header-section-number">2.2.0.0.1</span> Gantt Chart</h5>
+</section>
+<section id="github-project-management" data-number="2.2.0.0.2">
+<h5 data-number="2.2.0.0.2"><span class="header-section-number">2.2.0.0.2</span> Github Project Management</h5>
+</section>
+<section id="telegram" data-number="2.2.0.0.3">
+<h5 data-number="2.2.0.0.3"><span class="header-section-number">2.2.0.0.3</span> Telegram</h5>
+</section>
+<section id="discord" data-number="2.2.0.0.4">
+<h5 data-number="2.2.0.0.4"><span class="header-section-number">2.2.0.0.4</span> Discord</h5>
+</section>
+<section id="notion" data-number="2.2.0.0.5">
+<h5 data-number="2.2.0.0.5"><span class="header-section-number">2.2.0.0.5</span> Notion</h5>
+</section>
+</section>
+<section id="continuous-integration-e-automatizzazione" data-number="2.3">
+<h2 data-number="2.3"><span class="header-section-number">2.3</span> Continuous Integration e Automatizzazione</h2>
+<section id="tool-utilizzati" data-number="2.3.0.0.0.1">
+<h6 data-number="2.3.0.0.0.1"><span class="header-section-number">2.3.0.0.0.1</span> Tool utilizzati</h6>
+</section>
+<section id="gestione-di-sviluppo" data-number="2.3.0.0.1">
+<h5 data-number="2.3.0.0.1"><span class="header-section-number">2.3.0.0.1</span> Gestione di Sviluppo</h5>
+</section>
+</section>
+</section>
+<section id="analisi-dello-spazio-del-problema" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Analisi dello spazio del problema</h1>
+<section id="knowledge-crunching" data-number="3.1">
+<h2 data-number="3.1"><span class="header-section-number">3.1</span> Knowledge crunching</h2>
+</section>
+<section id="definizione-ubiquitus-language" data-number="3.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> Definizione Ubiquitus language</h2>
+</section>
+</section>
+<section id="analisi-dei-requisiti" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Analisi dei Requisiti</h1>
+<section id="requisiti-di-business" data-number="4.1">
+<h2 data-number="4.1"><span class="header-section-number">4.1</span> Requisiti di Business</h2>
+</section>
+<section id="requisiti-utente" data-number="4.2">
+<h2 data-number="4.2"><span class="header-section-number">4.2</span> Requisiti Utente</h2>
+<section id="user-stories" data-number="4.2.1">
+<h3 data-number="4.2.1"><span class="header-section-number">4.2.1</span> User stories</h3>
+</section>
+<section id="casi-duso" data-number="4.2.2">
+<h3 data-number="4.2.2"><span class="header-section-number">4.2.2</span> Casi d’uso</h3>
+</section>
+</section>
+<section id="requisiti-funzionali" data-number="4.3">
+<h2 data-number="4.3"><span class="header-section-number">4.3</span> Requisiti Funzionali</h2>
+</section>
+<section id="requisiti-non-funzionali" data-number="4.4">
+<h2 data-number="4.4"><span class="header-section-number">4.4</span> Requisiti non Funzionali</h2>
+</section>
+<section id="requisiti-implementativi" data-number="4.5">
+<h2 data-number="4.5"><span class="header-section-number">4.5</span> Requisiti Implementativi</h2>
+</section>
+</section>
+<section id="aspetti-di-domain-driven-design" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Aspetti di Domain Driven Design</h1>
+<section id="individuazione-del-core-domain" data-number="5.1">
+<h2 data-number="5.1"><span class="header-section-number">5.1</span> Individuazione del Core Domain</h2>
+</section>
+<section id="identificazione-dei-subdomain" data-number="5.2">
+<h2 data-number="5.2"><span class="header-section-number">5.2</span> Identificazione dei Subdomain</h2>
+</section>
+<section id="definizione-dei-bounded-context" data-number="5.3">
+<h2 data-number="5.3"><span class="header-section-number">5.3</span> Definizione dei Bounded Context</h2>
+</section>
+<section id="definizione-delle-context-map" data-number="5.4">
+<h2 data-number="5.4"><span class="header-section-number">5.4</span> Definizione delle Context Map</h2>
+</section>
+</section>
+<section id="design-architetturale" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Design Architetturale</h1>
+<section id="architettura-generale" data-number="6.1">
+<h2 data-number="6.1"><span class="header-section-number">6.1</span> Architettura Generale</h2>
+</section>
+<section id="pattern-architetturali-utilizzati" data-number="6.2">
+<h2 data-number="6.2"><span class="header-section-number">6.2</span> Pattern Architetturali Utilizzati</h2>
+</section>
+<section id="scelte-tecnologiche-cruciali" data-number="6.3">
+<h2 data-number="6.3"><span class="header-section-number">6.3</span> Scelte Tecnologiche Cruciali</h2>
+</section>
+</section>
+<section id="design-di-dettaglio" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Design di Dettaglio</h1>
+</section>
+<section id="implementazione" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Implementazione</h1>
+</section>
+<section id="iterazioni" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Iterazioni</h1>
+<section id="sprint-1" data-number="9.1">
+<h2 data-number="9.1"><span class="header-section-number">9.1</span> Sprint 1</h2>
+<section id="pianificazione" data-number="9.1.1">
+<h3 data-number="9.1.1"><span class="header-section-number">9.1.1</span> Pianificazione</h3>
+<section id="parte-1" data-number="9.1.1.1">
+<h4 data-number="9.1.1.1"><span class="header-section-number">9.1.1.1</span> Parte 1</h4>
+<p>raffina e rivedi i prod. backlog, scelta sprint goal (what)</p>
+</section>
+<section id="parte-2" data-number="9.1.1.2">
+<h4 data-number="9.1.1.2"><span class="header-section-number">9.1.1.2</span> Parte 2</h4>
+<p>si decidono gli item (how), solo team senza prod owner</p>
+</section>
+</section>
+<section id="daily-scrum" data-number="9.1.2">
+<h3 data-number="9.1.2"><span class="header-section-number">9.1.2</span> Daily scrum</h3>
+</section>
+<section id="meeting-finale" data-number="9.1.3">
+<h3 data-number="9.1.3"><span class="header-section-number">9.1.3</span> Meeting finale</h3>
+<section id="product-backlog-refinement" data-number="9.1.3.1">
+<h4 data-number="9.1.3.1"><span class="header-section-number">9.1.3.1</span> Product backlog refinement</h4>
+</section>
+<section id="sprint-review" data-number="9.1.3.2">
+<h4 data-number="9.1.3.2"><span class="header-section-number">9.1.3.2</span> Sprint review</h4>
+</section>
+<section id="retrospettiva" data-number="9.1.3.3">
+<h4 data-number="9.1.3.3"><span class="header-section-number">9.1.3.3</span> Retrospettiva</h4>
+</section>
+</section>
+</section>
+<section id="sprint-2" data-number="9.2">
+<h2 data-number="9.2"><span class="header-section-number">9.2</span> Sprint 2</h2>
+</section>
+<section id="sprint-3" data-number="9.3">
+<h2 data-number="9.3"><span class="header-section-number">9.3</span> Sprint 3</h2>
+</section>
+<section id="sprint-4" data-number="9.4">
+<h2 data-number="9.4"><span class="header-section-number">9.4</span> Sprint 4</h2>
+</section>
+</section>
+<section id="conclusioni" class="unnumbered" data-number="">
+<h1 class="unnumbered" data-number="">Conclusioni</h1>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-adams1995hitchhiker">
+<p>Adams, D. 1995. <em>The Hitchhiker’s Guide to the Galaxy</em>. San Val. <a href="http://books.google.com/books?id=W-xMPgAACAAJ">http://books.google.com/books?id=W-xMPgAACAAJ</a>.</p>
+</div>
+</div>
+</section>                    
+                </div>
+            </div>
+
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+    </body>
+</html>
