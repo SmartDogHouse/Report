@@ -9,17 +9,45 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
     
     Il Domain Driven Design è un approccio operativo che tenta di uniformare il modello di dominio con l'artefatto generato, cercando di muovere concetti fondamentali per l'ambito all'interno del software e della documentazione, che dovranno quindi rispecchiare in dominio utilizzando il giusto linguaggio.
     Il classico approccio di standardizzazione delle pratiche di analisi e progettazione, tende a deviare il software lontano dal contesto di dominio. Questo rende il prodotto poco robusto e solo parzialmente coerente con l'ambito.
-    Per questo il DDD non è vincolato ad una particolare tecnologia o pattern di design, favorendo lo sviluppo mirato caso per caso. 
+    Per questo il DDD non è vincolato ad una particolare tecnologia o pattern di design, favorendo lo sviluppo mirato caso per caso.
+    Tenta di trasmettere i costanti cambiamenti del dominio nel prodotto mantenendo una dualità costante che consente di ottenere un prodotto più coerente e leggibile sia per il team che per il cliente. 
     
-    Generalmente utilizzato per progetti di medie/grandi dimensioni che evolvono nel tempo, non è una metodologia o un architettura. Può essere visto come un approccio che coinvolge più strati socio-tecnologici orizzontalmente, dal business ai vincoli implementativi fino alle buone pratiche di coding.
+    Generalmente utilizzato per progetti sia di medie che di grandi dimensioni che evolvono nel tempo, non è una metodologia o un architettura. Può essere visto come un approccio che coinvolge più strati socio-tecnologici orizzontalmente, dal business ai vincoli implementativi fino alle buone pratiche di coding.
+    
+    
+    
+    Concetti chiave che DDD porta con se:
+    
+        \begin{itemize}
+        \item \textbf{Strategia}: ogni problema ha la sua soluzione, non esiste la famosa silver bullet, bisogna trovare il giusto approccio e non cercare di eccedere con eccessivi strumenti o tecniche ove non richiesti.
+        Non tutte le parti del prodotto necessitano la stessa modellazione, applicare ogni feature del approccio DDD per tutti i problemi porta può portare a problemi peggiori.
+        DDD impone di identificare e distinguere il \textbf{Core Domain}; la parte che detiene il buiseness value maggiore e di dedicarvi più risorse e tempo.
+        Mentre per le restanti parti, i \textbf{Subdomain} è possibile utilizzare un approccio più conservativo.
+        
+        \item \textbf{Learning}: forse il passo più critico per ottenere un prodotto di qualità. Il processo di apprendimento deve essere costante e continuativo, consentendo di diffondere un sapere condiviso che incentiva la comunicazione e agevola la costruzione di una soluzione coerente e coesa con la terminologia del dominio. 
+        L'apprendimento ideale dovrebbe essere tale da faticare nel distinguere un \textbf{Domain expert} da un membro del team del progetto in chiave DDD.
+        
+        \item \textbf{Linguaggi}: la comunicazione è fondamentale all'interno di un team, il DDD spinge la classica comunicazione oltre i confini del team fino agli attori del dominio stesso promuovendo un linguaggio comune.
+        Fondamentale che i concetti imparati e diffusi siano precisi, cercando di limitare o annullare l'ambiguità,tramite una serie raffinamenti che passa per il colloquio costante e la compartizzazione dei concetti.
+        
+        \item \textbf{Modelli multipli}: risolvere un problema con un singolo modello rende il tutto offuscato e poco strutturato, il DDD porta il concetto di \textbf{Divide et impera} a livello di modello promuovendo non solo una divisione il più semanticamente corretta e precisa ma anche una visione d'insieme fornita tramite una mappa delle interazioni che tenga traccia delle comunicazioni.
+        Mette in campo anche pratiche per rendere il bordo dei concetti il più nitido e inalterato possibile.
+        
+        \item \textbf{Architetture sofisticate}: le tecnologie si sono evolute e il DDD ne ha preso nota, il DDD promuove l'utilizzo e la progettazione di architetture dedicate al problema e il distaccamento da approcci classici per le parti core del dominio.
+        
+        \item \textbf{Advance and clean coding}: il DDD non è adatto a progetti semplici one shot. Il suo focus risiede in quei prodotti fatti per evolversi e durare nel tempo, promuovendo lo studio continuo del dominio che è in costante cambiamento.Per questo non è sufficente mantenere il codice alla buona. Al contrario è necessario mettere in campo tutte le good practice del caso, lasciando del clean code capibile e facilmente evolvibile in qualcosa anche di drasticamente diverso. 
+        
+        
+    \end{itemize}
+    
     
     
     Gli aspetti principali del DDD sono:
     \begin{itemize}
         \item \textbf{Dominio}: è l'area tematica in cui si inserisce il progetto che si vuole realizzare. La corretta definizione del dominio è di estrema importanza in quanto esso rappresenta il perno attorno a cui ruota tutto il DDD. La figura dell'esperto del dominio rappresenta pertanto una risorsa inestimabile poiché grazie ad essa è possibile avere una visione reale dell'ambiente in cui si andrà ad operare. 
-        \item \textbf{Modello}:
+        \item \textbf{Modello}: Una rappresentazione distillata delle regole, assunzioni e scelte del modello. Descrive e astrae dando una formula snella alle tematiche, utilizzato per risolvere problemi correlati al dominio stesso.
         \item \textbf{Ubiquitous language}: si tratta di un linguaggio condiviso tra sviluppatori, utenti e collaboratori, la quale definizione permette di facilitare la comunicazione tra persone con diversi background ed evitare ambiguità che portano a errori e incomprensioni.
-        \item \textbf{Contesto}:
+        \item \textbf{Contesto}: %TODO
     \end{itemize}
 
 \section{Metodologia di Sviluppo}
@@ -41,13 +69,14 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
     I vari task sono stati divisi in categorie standard per lo Scrum: "to Do", "in Progress", "Done".
     
     \paragraph{Telegram}
-    Come strumento di messaggistica informale, si è scelta la piattaforma Telegram. Accessibile facilmente da smartphone e da computer permette di aggiornare i componenti del gruppo immediatamente qualora vi siano delle urgenze. Il punto di forza rimane la  possibilità di spedire file di tutti i formati e di poter inserire nel gruppo dei BOT per automatizzare alcune azioni, tra cui le notifiche. Un'overview più chiara dell'utilizzo dei BOT verrà fornita nella sezione \autoref{}. 
+    Come strumento di messaggistica informale all'interno del gruppo, si è scelta la piattaforma Telegram. Accessibile facilmente da smartphone e da computer permette di aggiornare i componenti del gruppo immediatamente qualora vi siano delle urgenze. Il punto di forza rimane la  possibilità di spedire file di tutti i formati e di poter inserire nel gruppo dei BOT per automatizzare alcune azioni, tra cui le notifiche. Un'overview più chiara dell'utilizzo dei BOT verrà fornita nella \autoref{chap:CI}.
     
     \paragraph{Discord}
     Discord, nota piattaforma di comunicazione VoIP, è stato utilizzato invece come strumento di comunicazione formale. Si è creato un server apposito per il progetto, chiamato "SmartDogHouseChannel", con multiple stanze lavoro per diverse occasioni.
     I canali vocali sono stati utilizzati anche per la condivisione dello schermo, fattore chiave per la sincronizzazione e la comprensione senza dispendio non necessario di tempo. 
 
 \section{Continuous Integration e Automatizzazione}
+\label{chap:CI}
     \paragraph{Relazione di Progetto}
         Considerato che anche la Relazione deve essere versionata e automatizzata, essendo parte del software, abbiamo iniziato partendo da essa. 
         Come linguaggio di markup è stato scelto {\LaTeX}, per la sua flessibilità e potenza. 
