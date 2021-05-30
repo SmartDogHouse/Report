@@ -16,13 +16,13 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
     
     
     
-    Concetti chiave che DDD porta con se:
+    Concetti chiave che DDD porta con sè:
     
         \begin{itemize}
-        \item \textbf{Strategia}: ogni problema ha la sua soluzione, non esiste la famosa silver bullet, bisogna trovare il giusto approccio e non cercare di eccedere con eccessivi strumenti o tecniche ove non richiesti.
-        Non tutte le parti del prodotto necessitano la stessa modellazione, applicare ogni feature del approccio DDD per tutti i problemi porta può portare a problemi peggiori.
-        DDD impone di identificare e distinguere il \textbf{Core Domain}; la parte che detiene il buiseness value maggiore e di dedicarvi più risorse e tempo.
-        Mentre per le restanti parti, i \textbf{Subdomain} è possibile utilizzare un approccio più conservativo.
+        \item \textbf{Strategia}: ogni problema ha la sua soluzione, non esiste il famosa silver bullet, bisogna trovare il giusto approccio e non cercare di eccedere con eccessivi strumenti o tecniche ove non richiesti.
+        Non tutte le parti del prodotto necessitano la stessa modellazione, applicare ogni feature dell' approccio DDD per tutti i problemi può portare a problemi peggiori.
+        DDD impone di identificare e distinguere il \textbf{Core Domain}; la parte che detiene il business value maggiore e di dedicarvi più risorse e tempo.
+        Mentre per le restanti parti, i \textbf{subdomain}, è possibile utilizzare un approccio più conservativo.
         
         \item \textbf{Learning}: forse il passo più critico per ottenere un prodotto di qualità. Il processo di apprendimento deve essere costante e continuativo, consentendo di diffondere un sapere condiviso che incentiva la comunicazione e agevola la costruzione di una soluzione coerente e coesa con la terminologia del dominio. 
         L'apprendimento ideale dovrebbe essere tale da faticare nel distinguere un \textbf{Domain expert} da un membro del team del progetto in chiave DDD.
@@ -35,7 +35,7 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
         
         \item \textbf{Architetture sofisticate}: le tecnologie si sono evolute e il DDD ne ha preso nota, il DDD promuove l'utilizzo e la progettazione di architetture dedicate al problema e il distaccamento da approcci classici per le parti core del dominio.
         
-        \item \textbf{Advance and clean coding}: il DDD non è adatto a progetti semplici one shot. Il suo focus risiede in quei prodotti fatti per evolversi e durare nel tempo, promuovendo lo studio continuo del dominio che è in costante cambiamento.Per questo non è sufficente mantenere il codice alla buona. Al contrario è necessario mettere in campo tutte le good practice del caso, lasciando del clean code capibile e facilmente evolvibile in qualcosa anche di drasticamente diverso. 
+        \item \textbf{Advance and clean coding}: il DDD non è adatto a progetti semplici one shot. Il suo focus risiede in quei prodotti fatti per evolversi e durare nel tempo, promuovendo lo studio continuo del dominio che è in costante cambiamento. Per questo non è sufficiente mantenere il codice alla buona. Al contrario è necessario mettere in campo tutte le good practice del caso, lasciando del clean code capibile e facilmente evolvibile in qualcosa anche di drasticamente diverso. 
         
         
     \end{itemize}
@@ -51,11 +51,25 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
     \end{itemize}
 
 \section{Metodologia di Sviluppo}
-
+Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permettere di mantenere alta la qualità e minimizzare il rischio nella produzione. Inoltre la sua natura iterativa e incrementale si presta bene allo sviluppo del progetto, di sua natura fortemente basato sull'interazione con il cliente. Tuttavia, essendo il team composto solo da 3 componenti, i quali lavorano sullo stesso progetto, ne è stata adottata una versione leggermente semplificata descritta in seguito. 
     \subsection{Scrum}
+    Il processo di sviluppo Scrum-Inspired modifica in primis i ruoli: il committente è facilmente identificabile nel proprietario del canile, ma il product-owner e lo scrum-master sono sono essi stessi anche developer (parte del team di sviluppo). 
+    Inoltre, particolare enfasi è stata posta sulla cross-fertilization, lo scambio di competenze, essendo il team piccolo ma molto eterogeneo, senza struttura interna.
+    L'organizzazione delle attività è stata impostata attorno agli sprint, concetto chiave di Scrum. Ogni sprint fornisce una suddivisione temporale del progetto (composto sia dal software che dal report) definendo i meeting, gli obiettivi e i risultati perseguiti. Per ogni Sprint, seguendo il modello del framework, è stato definito un meeting iniziale di circa un'ora, di pianificazione. 
+    Nello Sprint Planning, infatti, la divisione in due parti è stata unificata. Essendo il product-owner anche developer non può essere escluso dalla nella seconda parte come impone la metodologia Scrum. 
+    All'interno del meeting iniziale dapprima le priorità degli item sono state assegnate da un membro del team, impersonando temporaneamente il product-owner. In seguito, è stato raffinato collaborativamente il product-backlog: gli item sono stati espansi e sono stati scelti sia i goals/obiettivi generali dello sprint corrente sia quali item prendere in carico per esso (unificando parte due dello Sprint Planning).
+    Generato lo sprint-backlog, sottoinsieme del product-backlog, in cui sono presenti i task identificati in precedenza, questi vengono presi in base volontaria. 
+    Ogni giorno, in seguito, è stato fatto il canonico daily-Scrum, per l'aggiornamento dei membri del team relativamente al potentially-shippable-product-increment dello sprint.
+    Per identificare questo la "Definition of Done" è stata formalizzata collettivamente come: "il task è inteso completo se sono stati sviluppati, testati con successo e documentati".
+    Infine è stato mantenuto il meeting finale, ma la suddivisione nelle tre parti anche qui è stata condensata. 
+    Nel meeting la prima parte è stata dedicata al "refinement" del backlog, in cui si aggiorna in base a quello che è stato fatto. In seguito si è passati alla "sprint review" in cui si è condiviso con gli altri ciò che è stato fatto. Inoltre in questa fase è stato coinvolto il commitente, spesso per mezzo della piattaforma Telegram, per renderlo partecipe del progresso del progetto e verificare che questo proceda nella giusta direzione. In ultimo, nella "Sprint Retrospective", è stato discusso cosa ha funzionato e cosa no, quali aspetti organizzativi sistemare e correggere per il prossimo sprint. 
+    
+    
+    
+    
 
 \section{Gestione di Progetto}
-
+In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e teconologie si è scelto di procedere.
     \paragraph{Gantt Chart}
     
     \paragraph{GitHub Projects Management}
@@ -64,7 +78,7 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
     Una board principale all'interno dell'organizzazione funge da Product-Backlog-Board. Questa viene mantenuta dal Product-Owner, egli sceglie per ogni Sprint la priorità degli Items. Questi vengono raffinati iterativamente, gli Item in cima infatti diverranno via via più specifici. Ad ogni sprint gli Item più importanti verranno inoltre eletti come Sprint Goals (COSA fare all'interno dello sprint). 
     Nel progetto gli item sono stati scelti in base alle User Stories e trasformati in Issue, da risolvere ad ogni sprint.
     All'interno delle repository invece sono stati incrementalmente implementate tante board quanti gli Sprint-Backlog. Questi tengono invece traccia degli specifici task da sviluppare all'interno dei singoli Sprint (COME raggiungere lo Sprint Goal) a partire dall/dagli Item selezionati. 
-    Per il completamento dello Sprint Goal è necessario specificare la "Definition of Done": nel nostro caso il task è inteso completo se sono stati sviluppati, testati con successo e documentati.
+    Per il completamento dello Sprint Goal è stata presa in considerazione  la "Definition of Done" specificata in precedenza.
     Una board aggiuntiva è stata creata per tenere traccia dei progressi della relazione. Ogni capitolo è stato definito come milestone, completabile alla scrittura di tutti i sottocapitoli, identificati come task.
     I vari task sono stati divisi in categorie standard per lo Scrum: "to Do", "in Progress", "Done".
     
@@ -77,6 +91,7 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
 
 \section{Continuous Integration e Automatizzazione}
 \label{chap:CI}
+In questo capitolo si analizza la parte di integrazione e automatizzazione sia del progetto software che della relazione. 
     \paragraph{Relazione di Progetto}
         Considerato che anche la Relazione deve essere versionata e automatizzata, essendo parte del software, abbiamo iniziato partendo da essa. 
         Come linguaggio di markup è stato scelto {\LaTeX}, per la sua flessibilità e potenza. 
