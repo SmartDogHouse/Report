@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Smart DogHouse </title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+<link rel="stylesheet" href="./pandoc-uikit/uikit.css">
+
+        <link rel="stylesheet" href="style.css">
+        <link href="https://vjs.zencdn.net/5.4.4/video-js.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <script src="./pandoc-uikit/uikit.js"></script>
+        <script src="./pandoc-uikit/scripts.js"></script>
+        <script src="./pandoc-uikit/jquery.sticky-kit.js"></script>
+
+        <meta name="generator" content="pandoc-uikit" />
+                <meta name="author" content="Kiade Sara sara.kiade@studio.unibo.it" />
+                <meta name="author" content="Caminati Gyordan gyordan.caminati@studio.unibo.it" />
+                <meta name="author" content="Lirussi Igor igor.lirussi@studio.unibo.it" />
+                        <title> Smart DogHouse </title>
+        <style type="text/css">code{white-space: pre;}</style>
+                                                       
+    </head>
+
+    <body>
+
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+
+                        <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1">
+                    <h1 class="uk-heading-large"> Smart DogHouse </h1>
+                                                            <p class="uk-text-large">Kiade Sara<br />
+<a href="mailto:sara.kiade@studio.unibo.it"><code>sara.kiade@studio.unibo.it</code></a></p>
+                                        <p class="uk-text-large">Caminati Gyordan<br />
+<a href="mailto:gyordan.caminati@studio.unibo.it"><code>gyordan.caminati@studio.unibo.it</code></a></p>
+                                        <p class="uk-text-large">Lirussi Igor<br />
+<a href="mailto:igor.lirussi@studio.unibo.it"><code>igor.lirussi@studio.unibo.it</code></a></p>
+                                    </div>
+            </div>
+            
+            <div class="uk-grid" data-uk-grid-margin >          
+                <div class="uk-width-medium-1-4">
+                    <div class="uk-overflow-container" data-uk-sticky="{top:25,media: 768}">
+                        <div class="uk-panel uk-panel-box menu-begin" >
+
+                                                        <ul class="incremental">
+                                                        <li><a href="#introduzione"><span class="toc-section-number">1</span> Introduzione</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#overview"><span class="toc-section-number">1.1</span> Overview</a></li>
+                                                        <li><a href="#problemi"><span class="toc-section-number">1.2</span> Problemi</a></li>
+                                                        <li><a href="#obiettivi"><span class="toc-section-number">1.3</span> Obiettivi</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#processo-di-sviluppo"><span class="toc-section-number">2</span> Processo di Sviluppo</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#domain-driven-design"><span class="toc-section-number">2.1</span> Domain Driven Design</a></li>
+                                                        <li><a href="#metodologia-di-sviluppo"><span class="toc-section-number">2.2</span> Metodologia di Sviluppo</a></li>
+                                                        <li><a href="#gestione-di-progetto"><span class="toc-section-number">2.3</span> Gestione di Progetto</a></li>
+                                                        <li><a href="#chap:CI"><span class="toc-section-number">2.4</span> Continuous Integration e Automatizzazione</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#analisi-dello-spazio-del-problema"><span class="toc-section-number">3</span> Analisi dello spazio del problema</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#knowledge-crunching"><span class="toc-section-number">3.1</span> Knowledge crunching</a></li>
+                                                        <li><a href="#definizione-ubiquitus-language"><span class="toc-section-number">3.2</span> Definizione Ubiquitus language</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#analisi-dei-requisiti"><span class="toc-section-number">4</span> Analisi dei Requisiti</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#requisiti-di-business"><span class="toc-section-number">4.1</span> Requisiti di Business</a></li>
+                                                        <li><a href="#requisiti-utente"><span class="toc-section-number">4.2</span> Requisiti Utente</a></li>
+                                                        <li><a href="#requisiti-funzionali"><span class="toc-section-number">4.3</span> Requisiti Funzionali</a></li>
+                                                        <li><a href="#requisiti-non-funzionali"><span class="toc-section-number">4.4</span> Requisiti non Funzionali</a></li>
+                                                        <li><a href="#requisiti-implementativi"><span class="toc-section-number">4.5</span> Requisiti Implementativi</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#aspetti-di-domain-driven-design"><span class="toc-section-number">5</span> Aspetti di Domain Driven Design</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#individuazione-del-core-domain"><span class="toc-section-number">5.1</span> Individuazione del Core Domain</a></li>
+                                                        <li><a href="#identificazione-dei-subdomain"><span class="toc-section-number">5.2</span> Identificazione dei Subdomain</a></li>
+                                                        <li><a href="#definizione-dei-bounded-context"><span class="toc-section-number">5.3</span> Definizione dei Bounded Context</a></li>
+                                                        <li><a href="#definizione-delle-context-map"><span class="toc-section-number">5.4</span> Definizione delle Context Map</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#design-architetturale"><span class="toc-section-number">6</span> Design Architetturale</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#architettura-generale"><span class="toc-section-number">6.1</span> Architettura Generale</a></li>
+                                                        <li><a href="#pattern-architetturali-utilizzati"><span class="toc-section-number">6.2</span> Pattern Architetturali Utilizzati</a></li>
+                                                        <li><a href="#scelte-tecnologiche-cruciali"><span class="toc-section-number">6.3</span> Scelte Tecnologiche Cruciali</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#design-di-dettaglio"><span class="toc-section-number">7</span> Design di Dettaglio</a></li>
+                                                        <li><a href="#implementazione"><span class="toc-section-number">8</span> Implementazione</a></li>
+                                                        <li><a href="#iterazioni"><span class="toc-section-number">9</span> Iterazioni</a>
+                                                        <ul class="incremental">
+                                                        <li><a href="#sprint-1"><span class="toc-section-number">9.1</span> Sprint 1</a></li>
+                                                        <li><a href="#sprint-2"><span class="toc-section-number">9.2</span> Sprint 2</a></li>
+                                                        <li><a href="#sprint-3"><span class="toc-section-number">9.3</span> Sprint 3</a></li>
+                                                        <li><a href="#sprint-4"><span class="toc-section-number">9.4</span> Sprint 4</a></li>
+                                                        </ul></li>
+                                                        <li><a href="#conclusioni">Conclusioni</a></li>
+                                                        </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uk-width-medium-3-4">
+<section id="introduzione" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduzione</h1>
+<p>Si vuole realizzare una soluzione in grado di fornire supporto alla <strong>gestione di un canile</strong> comunale, al fine di migliorarne le condizioni e alleggerire il carico di lavoro che grava sui gestori, il quale numero risulta essere sottodimensionato.</p>
+<section id="overview" data-number="1.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> Overview</h2>
+<p>Come riferimento è stato preso in considerazione il canile comunale di Pisa, il quale gestore si è offerto di indirizzarci permettendoci di rivolgerci a lui per avere feedback e indicazioni basate su esperienze reali.</p>
+<p>L’idea ha avuto origine dopo un colloquio con il gestore del canile che, raccontando la propria esperienza, ha evidenziato alcuni problemi che riscontra nello svolgimento del proprio lavoro, molti dei quali sono risolvibili attraverso gli strumenti e le competenze che abbiamo a disposizione. Tuttavia, per motivi burocratici, questo non può essere considerato un progetto su commissione, ma abbiamo fede nel fatto che una volta sviluppata la nostra soluzione questa possa essere utilizzato come base per sviluppare altri sistemi o rendere più tecnologici canili e gattili che riscontrano le stesse difficoltà.</p>
+</section>
+<section id="problemi" data-number="1.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> Problemi</h2>
+<p>Il canile di Pisa ospita circa una sessantina di cani e gatti di diversa taglia, randagi o abbandonati, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono adottati, mentre i gatti vengono rilasciati subito dopo aver ricevuto le cure mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un veterinario che accorre in caso di necessità.</p>
+<p>I principali problemi che vengono attualmente riscontrati sono i seguenti:</p>
+<ul class="incremental">
+<li><p><strong>Veterinario:</strong> il canile si rivolge a dei veterinari che si occupano del monitoraggio dello stato di salute degli animali, che spesso vengono trovati in gravi condizioni fisiche e psicologiche. Il problema principale è che questa figura non risiede fisicamente nel canile. In caso di necessità viene convocato il veterinario che ha disponibilità in quel momento, di conseguenza non è detto che un cane venga seguito sempre dallo stesso veterinario.</p></li>
+<li><p><strong>Rifornimento e consumi di cibo ed acqua:</strong> la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.</p></li>
+<li><p><strong>Sorveglianza:</strong> il canile di Pisa, attualmente, non dispone di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole, che potrebbe nascondersi anche nel gruppo dei volontari, data la natura del ruolo.</p></li>
+<li><p><strong>Assenza di supporto informatico</strong>: attualmente il canile non dispone di un’infrastruttura informatica già presente,da poter integrare; inoltre non dispone nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.</p></li>
+</ul>
+</section>
+<section id="obiettivi" data-number="1.3">
+<h2 data-number="1.3"><span class="header-section-number">1.3</span> Obiettivi</h2>
+<p>L’obiettivo è quello di rendere il canile più "Smart", introducendo della strumentazione che permetta di risolvere in maniera parziale o totale le problematiche descritte precedentemente, mantenendo un costo accessibile. Nello specifico si vogliono incontrare le esigenze del gestore e degli addetti, agevolando le operazioni di:</p>
+<ul class="incremental">
+<li><p><strong>monitoraggio dello stato di salute dei cani</strong> tramite:</p>
+<ul class="incremental">
+<li><p>rilevazione dei <strong>consumi</strong> di cibo e acqua;</p></li>
+<li><p>monitoraggio del <strong>comportamento</strong> del cane.</p></li>
+</ul>
+<p>In questo modo è possibile cogliere in maniera preventiva segnali che possono indicare un problema di salute e avvisare il veterinario.</p></li>
+<li><p>automatizzazione delle operazioni di <strong>cura quotidiana</strong> attraverso:</p>
+<ul class="incremental">
+<li><p>automatizzazione del <strong>rifornimento</strong> di cibo e acqua</p></li>
+<li><p>possibilità di scegliere, per ciascun cane, la <strong>quantità</strong> del cibo da somministrare e la <strong>frequenza</strong>.</p></li>
+</ul>
+<p>In questo modo è possibile gestire in maniera più precisa l’alimentazione dei cani e impostare delle quantità di cibo particolari in caso di condizioni di salute che richiedono un particolare piano alimentare, sollevando da questo incarico i volontari, che svolgono un’attività non tracciabile e discontinua. Inoltre, sarà possibile per il veterinario consultare i dati riguardanti l’alimentazione del cane e, di conseguenza, fornire diagnosi più precise.</p></li>
+<li><p><strong>sorveglianza globale del canile da remoto</strong>: l’introduzione di un sistema di sorveglianza permetterà a chi di competenza di monitorare lo stato del canile anche da casa.</p></li>
+<li><p><strong>Mantenimento dello storico dei dati registrati</strong>: in questo modo sarà possibile consultare sia le informazioni riguardanti i cani che i dati che riguardano le condizioni del canile, permettendo anche di fare dei confronti su base temporale;</p></li>
+<li><p><strong>consultazione dei dati acquisiti ed elaborati:</strong> verrà fornita la possibilità di accedere allo storico dei dati medici su un Database, affinché il veterinario abbia una visione globale del quadro medico e possa velocemente filtrare le informazioni anche se non ha seguito il paziente dall’inizio.</p></li>
+<li><p><em><span>[</span>optional<span>]</span></em> <strong>monitoraggio approfondito dei parametri vitali</strong>: mediante l’installazione di sensoristica che permetta il monitoraggio di temperatura, battiti, movimento, ecc… sarà possibile tenere ulteriormente sott’occhio cani che si trovano in condizioni di salute che necessitano di particolari attenzioni.</p></li>
+<li><p><strong>Introduzione di un sistema informatico:</strong> poiché non vi è un sistema informatico preesistente da integrare e vi sono poche disponibilità economiche, si è pensato di avvalersi di una piattaforma cloud sulla quale è possibile mantenere lo storico ed operare tramite l’utilizzo di un broker MQTT per la comunicazione con sensori e attuatori. Questa soluzione è stata indicata come preferibile dal canile che ritiene più accessibile pagare mensilmente un servizio piuttosto che investire in una soluzione ad hoc.</p></li>
+</ul>
+</section>
+</section>
+<section id="processo-di-sviluppo" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Processo di Sviluppo</h1>
+<section id="domain-driven-design" data-number="2.1">
+<h2 data-number="2.1"><span class="header-section-number">2.1</span> Domain Driven Design</h2>
+<p>Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven Design. La realizzazione di questo progetto costituisce, per i membri del team, un ottimo terreno di prova per mettere in campo molti degli aspetti di gestione propri di questo approccio.</p>
+<section id="aspetti-principali-del-ddd" data-number="2.1.1">
+<h3 data-number="2.1.1"><span class="header-section-number">2.1.1</span> Aspetti principali del DDD</h3>
+<p>Il Domain Driven Design è un approccio che si rivela ideale per la conduzione di progetti non banali che richiedono l’interazione di persone con background differenti. L’obiettivo è quello di evitare gli errori comuni che tendono a verificarsi in mancanza di una buona gestione e comunicazione. Più che un pattern o un framework, il DDD è una filosofia che rappresenta una guida.</p>
+<p>Il Domain Driven Design è un approccio operativo che tenta di uniformare il modello di dominio con l’artefatto generato, cercando di muovere concetti fondamentali per l’ambito all’interno del software e della documentazione, che dovranno quindi rispecchiare in dominio utilizzando il giusto linguaggio. Il classico approccio di standardizzazione delle pratiche di analisi e progettazione, tende a deviare il software lontano dal contesto di dominio. Questo rende il prodotto poco robusto e solo parzialmente coerente con l’ambito. Per questo il DDD non è vincolato ad una particolare tecnologia o pattern di design, favorendo lo sviluppo mirato caso per caso. Tenta di trasmettere i costanti cambiamenti del dominio nel prodotto mantenendo una dualità costante che consente di ottenere un prodotto più coerente e leggibile sia per il team che per il cliente.</p>
+<p>Generalmente utilizzato per progetti sia di medie che di grandi dimensioni che evolvono nel tempo, non è una metodologia o un architettura. Può essere visto come un approccio che coinvolge più strati socio-tecnologici orizzontalmente, dal business ai vincoli implementativi fino alle buone pratiche di coding.</p>
+<p>Concetti chiave che DDD porta con sè:</p>
+<ul class="incremental">
+<li><p><strong>Strategia</strong>: ogni problema ha la sua soluzione, non esiste il famosa silver bullet, bisogna trovare il giusto approccio e non cercare di eccedere con eccessivi strumenti o tecniche ove non richiesti. Non tutte le parti del prodotto necessitano la stessa modellazione, applicare ogni feature dell’ approccio DDD per tutti i problemi può portare a problemi peggiori. DDD impone di identificare e distinguere il <strong>Core Domain</strong>; la parte che detiene il business value maggiore e di dedicarvi più risorse e tempo. Mentre per le restanti parti, i <strong>subdomain</strong>, è possibile utilizzare un approccio più conservativo.</p></li>
+<li><p><strong>Learning</strong>: forse il passo più critico per ottenere un prodotto di qualità. Il processo di apprendimento deve essere costante e continuativo, consentendo di diffondere un sapere condiviso che incentiva la comunicazione e agevola la costruzione di una soluzione coerente e coesa con la terminologia del dominio. L’apprendimento ideale dovrebbe essere tale da faticare nel distinguere un <strong>Domain expert</strong> da un membro del team del progetto in chiave DDD.</p></li>
+<li><p><strong>Linguaggi</strong>: la comunicazione è fondamentale all’interno di un team, il DDD spinge la classica comunicazione oltre i confini del team fino agli attori del dominio stesso promuovendo un linguaggio comune. Fondamentale che i concetti imparati e diffusi siano precisi, cercando di limitare o annullare l’ambiguità,tramite una serie raffinamenti che passa per il colloquio costante e la compartizzazione dei concetti.</p></li>
+<li><p><strong>Modelli multipli</strong>: risolvere un problema con un singolo modello rende il tutto offuscato e poco strutturato, il DDD porta il concetto di <strong>Divide et impera</strong> a livello di modello promuovendo non solo una divisione il più semanticamente corretta e precisa ma anche una visione d’insieme fornita tramite una mappa delle interazioni che tenga traccia delle comunicazioni. Mette in campo anche pratiche per rendere il bordo dei concetti il più nitido e inalterato possibile.</p></li>
+<li><p><strong>Architetture sofisticate</strong>: le tecnologie si sono evolute e il DDD ne ha preso nota, il DDD promuove l’utilizzo e la progettazione di architetture dedicate al problema e il distaccamento da approcci classici per le parti core del dominio.</p></li>
+<li><p><strong>Advance and clean coding</strong>: il DDD non è adatto a progetti semplici one shot. Il suo focus risiede in quei prodotti fatti per evolversi e durare nel tempo, promuovendo lo studio continuo del dominio che è in costante cambiamento. Per questo non è sufficiente mantenere il codice alla buona. Al contrario è necessario mettere in campo tutte le good practice del caso, lasciando del clean code capibile e facilmente evolvibile in qualcosa anche di drasticamente diverso.</p></li>
+</ul>
+<p>Gli aspetti principali del DDD sono:</p>
+<ul class="incremental">
+<li><p><strong>Dominio</strong>: è l’area tematica in cui si inserisce il progetto che si vuole realizzare. La corretta definizione del dominio è di estrema importanza in quanto esso rappresenta il perno attorno a cui ruota tutto il DDD. La figura dell’esperto del dominio rappresenta pertanto una risorsa inestimabile poiché grazie ad essa è possibile avere una visione reale dell’ambiente in cui si andrà ad operare.</p></li>
+<li><p><strong>Modello</strong>: Una rappresentazione distillata delle regole, assunzioni e scelte del modello. Descrive e astrae dando una formula snella alle tematiche, utilizzato per risolvere problemi correlati al dominio stesso.</p></li>
+<li><p><strong>Ubiquitous language</strong>: si tratta di un linguaggio condiviso tra sviluppatori, utenti e collaboratori, la quale definizione permette di facilitare la comunicazione tra persone con diversi background ed evitare ambiguità che portano a errori e incomprensioni.</p></li>
+<li><p><strong>Contesto</strong>:</p></li>
+</ul>
+</section>
+</section>
+<section id="metodologia-di-sviluppo" data-number="2.2">
+<h2 data-number="2.2"><span class="header-section-number">2.2</span> Metodologia di Sviluppo</h2>
+<p>Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permettere di mantenere alta la qualità e minimizzare il rischio nella produzione. Inoltre la sua natura iterativa e incrementale si presta bene allo sviluppo del progetto, di sua natura fortemente basato sull’interazione con il cliente. Tuttavia, essendo il team composto solo da 3 componenti, i quali lavorano sullo stesso progetto, ne è stata adottata una versione leggermente semplificata descritta in seguito.</p>
+<section id="scrum" data-number="2.2.1">
+<h3 data-number="2.2.1"><span class="header-section-number">2.2.1</span> Scrum</h3>
+<p>Il processo di sviluppo Scrum-Inspired modifica in primis i ruoli: il committente è facilmente identificabile nel proprietario del canile, ma il product-owner e lo scrum-master sono sono essi stessi anche developer (parte del team di sviluppo). Inoltre, particolare enfasi è stata posta sulla cross-fertilization, lo scambio di competenze, essendo il team piccolo ma molto eterogeneo, senza struttura interna. L’organizzazione delle attività è stata impostata attorno agli sprint, concetto chiave di Scrum. Ogni sprint fornisce una suddivisione temporale del progetto (composto sia dal software che dal report) definendo i meeting, gli obiettivi e i risultati perseguiti. Per ogni Sprint, seguendo il modello del framework, è stato definito un meeting iniziale di circa un’ora, di pianificazione. Nello Sprint Planning, infatti, la divisione in due parti è stata unificata. Essendo il product-owner anche developer non può essere escluso dalla nella seconda parte come impone la metodologia Scrum. All’interno del meeting iniziale dapprima le priorità degli item sono state assegnate da un membro del team, impersonando temporaneamente il product-owner. In seguito, è stato raffinato collaborativamente il product-backlog: gli item sono stati espansi e sono stati scelti sia i goals/obiettivi generali dello sprint corrente sia quali item prendere in carico per esso (unificando parte due dello Sprint Planning). Generato lo sprint-backlog, sottoinsieme del product-backlog, in cui sono presenti i task identificati in precedenza, questi vengono presi in base volontaria. Ogni giorno, in seguito, è stato fatto il canonico daily-Scrum, per l’aggiornamento dei membri del team relativamente al potentially-shippable-product-increment dello sprint. Per identificare questo la "Definition of Done" è stata formalizzata collettivamente come: "il task è inteso completo se sono stati sviluppati, testati con successo e documentati". Infine è stato mantenuto il meeting finale, ma la suddivisione nelle tre parti anche qui è stata condensata. Nel meeting la prima parte è stata dedicata al "refinement" del backlog, in cui si aggiorna in base a quello che è stato fatto. In seguito si è passati alla "sprint review" in cui si è condiviso con gli altri ciò che è stato fatto. Inoltre in questa fase è stato coinvolto il committente, spesso per mezzo della piattaforma Telegram, per renderlo partecipe del progresso del progetto e verificare che questo proceda nella giusta direzione. In ultimo, nella "Sprint Retrospective", è stato discusso cosa ha funzionato e cosa no, quali aspetti organizzativi sistemare e correggere per il prossimo sprint.</p>
+</section>
+</section>
+<section id="gestione-di-progetto" data-number="2.3">
+<h2 data-number="2.3"><span class="header-section-number">2.3</span> Gestione di Progetto</h2>
+<p>In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e teconologie si è scelto di procedere.</p>
+<section id="gantt-chart" data-number="2.3.0.0.1">
+<h5 data-number="2.3.0.0.1"><span class="header-section-number">2.3.0.0.1</span> Gantt Chart</h5>
+</section>
+<section id="github-projects-management" data-number="2.3.0.0.2">
+<h5 data-number="2.3.0.0.2"><span class="header-section-number">2.3.0.0.2</span> GitHub Projects Management</h5>
+<p>Per le Board di Scrum è stato utilizzato GitHub Projects. La scelta è ricaduta su questa opzione anziché sui competitor, quali Trello, data la possibilità di interazione con il progetto stesso e con le repository. La struttura delle board è stata organizzata ad albero: Una board principale all’interno dell’organizzazione funge da Product-Backlog-Board. Questa viene mantenuta dal Product-Owner, egli sceglie per ogni Sprint la priorità degli Items. Questi vengono raffinati iterativamente, gli Item in cima infatti diverranno via via più specifici. Ad ogni sprint gli Item più importanti verranno inoltre eletti come Sprint Goals (COSA fare all’interno dello sprint). Nel progetto gli item sono stati scelti in base alle User Stories e trasformati in Issue, da risolvere ad ogni sprint. All’interno delle repository invece sono stati incrementalmente implementate tante board quanti gli Sprint-Backlog. Questi tengono invece traccia degli specifici task da sviluppare all’interno dei singoli Sprint (COME raggiungere lo Sprint Goal) a partire dall/dagli Item selezionati. Per il completamento dello Sprint Goal è stata presa in considerazione la "Definition of Done" specificata in precedenza. Una board aggiuntiva è stata creata per tenere traccia dei progressi della relazione. Ogni capitolo è stato definito come milestone, completabile alla scrittura di tutti i sottocapitoli, identificati come task. I vari task sono stati divisi in categorie standard per lo Scrum: "to Do", "in Progress", "Done".</p>
+</section>
+<section id="telegram" data-number="2.3.0.0.3">
+<h5 data-number="2.3.0.0.3"><span class="header-section-number">2.3.0.0.3</span> Telegram</h5>
+<p>Come strumento di messaggistica informale all’interno del gruppo, si è scelta la piattaforma Telegram. Accessibile facilmente da smartphone e da computer permette di aggiornare i componenti del gruppo immediatamente qualora vi siano delle urgenze. Il punto di forza rimane la possibilità di spedire file di tutti i formati e di poter inserire nel gruppo dei BOT per automatizzare alcune azioni, tra cui le notifiche. Un’overview più chiara dell’utilizzo dei BOT verrà fornita nella .</p>
+</section>
+<section id="discord" data-number="2.3.0.0.4">
+<h5 data-number="2.3.0.0.4"><span class="header-section-number">2.3.0.0.4</span> Discord</h5>
+<p>Discord, nota piattaforma di comunicazione VoIP, è stato utilizzato invece come strumento di comunicazione formale. Si è creato un server apposito per il progetto, chiamato "SmartDogHouseChannel", con multiple stanze lavoro per diverse occasioni. I canali vocali sono stati utilizzati anche per la condivisione dello schermo, fattore chiave per la sincronizzazione e la comprensione senza dispendio non necessario di tempo.</p>
+</section>
+</section>
+<section id="chap:CI" data-number="2.4">
+<h2 data-number="2.4"><span class="header-section-number">2.4</span> Continuous Integration e Automatizzazione</h2>
+<p>In questo capitolo si analizza la parte di integrazione e automatizzazione sia del progetto software che della relazione.</p>
+<section id="relazione-di-progetto" data-number="2.4.0.0.1">
+<h5 data-number="2.4.0.0.1"><span class="header-section-number">2.4.0.0.1</span> Relazione di Progetto</h5>
+<p>Considerato che anche la Relazione deve essere versionata e automatizzata, essendo parte del software, abbiamo iniziato partendo da essa. Come linguaggio di markup è stato scelto <span>LaTeX</span>, per la sua flessibilità e potenza. Come strumento per la compilazione invece è stato scelto Overleaf.com, poiché permette di collaborare sullo stesso progetto, in real-time, e di non dipendere da diversi IDE per <span>LaTeX</span> installati in locale. Overleaf inoltre è stato collegato al repo, permettendo di pushare i cambiamenti fatti in tutta fluidità. Nel repository, tramite l’utilizzo di GitHub Actions, è stato implementato un processo di automatizzazione con multipli Job. Il primo Job si attiva ad ogni push ricevuta, compila il Latex per mezzo di una action e, qualora si verificassero degli errori, li salva in un log più piccolo, che verrà caricato come artefatto. Invece, se nessun errore è presente, è il pdf generato a venire caricato come artefatto. La terminazione di questo Job attiva altri due Job, dipendenti, che si occupano delle notifiche Telegram. Anche qui per mezzo di una action viene mandato un messaggio di notifica sul gruppo, sia se la build del Latex ha avuto successo, sia che ci siano stati errori. In caso di fallimento assieme al messaggio viene inoltrato sul gruppo pure il log conciso che contiene solo gli errori Latex. Per la gestione delle release è stato inoltre implementato un altro Job che verifica se nel messaggio di commit è presente uno speciale segnalatore -TAG. La scelta di gestire la numerazione dei tag a mano è stata dettata dalla necessità di controllo e cusotomizzazione di questi: in una relazione si vuole scegliere quando effettuare la release e, adottando il semantic versioning, il grado di cambiamento che si ritiene più opportuno. Il Job successivo si occupa del deploy, e viene attivato solamente se è stato trovato un tag nella parte precedente. Questo Job scarica il pdf precedentemente generato negli artefatti e si occupa di farne una release con nome coerente e con il tag specificato. Al termine della release vengono lanciati altri due Job, anch’essi dipendenti, che si occupano di notificarne il completamento. Il primo usa una GitHub Action per inoltrare una mail ai componenti del gruppo contenente il pdf della release. Per fare ciò si è dovuto creare un account Gmail specifico che funge da casella di invio. Si può inoltre sfruttare come account di notifica per un’eventuale newsletter agli iscritti ad ogni nuova release. Il secondo Job si occupa parallelamente di inoltrare un messaggio Telegram sul gruppo dei developers contentente anch’esso il pdf della release, il responsabile e il testo del commit. Un ultimo Job è stato creato per gestire anche le GitHub Pages, le quali forniscono un sito in cui consultare la relazione online. Per fare ciò è stato creato un nuovo branch sul quale viene fatto il commit dei file Html generati grazie a Pandoc.</p>
+<figure>
+<img src="RepoCI.png" style="width:100.0%" alt="" /><figcaption>Pipeline implementata, esecuzione di un commit senza tag</figcaption>
+</figure>
+<section id="tool-utilizzati" data-number="2.4.0.0.1.1">
+<h6 data-number="2.4.0.0.1.1"><span class="header-section-number">2.4.0.0.1.1</span> Tool utilizzati</h6>
+<ul class="incremental">
+<li><p>Overleaf</p></li>
+<li><p>Draw.io</p></li>
+<li><p>GitHub Actions</p></li>
+<li><p>Telegram Bots</p></li>
+<li><p>Pandoc</p></li>
+<li><p>GitHub Pages</p></li>
+</ul>
+</section>
+</section>
+<section id="progetto" data-number="2.4.0.0.2">
+<h5 data-number="2.4.0.0.2"><span class="header-section-number">2.4.0.0.2</span> Progetto</h5>
+<section id="tool-utilizzati-1" data-number="2.4.0.0.2.1">
+<h6 data-number="2.4.0.0.2.1"><span class="header-section-number">2.4.0.0.2.1</span> Tool utilizzati</h6>
+<ul class="incremental">
+<li><p>GitHub Actions</p></li>
+<li><p>Telegram Bots</p></li>
+<li><p>Dependabot</p></li>
+<li><p>Test/Coverage</p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="analisi-dello-spazio-del-problema" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Analisi dello spazio del problema</h1>
+<section id="knowledge-crunching" data-number="3.1">
+<h2 data-number="3.1"><span class="header-section-number">3.1</span> Knowledge crunching</h2>
+</section>
+<section id="definizione-ubiquitus-language" data-number="3.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> Definizione Ubiquitus language</h2>
+<p>L’Ubiquitous Language deve essere espresso nel modello di dominio, infatti unisce le persone del team di progetto. Lo scopo è eliminare le imprecisioni e le contraddizioni degli esperti di dominio, non è infatti imposto da questi, ma raggiunto collaborativamente. L’Ubiquitous Language si evolve nel tempo, non è definito interamente in una sola riunione, i concetti spesso si aggiungono, vengono sviscerati e partecipano nella comprensione del dominio. Infatti quelli che non fanno parte dell’Ubiquitous Language devono essere rifiutati.</p>
+<p><span id="tab:UL" label="tab:UL">[tab:UL]</span></p>
+</section>
+</section>
+<section id="analisi-dei-requisiti" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Analisi dei Requisiti</h1>
+<section id="requisiti-di-business" data-number="4.1">
+<h2 data-number="4.1"><span class="header-section-number">4.1</span> Requisiti di Business</h2>
+</section>
+<section id="requisiti-utente" data-number="4.2">
+<h2 data-number="4.2"><span class="header-section-number">4.2</span> Requisiti Utente</h2>
+<section id="user-stories" data-number="4.2.1">
+<h3 data-number="4.2.1"><span class="header-section-number">4.2.1</span> User stories</h3>
+</section>
+<section id="casi-duso" data-number="4.2.2">
+<h3 data-number="4.2.2"><span class="header-section-number">4.2.2</span> Casi d’uso</h3>
+</section>
+</section>
+<section id="requisiti-funzionali" data-number="4.3">
+<h2 data-number="4.3"><span class="header-section-number">4.3</span> Requisiti Funzionali</h2>
+</section>
+<section id="requisiti-non-funzionali" data-number="4.4">
+<h2 data-number="4.4"><span class="header-section-number">4.4</span> Requisiti non Funzionali</h2>
+</section>
+<section id="requisiti-implementativi" data-number="4.5">
+<h2 data-number="4.5"><span class="header-section-number">4.5</span> Requisiti Implementativi</h2>
+</section>
+</section>
+<section id="aspetti-di-domain-driven-design" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Aspetti di Domain Driven Design</h1>
+<section id="individuazione-del-core-domain" data-number="5.1">
+<h2 data-number="5.1"><span class="header-section-number">5.1</span> Individuazione del Core Domain</h2>
+</section>
+<section id="identificazione-dei-subdomain" data-number="5.2">
+<h2 data-number="5.2"><span class="header-section-number">5.2</span> Identificazione dei Subdomain</h2>
+</section>
+<section id="definizione-dei-bounded-context" data-number="5.3">
+<h2 data-number="5.3"><span class="header-section-number">5.3</span> Definizione dei Bounded Context</h2>
+</section>
+<section id="definizione-delle-context-map" data-number="5.4">
+<h2 data-number="5.4"><span class="header-section-number">5.4</span> Definizione delle Context Map</h2>
+</section>
+</section>
+<section id="design-architetturale" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Design Architetturale</h1>
+<section id="architettura-generale" data-number="6.1">
+<h2 data-number="6.1"><span class="header-section-number">6.1</span> Architettura Generale</h2>
+</section>
+<section id="pattern-architetturali-utilizzati" data-number="6.2">
+<h2 data-number="6.2"><span class="header-section-number">6.2</span> Pattern Architetturali Utilizzati</h2>
+</section>
+<section id="scelte-tecnologiche-cruciali" data-number="6.3">
+<h2 data-number="6.3"><span class="header-section-number">6.3</span> Scelte Tecnologiche Cruciali</h2>
+</section>
+</section>
+<section id="design-di-dettaglio" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Design di Dettaglio</h1>
+</section>
+<section id="implementazione" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Implementazione</h1>
+</section>
+<section id="iterazioni" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Iterazioni</h1>
+<section id="sprint-1" data-number="9.1">
+<h2 data-number="9.1"><span class="header-section-number">9.1</span> Sprint 1</h2>
+<section id="pianificazione" data-number="9.1.1">
+<h3 data-number="9.1.1"><span class="header-section-number">9.1.1</span> Pianificazione</h3>
+<section id="parte-1" data-number="9.1.1.1">
+<h4 data-number="9.1.1.1"><span class="header-section-number">9.1.1.1</span> Parte 1</h4>
+<p>raffina e rivedi i prod. backlog, scelta sprint goal (what)</p>
+</section>
+<section id="parte-2" data-number="9.1.1.2">
+<h4 data-number="9.1.1.2"><span class="header-section-number">9.1.1.2</span> Parte 2</h4>
+<p>si decidono gli item (how), solo team senza prod owner</p>
+</section>
+</section>
+<section id="daily-scrum" data-number="9.1.2">
+<h3 data-number="9.1.2"><span class="header-section-number">9.1.2</span> Daily scrum</h3>
+</section>
+<section id="meeting-finale" data-number="9.1.3">
+<h3 data-number="9.1.3"><span class="header-section-number">9.1.3</span> Meeting finale</h3>
+<section id="product-backlog-refinement" data-number="9.1.3.1">
+<h4 data-number="9.1.3.1"><span class="header-section-number">9.1.3.1</span> Product backlog refinement</h4>
+</section>
+<section id="sprint-review" data-number="9.1.3.2">
+<h4 data-number="9.1.3.2"><span class="header-section-number">9.1.3.2</span> Sprint review</h4>
+</section>
+<section id="retrospettiva" data-number="9.1.3.3">
+<h4 data-number="9.1.3.3"><span class="header-section-number">9.1.3.3</span> Retrospettiva</h4>
+</section>
+</section>
+</section>
+<section id="sprint-2" data-number="9.2">
+<h2 data-number="9.2"><span class="header-section-number">9.2</span> Sprint 2</h2>
+</section>
+<section id="sprint-3" data-number="9.3">
+<h2 data-number="9.3"><span class="header-section-number">9.3</span> Sprint 3</h2>
+</section>
+<section id="sprint-4" data-number="9.4">
+<h2 data-number="9.4"><span class="header-section-number">9.4</span> Sprint 4</h2>
+</section>
+</section>
+<section id="conclusioni" class="unnumbered" data-number="">
+<h1 class="unnumbered" data-number="">Conclusioni</h1>
+<div id="refs" class="references hanging-indent" role="doc-bibliography">
+<div id="ref-adams1995hitchhiker">
+<p>Adams, D. 1995. <em>The Hitchhiker’s Guide to the Galaxy</em>. San Val. <a href="http://books.google.com/books?id=W-xMPgAACAAJ">http://books.google.com/books?id=W-xMPgAACAAJ</a>.</p>
+</div>
+</div>
+</section>                    
+                </div>
+            </div>
+
+            <script src="https://vjs.zencdn.net/5.4.4/video.js"></script>
+        </div>
+    </body>
+</html>
