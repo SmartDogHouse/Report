@@ -51,7 +51,7 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
     \end{itemize}
 
 \section{Metodologia di Sviluppo}
-Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permettere di mantenere alta la qualità e minimizzare il rischio nella produzione. Inoltre la sua natura iterativa e incrementale si presta bene allo sviluppo del progetto, di sua natura fortemente basato sull'interazione con il cliente. Tuttavia, essendo il team composto solo da 3 componenti, i quali lavorano sullo stesso progetto, ne è stata adottata una versione leggermente semplificata descritta in seguito. 
+Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permettere di mantenere alta la qualità, massimizzare la soddisfazione del cliente e minimizzare il rischio nella produzione. Inoltre la sua natura iterativa e incrementale si presta bene allo sviluppo del progetto, di sua natura fortemente basato sull'interazione con il cliente. Tuttavia, essendo il team composto solo da 3 componenti, i quali lavorano sullo stesso progetto, ne è stata adottata una versione leggermente semplificata descritta in seguito. 
     \subsection{Scrum}
     Il processo di sviluppo Scrum-Inspired modifica in primis i ruoli: il committente è facilmente identificabile nel proprietario del canile, ma il product-owner e lo scrum-master sono sono essi stessi anche developer (parte del team di sviluppo). 
     Inoltre, particolare enfasi è stata posta sulla cross-fertilization, lo scambio di competenze, essendo il team piccolo ma molto eterogeneo, senza struttura interna.
@@ -69,9 +69,9 @@ Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permet
     
 
 \section{Gestione di Progetto}
-In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e teconologie si è scelto di procedere.
+In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e tecnologie si è scelto di procedere.
     \paragraph{Gantt Chart}
-    
+    %TODO: discutere se è il posto giusto
     \paragraph{GitHub Projects Management}
     Per le Board di Scrum è stato utilizzato GitHub Projects. La scelta è ricaduta su questa opzione anziché sui competitor, quali Trello, data la possibilità di interazione con il progetto stesso e con le repository. 
     La struttura delle board è stata organizzata ad albero:
@@ -93,10 +93,11 @@ In questa sezione verrà spiegato come il progetto è stato organizzato dal punt
 \label{chap:CI}
 In questo capitolo si analizza la parte di integrazione e automatizzazione sia del progetto software che della relazione. 
     \paragraph{Relazione di Progetto}
-        Considerato che anche la Relazione deve essere versionata e automatizzata, essendo parte del software, abbiamo iniziato partendo da essa. 
+        Considerato che anche la relazione deve essere versionata e automatizzata, essendo parte del software e descrivendolo, abbiamo iniziato partendo da essa. 
         Come linguaggio di markup è stato scelto {\LaTeX}, per la sua flessibilità e potenza. 
-        Come strumento per la compilazione invece è stato scelto Overleaf.com, poiché permette di collaborare sullo stesso progetto, in real-time, e di non dipendere da diversi IDE per {\LaTeX} installati in locale. 
-        Overleaf inoltre è stato collegato al repo, permettendo di pushare i cambiamenti fatti in tutta fluidità. 
+        Come strumento per la compilazione invece è stato scelto Overleaf.com, poiché ha 3 vantaggi principali che il team ha individuato. Permette di collaborare sullo stesso progetto, in real-time, osservando i cambiamenti fatti dai collaboratori con la compilazione immediata, discutendone vocalmente i dettagli tramite la piattaforma di comunicazione VoIP. Permette inoltre di non dipendere da diversi IDE per {\LaTeX} installati in locale, che creerebbero conflitti e mismatch visuali. Infine permette di integrarsi con GitHub, pushando i commit con i nomi desiderati in tutta fluidità direttamente dalla piattaforma web.
+        Per incorporare gli elementi grafici più importanti si è fatto uso della piattaforma Draw.io. L'integrazione con GitHub è anche qui presente, permettendo di aprire il progetto e pushare le modifiche direttamente dal web. Inoltre è notevole il fatto che gli artefatti PNG abbiano essi stessi i metadati del progetto garantendo tre vantaggi. Il primo riguarda la non necessità di salvare un ulteriore file progetto rispetto all'artefatto. Il secondo riguarda la possibilità di aprire direttamente i PNG e poter fare le modifiche desiderate. Il terzo è l'intrinseco versionamento pure dei progetti assieme ai PNG. 
+        Per le grafiche dove è necessaria più una collaborazione real-time dei membri del team, con schemi inerenti al DDD più esotici, oppure ove è più presente il contatto con il cliente, la scelta è ricaduta sulla piattaforma Miro.
         Nel repository, tramite l'utilizzo di GitHub Actions, è stato implementato un processo di automatizzazione con multipli Job. 
         Il primo Job si attiva ad ogni push ricevuta, compila il Latex per mezzo di una action e, qualora si verificassero degli errori, li salva in un log più piccolo, che verrà caricato come artefatto. Invece, se nessun errore è presente, è il pdf generato a venire caricato come artefatto.
         La terminazione di questo Job attiva altri due Job, dipendenti, che si occupano delle notifiche Telegram. Anche qui per mezzo di una action viene mandato un messaggio di notifica sul gruppo, sia se la build del Latex ha avuto successo, sia che ci siano stati errori. In caso di fallimento assieme al messaggio viene inoltrato sul gruppo pure il log conciso che contiene solo gli errori Latex. 
@@ -104,8 +105,8 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
         La scelta di gestire la numerazione dei tag a mano è stata dettata dalla necessità di controllo e cusotomizzazione di questi: in una relazione si vuole scegliere quando effettuare la release e, adottando il semantic versioning, il grado di cambiamento che si ritiene più opportuno.
         Il Job successivo si occupa del deploy, e viene attivato solamente se è stato trovato un tag nella parte precedente. Questo Job scarica il pdf precedentemente generato negli artefatti e si occupa di farne una release con nome coerente e con il tag specificato. 
         Al termine della release vengono lanciati altri due Job, anch'essi dipendenti, che si occupano di notificarne il completamento. 
-        Il primo usa una GitHub Action per inoltrare una mail ai componenti del gruppo contenente il pdf della release. Per fare ciò si è dovuto creare un account Gmail specifico che funge da casella di invio. Si può inoltre sfruttare come account di notifica per un'eventuale newsletter agli iscritti ad ogni nuova release. 
-        Il secondo Job si occupa parallelamente di inoltrare un messaggio Telegram sul gruppo dei developers contentente anch'esso il pdf della release, il responsabile e il testo del commit.
+        Il primo usa una GitHub Actions per inoltrare una mail ai componenti del gruppo contenente il pdf della release. Per fare ciò si è dovuto creare un account Gmail specifico che funge da casella di invio. Si può inoltre sfruttare come account di notifica per un'eventuale newsletter agli iscritti ad ogni nuova release. 
+        Il secondo Job si occupa parallelamente di inoltrare un messaggio Telegram sul gruppo dei developers contenente anch'esso il pdf della release, il responsabile e il testo del commit.
         Un ultimo Job è stato creato per gestire anche le GitHub Pages, le quali forniscono un sito in cui consultare la relazione online. Per fare ciò è stato   creato un nuovo branch sul quale viene fatto il commit dei file Html generati grazie a Pandoc.
         \begin{figure}[h]
             \caption{Pipeline implementata, esecuzione di un commit senza tag}
@@ -115,8 +116,10 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
         
         \subparagraph{Tool utilizzati}
         \begin{itemize}
+            \item HackMD
             \item Overleaf
             \item Draw.io
+            \item Miro
             \item GitHub Actions
             \item Telegram Bots
             \item Pandoc
