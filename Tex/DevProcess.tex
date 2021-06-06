@@ -99,7 +99,7 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
         Overleaf inoltre è stato collegato al repo, permettendo di pushare i cambiamenti fatti in tutta fluidità. 
         Nel repository, tramite l'utilizzo di GitHub Actions, è stato implementato un processo di automatizzazione con multipli Job. 
         Il primo Job si attiva ad ogni push ricevuta, compila il Latex per mezzo di una action e, qualora si verificassero degli errori, li salva in un log più piccolo, che verrà caricato come artefatto. Invece, se nessun errore è presente, è il pdf generato a venire caricato come artefatto.
-        La terminazione di questo Job attiva altri due Job, dipendenti, che si occupano delle notifiche Telegram. Anche qui per mezzo di una action viene mandato un messaggio di notifica sul gruppo, sia se la build del Latex ha avuto successo, sia che ci siano stati errori. In caso di fallimento assime al messaggio viene inoltrato sul gruppo pure il log conciso che contiene solo gli errori Latex. 
+        La terminazione di questo Job attiva altri due Job, dipendenti, che si occupano delle notifiche Telegram. Anche qui per mezzo di una action viene mandato un messaggio di notifica sul gruppo, sia se la build del Latex ha avuto successo, sia che ci siano stati errori. In caso di fallimento assieme al messaggio viene inoltrato sul gruppo pure il log conciso che contiene solo gli errori Latex. 
         Per la gestione delle release è stato inoltre implementato un altro Job che verifica se nel messaggio di commit è presente uno speciale segnalatore -TAG{}. 
         La scelta di gestire la numerazione dei tag a mano è stata dettata dalla necessità di controllo e cusotomizzazione di questi: in una relazione si vuole scegliere quando effettuare la release e, adottando il semantic versioning, il grado di cambiamento che si ritiene più opportuno.
         Il Job successivo si occupa del deploy, e viene attivato solamente se è stato trovato un tag nella parte precedente. Questo Job scarica il pdf precedentemente generato negli artefatti e si occupa di farne una release con nome coerente e con il tag specificato. 
@@ -126,10 +126,12 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
     \paragraph{Progetto}
         
         \subparagraph{Tool utilizzati}
-        GitHub Actions
-        Telegram Bots
-        Dependabot
-        Test/Coverage
+        \begin{itemize}
+            \item GitHub Actions
+            \item Telegram Bots
+            \item Dependabot
+            \item Test/Coverage
+        \end{itemize}
 
 
 
