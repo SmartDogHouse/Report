@@ -108,6 +108,7 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
         Il primo usa una GitHub Actions per inoltrare una mail ai componenti del gruppo contenente il pdf della release. Per fare ciò si è dovuto creare un account Gmail specifico che funge da casella di invio. Si può inoltre sfruttare come account di notifica per un'eventuale newsletter agli iscritti ad ogni nuova release. 
         Il secondo Job si occupa parallelamente di inoltrare un messaggio Telegram sul gruppo dei developers contenente anch'esso il pdf della release, il responsabile e il testo del commit.
         Un ultimo Job è stato creato per gestire anche le GitHub Pages, le quali forniscono un sito in cui consultare la relazione online. Per fare ciò è stato   creato un nuovo branch sul quale viene fatto il commit dei file Html generati grazie a Pandoc.
+        %TABELLA PIPELINE CI REPORT
         \begin{figure}[h]
             \caption{Pipeline implementata, esecuzione di un commit senza tag}
             \centering
