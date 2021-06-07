@@ -97,7 +97,7 @@ jobs:
         shell: bash
         id: relese_msg
         run: |
-          echo "::set-output name=RELESE_NAME::$(echo ${{github.event.head_commit.message}} | grep -o -P '(?<=-TAG{).*(?=})')"
+          echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
   
   DeployJob:
     needs: FindTagJob
@@ -110,7 +110,7 @@ jobs:
         shell: bash
         id: relese_msg
         run: |
-          echo "::set-output name=RELESE_NAME::$(echo ${{github.event.head_commit.message}} | grep -o -P '(?<=-TAG{).*(?=})')"
+          echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
       - name: Create relese if tag commit contain a tag message
         id: create_release
         if: ${{ steps.relese_msg.outputs.RELESE_NAME != '' }}
@@ -245,7 +245,12 @@ jobs:
             
       - name: Commit the new gh-pages html
         run: |
-          rm -r -d -f pandoc-uikit/.git*
+          rm -rdf pandoc-uikit/.git*
+          rm -rdf Images
+          rm -rdf DrawIo
+          git checkout main DrawIo
+          git checkout main Images
+          git commit -m "Updated Resources"
           git add ./index.html
           git commit -m "Generated new index.html"
           git add ./pandoc-uikit/.
