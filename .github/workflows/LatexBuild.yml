@@ -245,7 +245,12 @@ jobs:
             
       - name: Commit the new gh-pages html
         run: |
-          rm -r -d -f pandoc-uikit/.git*
+          rm -rdf pandoc-uikit/.git*
+          rm -rdf Images
+          rm -rdf DrawIo
+          git checkout main DrawIo
+          git checkout main Images
+          git commit -m "Updated Resources"
           git add ./index.html
           git commit -m "Generated new index.html"
           git add ./pandoc-uikit/.
