@@ -62,9 +62,9 @@ jobs:
               ${{ github.event_name }} event,
                 on github.com/${{ github.repository }}, 
                 by ${{ github.actor }}:
-                **${{ github.event.head_commit.message }}**
+                <b>${{ github.event.head_commit.message }}</b>
                ❌ **FAILED** ❌
-          format: markdown
+          format: html
           disable_web_page_preview: true
           document: small.log
           
@@ -82,9 +82,9 @@ jobs:
                 ${{ github.event_name }} event,
                 on github.com/${{ github.repository }}, 
                 by ${{ github.actor }}:
-                **${{ github.event.head_commit.message }}**
-                ✅SUCCEDED
-            format: markdown
+                </b>${{ github.event.head_commit.message }}</b>
+                ✅ SUCCEDED
+            format: html
             disable_web_page_preview: true
             
   FindTagJob:
