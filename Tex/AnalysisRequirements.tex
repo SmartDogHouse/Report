@@ -4,10 +4,10 @@ In questa fase sono stati individuati i \textbf{requisiti del sistema}, partendo
 	\section{Requisiti di Business}
 	Si definiscono di seguito le aspettative del cliente e i requisiti che il prodotto dovrà soddisfare, espressi con una terminologia ad elevato livello astrattivo.
         \begin{itemize}
-            \item Il prodotto dovrà diminuire l'intervento umano necessario per la quotidiana cura degli ospiti (Riempimento ciotola acqua/cibo); la riduzione del lavoro deve essere maggiore o uguale al 30\%.
-            \item Il prodotto dovrà consentire di diminuire il lavoro su base volontaria, grazie alla riduzione delle operazioni di cura quotidiana, permettendo ai volontari di concentrarsi solo sulla socializzazione e lo svago dell'animale.
+            \item Il prodotto dovrà \textbf{diminuire l'intervento umano} necessario per la quotidiana cura degli ospiti (Riempimento ciotola acqua/cibo); la riduzione del lavoro deve essere maggiore o uguale al 30\%.
+            \item Il prodotto dovrà consentire di \textbf{diminuire il lavoro su base volontaria}, grazie alla riduzione delle operazioni di cura quotidiana, permettendo ai volontari di concentrarsi solo sulla socializzazione e lo svago dell'animale.
             Diminuisce così l'interferenza al di fuori delle loro mansioni, e migliora la tracciabilità del lavoro svolto, essendo il lavoro volontario incostante e meno affidabile.
-            \item Opzionalmente il prodotto dovrà fornire un monitoraggio a distanza degli ospiti.
+            \item Opzionalmente il prodotto dovrà \textbf{fornire un monitoraggio a distanza} degli animali ospitati.
             Questo consentirà al personale incaricato di monitorare parametri come: frequenza cardiaca e temperatura corporea. Verrà diminuito anche l'intervento veterinario, non essendo necessaria la presenza in loco del professionista. La riduzione delle presenze dovrà consentire di diminuire i costi di un valore maggiore o uguale al 10\%.
         \end{itemize}
 	
@@ -29,10 +29,10 @@ In questa fase sono stati individuati i \textbf{requisiti del sistema}, partendo
                 \item 
             \end{enumerate}
         \end{itemize}
-	    \subsection{Casi d'uso}
 	    
 	\section{Requisiti Funzionali} %obbligatori, desiderabili e opzionali
-	   \begin{itemize}
+	    \subsection{Casi d'uso}
+	    \begin{itemize}
             \item Applicativo web 
             \item Applicazione video
             \item Opzionale collare
@@ -53,7 +53,7 @@ In questa fase sono stati individuati i \textbf{requisiti del sistema}, partendo
                 \item le notifiche urgenti del sistema, ossia quelle relative a malfunzionamenti gravi o alla salute dell'animale, devono essere mostrate ai relativi utenti con un ritardo complessivo massimo non superiore ai dieci secondi.
             \end{itemize}
             
-            \item \textbf{Scalabilità}: L'applicativo deve necessariamente consentire di aumentare o diminuire il numero di animali gestiti. Ciò deve avvenire senza una sensibile ripercussione sulle prestazioni del sistema e un disagio minimo a livello pratico. Per questo motivo, non devono essere presenti ulteriori connessioni cablate al di fuori dell'alimentazione già presente. 
+            \item \textbf{Scalabilità}: L'applicativo deve necessariamente consentire di aumentare o diminuire il numero di animali gestiti. Ciò deve avvenire senza una sensibile ripercussione sulle prestazioni del sistema e un disagio minimo a livello pratico. Per prevenire, inoltre, che la presenza di una connessione cablata limiti la scalabilità del sistema, è desiderabile che non ci siano altri collegamenti al di fuori dell'alimentazione già presente. 
             
             \item \textbf{Fault tolerance}: la \textbf{gestione degli errori} deve essere adeguatamente implementata affinché le interruzioni involontarie non danneggino innanzitutto la salute degli animali.
             Eventuali malfunzionamenti di apparecchiature o sensoristica all'interno del canile non devono pregiudicare il funzionamento complessivo dell'applicativo, ma al massimo della singola unità logica. 
