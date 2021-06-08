@@ -61,8 +61,9 @@ jobs:
           message: |
               ${{ github.event_name }} event,
               on github.com/${{ github.repository }}, 
-              by ${{ github.actor }}.
-              /!\ FAILED /!\
+              by ${{ github.actor }}:
+              ${{ github.event.head_commit.message }}
+              **FAILED** 
           disable_web_page_preview: true
           document: small.log
           
@@ -79,8 +80,9 @@ jobs:
             message: |
                 ${{ github.event_name }} event,
                 on github.com/${{ github.repository }}, 
-                by ${{ github.actor }}.
-                SUCCEDED
+                by ${{ github.actor }}:
+                ${{ github.event.head_commit.message }}
+                SUCCEDED ✓
             disable_web_page_preview: true
             
   FindTagJob:
@@ -197,7 +199,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-              RELEASE, with commit ${{github.event.head_commit.message}}
+              **RELEASE**
+              with commit ${{github.event.head_commit.message}}
               on github.com/${{ github.repository }}.
           disable_web_page_preview: true
           document: main.pdf
