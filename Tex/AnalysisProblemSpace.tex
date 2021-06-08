@@ -1,16 +1,47 @@
 % -*- root: ../main.tex -*-
 \chapter{Analisi dello spazio del problema}
-
 	\section{Knowledge crunching}
-	Seguendo le prime fasi del DDD, per carpire i concetti più fondamentali, sono stati interpellati gli esperti del dominio per via telematica. 
-	Inizialmente è stata fatta una grande sessione collaborativa di Knowledge crunching, per portare il team da 0 a una conoscenza adeguata del dominio e colmare le carenze di conoscenze dell'ambito del team di sviluppo. Questo è orientato a creare un grado di comprensione idonea del problema a permettere il kick-off del progetto.  
-	Successivamente il processo è stato continuo, gli incontri sono stati periodici, per controllare che l'andamento del progetto proseguisse nella direzione sperata e per capire che alcuni concetti chiave non fossero sottovalutati o non compresi. 
-	Per motivi di chiarezza riassumiamo tutto il processo nel seguente capitolo.
-	Data l'ovvia problematicità nell'incontrarsi, è stata utilizzata la piattaforma di messaggistica Telegram (per chiamate vocali e brevi chiarimenti) e Discord (per la condivisione schermo con gli artefatti visuali). Durante le interazioni sono stati creati multiple rappresentazioni visuali a guida e supporto della conversazione. 
-	Il gruppo parlando con il responsabile del canile (il maggiore esperto del dominio) ha indagato con maggiore enfasi i concetti necessari per la creazione di un buon software, tralasciando dettagli pleonastici. Il focus è stato su capire quello che serve per creare un software che soddisfi le reali necessità del cliente. I dettagli su cui l'esperto del dominio ricadeva spesso, infatti, hanno rivelato dove le energie dovessero essere maggiormente spese. 
-	In questo caso gli esperti del dominio sono anche i clienti. Questi ultimi forniscono il problem-space, mentre i primi forniscono il solution-space.
+    Per poter fare un'analisi soddisfacente è fondamentale avere una buona conoscenza del \textbf{dominio} e della sua \textbf{terminologia}, cosa che, se fatta in autonomia, potrebbe richiedere parecchio tempo. Per questo motivo è importante \textbf{collaborare} con gli \textbf{esperti di dominio}, che aiutano a comprendere i componenti del dominio, le dinamiche, i termini tecnici e gli aspetti critici.
+    Il \textbf{knowledge crunching} è il percorso che porta chi deve realizzare il sistema ad avere una \textbf{migliore comprensione} non solo di \textbf{quanto} deve essere fatto, ma del \textbf{perché}, permettendo di non fermarsi alle \textbf{specifiche}, ma di capirne il \textbf{senso}. 
+    
+    \subsection{Sessioni}
+	Nel nostro caso le sessioni di \textbf{knowledge crunching} sono state svolte interpellando un \textbf{esperto di dominio} per via telematica.
+	\begin{itemize}
+	    \item \textbf{Prima sessione:} nella prima sessione, il \textbf{colloquio} con l'esperto ha permesso al team di comprendere:
+	    \begin{itemize}
+	        \item gli aspetti principali della \textbf{gestione} del canile;
+	        \item le \textbf{figure} coinvolte;
+	        \item i \textbf{ruoli} presenti all'interno del canile;
+	        \item le \textbf{mansioni} che vengono svolte quotidianamente;
+	        \item i \textbf{processi di gestione}.
+	    \end{itemize}
+	    Queste conoscenze hanno permesso di dare il \textbf{kick-off} al progetto.
+	    \item \textbf{Sessioni successive:} successivamente il processo è stato continuo, sono stati svolti degli \textbf{incontri periodici} per:
+	    \begin{itemize}
+	        \item controllare che il progetto proseguisse nella direzione sperata;
+	        \item \textbf{sciogliere} alcuni \textbf{dubbi} sorti in corso d'opera;
+	        \item \textbf{verificare} la corretta \textbf{comprensione} di alcuni concetti chiave. 
+	    \end{itemize}
+	\end{itemize}
+    
+    \subsection{Svolgimento}
+    \subsubsection{Comunicazione}
+	Data l'ovvia problematicità nell'incontrarsi, la comunicazione è stata gestita da remoto, utilizzando le seguenti piattaforme:
+	\begin{itemize}
+	    \item \textbf{Telegram}, per chiamate vocali e brevi chiarimenti
+	    \item \textbf{Discord}, per la condivisione schermo con gli artefatti visuali
+	\end{itemize}
+	Durante le interazioni sono state create multiple \textbf{rappresentazioni visuali} a guida e supporto della conversazione. 
 	
-	Per la comprensione degli obbiettivi di più alto business value, si è costruita in maniera interattiva e collaborativa un impact map, sotto la supervisione di team, scrum master e product-owner. Per non sfociare in un diagramma troppo informale.
+	\subsubsection{Percorso}
+	\begin{itemize}
+	    \item Il gruppo parlando con il \textbf{responsabile del canile} (il maggiore esperto del dominio) ha \textbf{indagato} con maggiore enfasi i concetti necessari per la creazione di un \textbf{buon software}, tralasciando dettagli \textbf{pleonastici}. 
+	    \item Il \textbf{focus} è stato su capire quello che serve per lo sviluppo di un software che soddisfi le \textbf{reali necessità} del cliente. I dettagli su cui l'esperto del dominio ricadeva spesso, infatti, hanno rivelato dove le energie dovessero essere maggiormente spese. 
+	    \item In questo caso gli \textbf{esperti} del dominio sono anche i \textbf{clienti}. Questi ultimi forniscono il \textbf{problem-space}, mentre i primi forniscono il \textbf{solution-space}.
+	    \end{itemize}
+	
+	Per la comprensione degli obbiettivi di più alto business value, si è costruita in maniera interattiva e collaborativa un'impact map, sotto la supervisione di team, scrum master e product-owner. L'uso di questo diagramma mira a mantenere un livello non troppo formale da risultare incomprensibile agli estranei al dominio, ma nemmeno totalmente informale, perdendo efficacia comunicativa. 
+	
 	%IMPACT MAP DIAGRAM
     \begin{figure}[ht]
         \caption{Impact-map obbiettivi business}
@@ -18,13 +49,11 @@
         \includegraphics[width=1\textwidth]{DrawIo/impactMap.png}
     \end{figure}
 
-    Il risultato ha portato in evidenza i due principali obbiettivi di business, evidenziando in maniera chiara la loro suddivisione, e le relative operazioni per raggiungere i risultati attesi.
+    Il risultato ha portato in evidenza i due principali obbiettivi di business, evidenziando in maniera chiara la loro suddivisione, e le soluzioni per raggiungere i risulati attesi.
     
-    Con una visone d'insieme leggermente più definita, ci siamo cimentati nella stesura delle \textbf{user stories}. Cercando di seguire i due requisiti di business individuati, sono state identificate le più calzanti user stories per ogni obiettivo  dell'\textbf{impact map}
-    .
-    Nel tentativo di formalizzare le informazioni ottenute abbiamo suddiviso, raccolto e identificato le principali entità presenti. Sono state utilizzate successivamente per la definizione degli \textbf{use case diagram} che ne descrivessero le operazioni fondamentali.
+    Con una visone d'insieme leggermente più definita, ci siamo cimentati nella stesura delle \textbf{user stories} per ogni ruolo. Dalla moltitudine emersa, sono state identificate, cercando di seguire i requisiti di business individuati,  le più calzanti, legate ad ogni obiettivo dell'\textbf{impact map}.
 
-	La definizione delle user-stories ha portato naturalmente a indagare il significato di alcuni termini usati. Questo ha spinto subito allo sviluppo di un ubiquitous language per i vocaboli più importanti, che poi è stato continuamente raffinato durante i successivi meeting. 
+	La definizione delle user-stories ha portato naturalmente a indagare il significato di alcuni termini usati. Questo ha spinto subito allo sviluppo concorrente di un ubiquitous language per i vocaboli più importanti. Questo è stato poi continuamente raffinato durante i successivi meeting. 
 	Nel prossimo capitolo viene analizzato questo processo. 
     
 	\section{Definizione Ubiquitus language}	
