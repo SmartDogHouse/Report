@@ -58,12 +58,13 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
               ${{ github.event_name }} event,
-              on github.com/${{ github.repository }}, 
-              by ${{ github.actor }}:
-              ${{ github.event.head_commit.message }}
-              **FAILED** 
+                on github.com/${{ github.repository }}, 
+                by ${{ github.actor }}:
+                **${{ github.event.head_commit.message }}**
+               ❌ **FAILED** ❌
           disable_web_page_preview: true
           document: small.log
           
@@ -77,12 +78,13 @@ jobs:
           with:
             to: ${{ secrets.TELEGRAM_TO }}
             token: ${{ secrets.TELEGRAM_TOKEN }}
+            format: markdown
             message: |
                 ${{ github.event_name }} event,
                 on github.com/${{ github.repository }}, 
                 by ${{ github.actor }}:
-                ${{ github.event.head_commit.message }}
-                SUCCEDED ✓
+                **${{ github.event.head_commit.message }}**
+                ✔❌✅SUCCEDED
             disable_web_page_preview: true
             
   FindTagJob:
@@ -198,6 +200,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
               **RELEASE**
               with commit ${{github.event.head_commit.message}}
