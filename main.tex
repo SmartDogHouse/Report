@@ -37,7 +37,7 @@ sorting=ynt
 \usepackage{tabularx}
 \usepackage{marvosym}
 \usepackage{fancyvrb}
-\usepackage[usenames]{color}
+%\usepackage[usenames]{color}
 \usepackage[hidelinks]{hyperref}
 \usepackage{url}
 \usepackage{graphicx}
@@ -51,7 +51,7 @@ sorting=ynt
 \usepackage{indentfirst}
 \usepackage{listings}
 \usepackage{tocloft}
-\usepackage[most]{tcolorbox}
+%\usepackage[most]{tcolorbox}
 \usepackage{pgfplots}
 \usepackage{Style/pgfplotsthemetol}
 \pgfplotsset{compat=1.16}
@@ -84,8 +84,19 @@ sorting=ynt
         colframe=red!75!black,
         fonttitle=\bfseries
        }
+       
+%TAB2
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
 
+\tcbset{tab1/.style={fonttitle=\bfseries\large,fontupper=\normalsize\sffamily,
+colback=yellow!10!white,colframe=red!75!black,colbacktitle=Salmon!40!white,
+coltitle=black,center title,freelance,frame code={
+\foreach \n in {north east,north west,south east,south west}
+{\path [fill=red!75!black] (interior.\n) circle (3mm); };},}}
 
+\tcbset{tab2/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+colback=yellow!10!white,colframe=red!50!black,colbacktitle=Salmon!40!white,
+coltitle=black,center title}}
 
 %PATH IMMAGINI
 %\graphicspath{{Images/}{DrawIo/}}
