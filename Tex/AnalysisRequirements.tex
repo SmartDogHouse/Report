@@ -65,12 +65,78 @@ In questa fase sono stati individuati i \textbf{requisiti del sistema}, partendo
 	    
 	\section{Requisiti Funzionali} %obbligatori, desiderabili e opzionali
 	    \subsection{Casi d'uso}
+        	 %Diagramma dei casi d'uso
+            \begin{figure}[ht]
+                \caption{Diagramma dei casi d'uso del sistema, rappresenta le principali azioni effettuate degli attori}
+                \centering
+                \includegraphics[width=0.9\textwidth]{DrawIo/useCaseWholeSystem.png}
+            \end{figure}
+            
+    	Si elencano i requisiti funzionali per ognuno dei seguenti macro-componenti:
 	    \begin{itemize}
             \item Applicativo web 
-            \item Applicazione video
+            \item Applicativo video
             \item Opzionale collare
             \item Strumentazione gabbia
         \end{itemize}
+        
+    \subsection{Applicativo web}
+        L'applicativo web deve consentire ad ogni utente di accedere con una serie di credenziali, e dividere le operazioni consentite in base ai permessi concessi.
+        Il sito è suddiviso in tre pagine principali:
+        \begin{itemize}
+            \item \textbf{pagina di login}
+                La pagina iniziale a cui ogni utente deve far riferimento per effettuare l'accesso.
+                Sostanzialmente contiene solo gli elementi necessari per effettuare il \textbf{login}, non è prevista una funzione di registrazione autonoma.
+            \item \textbf{home gestore}
+                Il gestore ha accesso alla pagina di amministrazione, dov'è possibile:
+                \begin{itemize}
+                    \item registrare un nuovo utente
+                    \item rliminare un utente
+                    \item visualizzare le statistiche del canile
+                \end{itemize}
+            \item \textbf{home addetto rifornimenti}
+                La schermata deve consentire di:
+               \begin{itemize}
+                    \item visualizzare le eventuali notifiche
+                    \item visualizzare i consumi di un cane
+                    \item impostare la quantità di cibo adeguata per taglia di cane
+                \end{itemize}
+            \item \textbf{home addetto sorveglianza}
+                La home del sorvegliante deve fornire:
+               \begin{itemize}
+                    \item un accesso in diretta alle videocamere disponibili
+                    \item deve essere possibile aggiungere o rimuovere una videocamera
+                    \item visualizzare le notifiche se presenti
+                \end{itemize}
+            \item \textbf{home altri addetti}
+                In un futuro sviluppo del prodotto è certamente contemplata l'aggiunta di altre mansioni o addetti.
+            \item \textbf{responsabile sanitario}
+                La pagina deve consentire di:
+               \begin{itemize}
+                    \item visualizzare lo stato di salute di un cane
+                    \item visualizzare i consumi di un cane
+                    \item impostare la quantità di cibo per un cane degente o in terapia
+                    \item aggiornare lo stato di salute di un cane
+                \end{itemize}
+        \end{itemize}
+        
+    Nonostante un addetto possa ricoprire più ruoli, è stato scelto di modellare separatamente ogni mansione, questo consente: un maggiore controllo, rende più chiara la struttura e aiuta il lettore nella comprensione.
+    Inoltre l'applicativo consentirà ad un utente di detenere uno o più ruoli, rendendo più agevole l'utilizzo. 
+    \subsection{Opzionale: collare}
+        Il collare smart deve costantemente inviare aggiornamenti sui parametri vitali dell'animale quali:
+            \begin{itemize}
+                \item La frequenza cardiaca
+                \item La temperatura dell'animale
+            \end{itemize}
+    \subsection{Strumentazione gabbia}
+        La gabbia smart deve:
+            \begin{itemize}
+                \item monitorare il consumo di cibo e acqua del cane inviando aggiornamenti costanti
+                \item rifornire la ciotola di acqua quando troppo bassa
+                \item rifornire la ciotola di cibo quando troppo vuota
+            \end{itemize}
+    \subsection{Strumentazione videosorveglianza}
+        La strumentazione deve fornire uno streaming video e audio costante nel tempo. La bidirezionalità è opzionale.
         
 	\section{Requisiti non Funzionali}
 	Il primo vicolo individuato è quello economico. Il costo del servizio, essendo l'attività non a scopo di lucro e mantenuta grazie all'azione dei volontari, deve essere minimo. Questo è comprensivo dell'istallazione, dei materiali e dei costi di servizio.
