@@ -251,31 +251,19 @@ jobs:
             
       - name: Commit the new gh-pages html
         run: |
+          git add ./index.html
+          git commit -m "Invisible commit"
+          git clean -fxd
+          git checkout gh-pages
+          git rm -rf .
+          git clean -fxd
+          git clone https://github.com/SmartDogHouse/pandoc-uikit.git
           rm -rdf pandoc-uikit/.git*
-          rm -rdf Images
-          rm -rdf DrawIo
           git checkout main DrawIo
           git checkout main Images
-          git commit -m "Updated Resources"
-          git add ./index.html
-          git commit -m "Generated new index.html"
-          git add ./pandoc-uikit/.
-          git commit -m "Update pandoc dependency"
-          git clean -f -d
-          git checkout gh-pages
-        
-          if [[ -f ./index.html ]]
-          then
-            git rm ./index.html
-            git commit -m 'Removed old index.html'
-          fi
-          
-          if [[ -d "./pandoc-uikit/" ]]
-          then
-              git rm -r  ./pandoc-uikit/
-              git commit -m 'Removed old pandoc dependency'
-          fi
+          git checkout main index.html
           git status
-          git cherry-pick main~1
-          git cherry-pick main
+          # git cherry-pick main, alternatives
+          git add .
+          git commit -m 'Updated gh-pages'
           git push
