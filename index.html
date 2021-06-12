@@ -18,9 +18,9 @@
         <script src="./pandoc-uikit/jquery.sticky-kit.js"></script>
 
         <meta name="generator" content="pandoc-uikit" />
-                <meta name="author" content="Kiade Sara sara.kiade@studio.unibo.it" />
-                <meta name="author" content="Caminati Gyordan gyordan.caminati@studio.unibo.it" />
-                <meta name="author" content="Lirussi Igor igor.lirussi@studio.unibo.it" />
+                <meta name="author" content="Kiade Sara " />
+                <meta name="author" content="Caminati Gyordan " />
+                <meta name="author" content="Lirussi Igor " />
                         <title> Smart DogHouse </title>
         <style type="text/css">code{white-space: pre;}</style>
                                                        
@@ -34,12 +34,9 @@
                         <div class="uk-grid" data-uk-grid-margin>
                 <div class="uk-width-1-1">
                     <h1 class="uk-heading-large"> Smart DogHouse </h1>
-                                                            <p class="uk-text-large">Kiade Sara<br />
-<a href="mailto:sara.kiade@studio.unibo.it"><code>sara.kiade@studio.unibo.it</code></a></p>
-                                        <p class="uk-text-large">Caminati Gyordan<br />
-<a href="mailto:gyordan.caminati@studio.unibo.it"><code>gyordan.caminati@studio.unibo.it</code></a></p>
-                                        <p class="uk-text-large">Lirussi Igor<br />
-<a href="mailto:igor.lirussi@studio.unibo.it"><code>igor.lirussi@studio.unibo.it</code></a></p>
+                                                            <p class="uk-text-large">Kiade Sara<br /></p>
+                                        <p class="uk-text-large">Caminati Gyordan<br /></p>
+                                        <p class="uk-text-large">Lirussi Igor<br /></p>
                                     </div>
             </div>
             
@@ -65,7 +62,7 @@
                                                         <li><a href="#analisi-dello-spazio-del-problema"><span class="toc-section-number">3</span> Analisi dello spazio del problema</a>
                                                         <ul class="incremental">
                                                         <li><a href="#knowledge-crunching"><span class="toc-section-number">3.1</span> Knowledge crunching</a></li>
-                                                        <li><a href="#definizione-ubiquitus-language"><span class="toc-section-number">3.2</span> Definizione Ubiquitus language</a></li>
+                                                        <li><a href="#definizione-ubiquitous-language"><span class="toc-section-number">3.2</span> Definizione Ubiquitous Language</a></li>
                                                         </ul></li>
                                                         <li><a href="#analisi-dei-requisiti"><span class="toc-section-number">4</span> Analisi dei Requisiti</a>
                                                         <ul class="incremental">
@@ -77,7 +74,7 @@
                                                         </ul></li>
                                                         <li><a href="#aspetti-di-domain-driven-design"><span class="toc-section-number">5</span> Aspetti di Domain Driven Design</a>
                                                         <ul class="incremental">
-                                                        <li><a href="#individuazione-del-core-domain"><span class="toc-section-number">5.1</span> Individuazione del Core Domain</a></li>
+                                                        <li><a href="#individuazione-domains-map-e-core-domain"><span class="toc-section-number">5.1</span> Individuazione Domains map e core domain</a></li>
                                                         <li><a href="#identificazione-dei-subdomain"><span class="toc-section-number">5.2</span> Identificazione dei Subdomain</a></li>
                                                         <li><a href="#definizione-dei-bounded-context"><span class="toc-section-number">5.3</span> Definizione dei Bounded Context</a></li>
                                                         <li><a href="#definizione-delle-context-map"><span class="toc-section-number">5.4</span> Definizione delle Context Map</a></li>
@@ -92,10 +89,11 @@
                                                         <li><a href="#implementazione"><span class="toc-section-number">8</span> Implementazione</a></li>
                                                         <li><a href="#iterazioni"><span class="toc-section-number">9</span> Iterazioni</a>
                                                         <ul class="incremental">
-                                                        <li><a href="#sprint-1"><span class="toc-section-number">9.1</span> Sprint 1</a></li>
-                                                        <li><a href="#sprint-2"><span class="toc-section-number">9.2</span> Sprint 2</a></li>
-                                                        <li><a href="#sprint-3"><span class="toc-section-number">9.3</span> Sprint 3</a></li>
-                                                        <li><a href="#sprint-4"><span class="toc-section-number">9.4</span> Sprint 4</a></li>
+                                                        <li><a href="#sprint-0"><span class="toc-section-number">9.1</span> Sprint 0</a></li>
+                                                        <li><a href="#sprint-1"><span class="toc-section-number">9.2</span> Sprint 1</a></li>
+                                                        <li><a href="#sprint-2"><span class="toc-section-number">9.3</span> Sprint 2</a></li>
+                                                        <li><a href="#sprint-3"><span class="toc-section-number">9.4</span> Sprint 3</a></li>
+                                                        <li><a href="#sprint-4"><span class="toc-section-number">9.5</span> Sprint 4</a></li>
                                                         </ul></li>
                                                         <li><a href="#conclusioni">Conclusioni</a></li>
                                                         </ul>
@@ -115,10 +113,10 @@
 </section>
 <section id="problemi" data-number="1.2">
 <h2 data-number="1.2"><span class="header-section-number">1.2</span> Problemi</h2>
-<p>Il canile di Pisa ospita circa una sessantina di cani e gatti di diversa taglia, randagi o abbandonati, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono adottati, mentre i gatti vengono rilasciati subito dopo aver ricevuto le cure mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un veterinario che accorre in caso di necessità.</p>
+<p>Il canile di Pisa ospita circa una sessantina di cani e gatti di diversa taglia, randagi o abbandonati, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono adottati, mentre i gatti vengono rilasciati subito dopo aver ricevuto le cure mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un <strong>responsabile sanitario</strong> sempre presente nella struttura, che coordina alcuni <strong>veterinari</strong> convenzionati con la struttura.</p>
 <p>I principali problemi che vengono attualmente riscontrati sono i seguenti:</p>
 <ul class="incremental">
-<li><p><strong>Veterinario:</strong> il canile si rivolge a dei veterinari che si occupano del monitoraggio dello stato di salute degli animali, che spesso vengono trovati in gravi condizioni fisiche e psicologiche. Il problema principale è che questa figura non risiede fisicamente nel canile. In caso di necessità viene convocato il veterinario che ha disponibilità in quel momento, di conseguenza non è detto che un cane venga seguito sempre dallo stesso veterinario.</p></li>
+<li><p><strong>responsabile sanitario:</strong> responsabile sanitario e i veterinari convenzionati, risiedono all’interno del canile. Attualmente non è possibile monitorare lo stato di salute di un animale, questo spesso si traduce in un intervento tardivo che se diagnosticato per tempo risulterebbe più gestibile.</p></li>
 <li><p><strong>Rifornimento e consumi di cibo ed acqua:</strong> la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.</p></li>
 <li><p><strong>Sorveglianza:</strong> il canile di Pisa, attualmente, non dispone di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole, che potrebbe nascondersi anche nel gruppo dei volontari, data la natura del ruolo.</p></li>
 <li><p><strong>Assenza di supporto informatico</strong>: attualmente il canile non dispone di un’infrastruttura informatica già presente,da poter integrare; inoltre non dispone nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.</p></li>
@@ -133,13 +131,13 @@
 <li><p>rilevazione dei <strong>consumi</strong> di cibo e acqua;</p></li>
 <li><p>monitoraggio del <strong>comportamento</strong> del cane.</p></li>
 </ul>
-<p>In questo modo è possibile cogliere in maniera preventiva segnali che possono indicare un problema di salute e avvisare il veterinario.</p></li>
+<p>In questo modo è possibile cogliere in maniera preventiva segnali che possono indicare un problema di salute e aiutare il <strong>responsabile sanitario</strong> nella risoluzione e nella diagnosi dello stesso.</p></li>
 <li><p>automatizzazione delle operazioni di <strong>cura quotidiana</strong> attraverso:</p>
 <ul class="incremental">
 <li><p>automatizzazione del <strong>rifornimento</strong> di cibo e acqua</p></li>
 <li><p>possibilità di scegliere, per ciascun cane, la <strong>quantità</strong> del cibo da somministrare e la <strong>frequenza</strong>.</p></li>
 </ul>
-<p>In questo modo è possibile gestire in maniera più precisa l’alimentazione dei cani e impostare delle quantità di cibo particolari in caso di condizioni di salute che richiedono un particolare piano alimentare, sollevando da questo incarico i volontari, che svolgono un’attività non tracciabile e discontinua. Inoltre, sarà possibile per il veterinario consultare i dati riguardanti l’alimentazione del cane e, di conseguenza, fornire diagnosi più precise.</p></li>
+<p>In questo modo è possibile gestire in maniera più precisa l’alimentazione dei cani e impostare delle quantità di cibo particolari in caso di condizioni di salute che richiedono un particolare piano alimentare, sollevando da questo incarico i volontari, che svolgono un’attività non tracciabile e discontinua. Inoltre, sarà possibile per il <strong>responsabile sanitario</strong> consultare i dati riguardanti l’alimentazione del cane e, di conseguenza, fornire diagnosi più precise.</p></li>
 <li><p><strong>sorveglianza globale del canile da remoto</strong>: l’introduzione di un sistema di sorveglianza permetterà a chi di competenza di monitorare lo stato del canile anche da casa.</p></li>
 <li><p><strong>Mantenimento dello storico dei dati registrati</strong>: in questo modo sarà possibile consultare sia le informazioni riguardanti i cani che i dati che riguardano le condizioni del canile, permettendo anche di fare dei confronti su base temporale;</p></li>
 <li><p><strong>consultazione dei dati acquisiti ed elaborati:</strong> verrà fornita la possibilità di accedere allo storico dei dati medici su un Database, affinché il veterinario abbia una visione globale del quadro medico e possa velocemente filtrare le informazioni anche se non ha seguito il paziente dall’inizio.</p></li>
@@ -178,7 +176,7 @@
 </section>
 <section id="metodologia-di-sviluppo" data-number="2.2">
 <h2 data-number="2.2"><span class="header-section-number">2.2</span> Metodologia di Sviluppo</h2>
-<p>Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permettere di mantenere alta la qualità e minimizzare il rischio nella produzione. Inoltre la sua natura iterativa e incrementale si presta bene allo sviluppo del progetto, di sua natura fortemente basato sull’interazione con il cliente. Tuttavia, essendo il team composto solo da 3 componenti, i quali lavorano sullo stesso progetto, ne è stata adottata una versione leggermente semplificata descritta in seguito.</p>
+<p>Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permettere di mantenere alta la qualità, massimizzare la soddisfazione del cliente e minimizzare il rischio nella produzione. Inoltre la sua natura iterativa e incrementale si presta bene allo sviluppo del progetto, di sua natura fortemente basato sull’interazione con il cliente. Tuttavia, essendo il team composto solo da 3 componenti, i quali lavorano sullo stesso progetto, ne è stata adottata una versione leggermente semplificata descritta in seguito.</p>
 <section id="scrum" data-number="2.2.1">
 <h3 data-number="2.2.1"><span class="header-section-number">2.2.1</span> Scrum</h3>
 <p>Il processo di sviluppo Scrum-Inspired modifica in primis i ruoli: il committente è facilmente identificabile nel proprietario del canile, ma il product-owner e lo scrum-master sono sono essi stessi anche developer (parte del team di sviluppo). Inoltre, particolare enfasi è stata posta sulla cross-fertilization, lo scambio di competenze, essendo il team piccolo ma molto eterogeneo, senza struttura interna. L’organizzazione delle attività è stata impostata attorno agli sprint, concetto chiave di Scrum. Ogni sprint fornisce una suddivisione temporale del progetto (composto sia dal software che dal report) definendo i meeting, gli obiettivi e i risultati perseguiti. Per ogni Sprint, seguendo il modello del framework, è stato definito un meeting iniziale di circa un’ora, di pianificazione. Nello Sprint Planning, infatti, la divisione in due parti è stata unificata. Essendo il product-owner anche developer non può essere escluso dalla nella seconda parte come impone la metodologia Scrum. All’interno del meeting iniziale dapprima le priorità degli item sono state assegnate da un membro del team, impersonando temporaneamente il product-owner. In seguito, è stato raffinato collaborativamente il product-backlog: gli item sono stati espansi e sono stati scelti sia i goals/obiettivi generali dello sprint corrente sia quali item prendere in carico per esso (unificando parte due dello Sprint Planning). Generato lo sprint-backlog, sottoinsieme del product-backlog, in cui sono presenti i task identificati in precedenza, questi vengono presi in base volontaria. Ogni giorno, in seguito, è stato fatto il canonico daily-Scrum, per l’aggiornamento dei membri del team relativamente al potentially-shippable-product-increment dello sprint. Per identificare questo la "Definition of Done" è stata formalizzata collettivamente come: "il task è inteso completo se sono stati sviluppati, testati con successo e documentati". Infine è stato mantenuto il meeting finale, ma la suddivisione nelle tre parti anche qui è stata condensata. Nel meeting la prima parte è stata dedicata al "refinement" del backlog, in cui si aggiorna in base a quello che è stato fatto. In seguito si è passati alla "sprint review" in cui si è condiviso con gli altri ciò che è stato fatto. Inoltre in questa fase è stato coinvolto il committente, spesso per mezzo della piattaforma Telegram, per renderlo partecipe del progresso del progetto e verificare che questo proceda nella giusta direzione. In ultimo, nella "Sprint Retrospective", è stato discusso cosa ha funzionato e cosa no, quali aspetti organizzativi sistemare e correggere per il prossimo sprint.</p>
@@ -186,9 +184,10 @@
 </section>
 <section id="gestione-di-progetto" data-number="2.3">
 <h2 data-number="2.3"><span class="header-section-number">2.3</span> Gestione di Progetto</h2>
-<p>In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e teconologie si è scelto di procedere.</p>
+<p>In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e tecnologie si è scelto di procedere.</p>
 <section id="gantt-chart" data-number="2.3.0.0.1">
 <h5 data-number="2.3.0.0.1"><span class="header-section-number">2.3.0.0.1</span> Gantt Chart</h5>
+<p>Per ottimizzare il tempo di sviluppo si è scelto di utilizzarne uno per ogni <strong>sprint</strong>, questo ci aiuterà nell’ottimizzare il tempo e a rispettare le <strong>deadline</strong></p>
 </section>
 <section id="github-projects-management" data-number="2.3.0.0.2">
 <h5 data-number="2.3.0.0.2"><span class="header-section-number">2.3.0.0.2</span> GitHub Projects Management</h5>
@@ -197,6 +196,10 @@
 <section id="telegram" data-number="2.3.0.0.3">
 <h5 data-number="2.3.0.0.3"><span class="header-section-number">2.3.0.0.3</span> Telegram</h5>
 <p>Come strumento di messaggistica informale all’interno del gruppo, si è scelta la piattaforma Telegram. Accessibile facilmente da smartphone e da computer permette di aggiornare i componenti del gruppo immediatamente qualora vi siano delle urgenze. Il punto di forza rimane la possibilità di spedire file di tutti i formati e di poter inserire nel gruppo dei BOT per automatizzare alcune azioni, tra cui le notifiche. Un’overview più chiara dell’utilizzo dei BOT verrà fornita nella .</p>
+<section id="bot-per-sondaggi" data-number="2.3.0.0.3.1">
+<h6 data-number="2.3.0.0.3.1"><span class="header-section-number">2.3.0.0.3.1</span> Bot per Sondaggi</h6>
+<p>Per facilitare la coordinazione quotidiana è stato creato un bot per inviare i sondaggi sul gruppo Telegram. Questo sia poiché il progetto è stato svolto prevalentemente a distanza, sia perché alcune parti necessariamente hanno richiesto la presenza di tutto il team.</p>
+</section>
 </section>
 <section id="discord" data-number="2.3.0.0.4">
 <h5 data-number="2.3.0.0.4"><span class="header-section-number">2.3.0.0.4</span> Discord</h5>
@@ -208,15 +211,17 @@
 <p>In questo capitolo si analizza la parte di integrazione e automatizzazione sia del progetto software che della relazione.</p>
 <section id="relazione-di-progetto" data-number="2.4.0.0.1">
 <h5 data-number="2.4.0.0.1"><span class="header-section-number">2.4.0.0.1</span> Relazione di Progetto</h5>
-<p>Considerato che anche la Relazione deve essere versionata e automatizzata, essendo parte del software, abbiamo iniziato partendo da essa. Come linguaggio di markup è stato scelto <span>LaTeX</span>, per la sua flessibilità e potenza. Come strumento per la compilazione invece è stato scelto Overleaf.com, poiché permette di collaborare sullo stesso progetto, in real-time, e di non dipendere da diversi IDE per <span>LaTeX</span> installati in locale. Overleaf inoltre è stato collegato al repo, permettendo di pushare i cambiamenti fatti in tutta fluidità. Nel repository, tramite l’utilizzo di GitHub Actions, è stato implementato un processo di automatizzazione con multipli Job. Il primo Job si attiva ad ogni push ricevuta, compila il Latex per mezzo di una action e, qualora si verificassero degli errori, li salva in un log più piccolo, che verrà caricato come artefatto. Invece, se nessun errore è presente, è il pdf generato a venire caricato come artefatto. La terminazione di questo Job attiva altri due Job, dipendenti, che si occupano delle notifiche Telegram. Anche qui per mezzo di una action viene mandato un messaggio di notifica sul gruppo, sia se la build del Latex ha avuto successo, sia che ci siano stati errori. In caso di fallimento assieme al messaggio viene inoltrato sul gruppo pure il log conciso che contiene solo gli errori Latex. Per la gestione delle release è stato inoltre implementato un altro Job che verifica se nel messaggio di commit è presente uno speciale segnalatore -TAG. La scelta di gestire la numerazione dei tag a mano è stata dettata dalla necessità di controllo e cusotomizzazione di questi: in una relazione si vuole scegliere quando effettuare la release e, adottando il semantic versioning, il grado di cambiamento che si ritiene più opportuno. Il Job successivo si occupa del deploy, e viene attivato solamente se è stato trovato un tag nella parte precedente. Questo Job scarica il pdf precedentemente generato negli artefatti e si occupa di farne una release con nome coerente e con il tag specificato. Al termine della release vengono lanciati altri due Job, anch’essi dipendenti, che si occupano di notificarne il completamento. Il primo usa una GitHub Action per inoltrare una mail ai componenti del gruppo contenente il pdf della release. Per fare ciò si è dovuto creare un account Gmail specifico che funge da casella di invio. Si può inoltre sfruttare come account di notifica per un’eventuale newsletter agli iscritti ad ogni nuova release. Il secondo Job si occupa parallelamente di inoltrare un messaggio Telegram sul gruppo dei developers contentente anch’esso il pdf della release, il responsabile e il testo del commit. Un ultimo Job è stato creato per gestire anche le GitHub Pages, le quali forniscono un sito in cui consultare la relazione online. Per fare ciò è stato creato un nuovo branch sul quale viene fatto il commit dei file Html generati grazie a Pandoc.</p>
+<p>Considerato che anche la relazione deve essere versionata e automatizzata, essendo parte del software e descrivendolo, abbiamo iniziato partendo da essa. Come linguaggio di markup è stato scelto <span>LaTeX</span>, per la sua flessibilità e potenza. Come strumento per la compilazione invece è stato scelto Overleaf.com, poiché ha 3 vantaggi principali che il team ha individuato. Permette di collaborare sullo stesso progetto, in real-time, osservando i cambiamenti fatti dai collaboratori con la compilazione immediata, discutendone vocalmente i dettagli tramite la piattaforma di comunicazione VoIP. Permette inoltre di non dipendere da diversi IDE per <span>LaTeX</span> installati in locale, che creerebbero conflitti e mismatch visuali. Infine permette di integrarsi con GitHub, pushando i commit con i nomi desiderati in tutta fluidità direttamente dalla piattaforma web. Per incorporare gli elementi grafici più importanti si è fatto uso della piattaforma Draw.io. L’integrazione con GitHub è anche qui presente, permettendo di aprire il progetto e pushare le modifiche direttamente dal web. Inoltre è notevole il fatto che gli artefatti PNG abbiano essi stessi i metadati del progetto garantendo tre vantaggi. Il primo riguarda la non necessità di salvare un ulteriore file progetto rispetto all’artefatto. Il secondo riguarda la possibilità di aprire direttamente i PNG e poter fare le modifiche desiderate. Il terzo è l’intrinseco versionamento pure dei progetti assieme ai PNG. Per le grafiche dove è necessaria più una collaborazione real-time dei membri del team, con schemi inerenti al DDD più esotici, oppure ove è più presente il contatto con il cliente, la scelta è ricaduta sulla piattaforma Miro. Nel repository, tramite l’utilizzo di GitHub Actions, è stato implementato un processo di automatizzazione con multipli Job. Il primo Job si attiva ad ogni push ricevuta, compila il Latex per mezzo di una action e, qualora si verificassero degli errori, li salva in un log più piccolo, che verrà caricato come artefatto. Invece, se nessun errore è presente, è il pdf generato a venire caricato come artefatto. La terminazione di questo Job attiva altri due Job, dipendenti, che si occupano delle notifiche Telegram. Anche qui per mezzo di una action viene mandato un messaggio di notifica sul gruppo, sia se la build del Latex ha avuto successo, sia che ci siano stati errori. In caso di fallimento assieme al messaggio viene inoltrato sul gruppo pure il log conciso che contiene solo gli errori Latex. Per la gestione delle release è stato inoltre implementato un altro Job che verifica se nel messaggio di commit è presente uno speciale segnalatore -TAG. La scelta di gestire la numerazione dei tag a mano è stata dettata dalla necessità di controllo e cusotomizzazione di questi: in una relazione si vuole scegliere quando effettuare la release e, adottando il semantic versioning, il grado di cambiamento che si ritiene più opportuno. Il Job successivo si occupa del deploy, e viene attivato solamente se è stato trovato un tag nella parte precedente. Questo Job scarica il pdf precedentemente generato negli artefatti e si occupa di farne una release con nome coerente e con il tag specificato. Al termine della release vengono lanciati altri due Job, anch’essi dipendenti, che si occupano di notificarne il completamento. Il primo usa una GitHub Actions per inoltrare una mail ai componenti del gruppo contenente il pdf della release. Per fare ciò si è dovuto creare un account Gmail specifico che funge da casella di invio. Si può inoltre sfruttare come account di notifica per un’eventuale newsletter agli iscritti ad ogni nuova release. Il secondo Job si occupa parallelamente di inoltrare un messaggio Telegram sul gruppo dei developers contenente anch’esso il pdf della release, il responsabile e il testo del commit. Un ultimo Job è stato creato per gestire anche le GitHub Pages, le quali forniscono un sito in cui consultare la relazione online. Per fare ciò è stato creato un nuovo branch sul quale viene fatto il commit dei file Html generati grazie a Pandoc.</p>
 <figure>
-<img src="RepoCI.png" style="width:100.0%" alt="" /><figcaption>Pipeline implementata, esecuzione di un commit senza tag</figcaption>
+<img src="Images/RepoCI.png" style="width:100.0%" alt="" /><figcaption>Pipeline implementata, esecuzione di un commit senza tag</figcaption>
 </figure>
 <section id="tool-utilizzati" data-number="2.4.0.0.1.1">
 <h6 data-number="2.4.0.0.1.1"><span class="header-section-number">2.4.0.0.1.1</span> Tool utilizzati</h6>
 <ul class="incremental">
+<li><p>HackMD</p></li>
 <li><p>Overleaf</p></li>
 <li><p>Draw.io</p></li>
+<li><p>Miro</p></li>
 <li><p>GitHub Actions</p></li>
 <li><p>Telegram Bots</p></li>
 <li><p>Pandoc</p></li>
@@ -242,32 +247,255 @@
 <h1 data-number="3"><span class="header-section-number">3</span> Analisi dello spazio del problema</h1>
 <section id="knowledge-crunching" data-number="3.1">
 <h2 data-number="3.1"><span class="header-section-number">3.1</span> Knowledge crunching</h2>
+<p>Per poter fare un’analisi soddisfacente è fondamentale avere una buona conoscenza del <strong>dominio</strong> e della sua <strong>terminologia</strong>, cosa che, se fatta in autonomia, potrebbe richiedere parecchio tempo. Per questo motivo è importante <strong>collaborare</strong> con gli <strong>esperti di dominio</strong>, che aiutano a comprendere i componenti del dominio, le dinamiche, i termini tecnici e gli aspetti critici. Il <strong>knowledge crunching</strong> è il percorso che porta chi deve realizzare il sistema ad avere una <strong>migliore comprensione</strong> non solo di <strong>quanto</strong> deve essere fatto, ma del <strong>perché</strong>, permettendo di non fermarsi alle <strong>specifiche</strong>, ma di capirne il <strong>senso</strong>.</p>
+<section id="sessioni" data-number="3.1.1">
+<h3 data-number="3.1.1"><span class="header-section-number">3.1.1</span> Sessioni</h3>
+<p>Nel nostro caso le sessioni di <strong>knowledge crunching</strong> sono state svolte interpellando un <strong>esperto di dominio</strong> per via telematica.</p>
+<ul class="incremental">
+<li><p><strong>Prima sessione:</strong> nella prima sessione, il <strong>colloquio</strong> con l’esperto ha permesso al team di comprendere:</p>
+<ul class="incremental">
+<li><p>gli aspetti principali della <strong>gestione</strong> del canile;</p></li>
+<li><p>le <strong>figure</strong> coinvolte;</p></li>
+<li><p>i <strong>ruoli</strong> presenti all’interno del canile;</p></li>
+<li><p>le <strong>mansioni</strong> che vengono svolte quotidianamente;</p></li>
+<li><p>i <strong>processi di gestione</strong>.</p></li>
+</ul>
+<p>Queste conoscenze hanno permesso di dare il <strong>kick-off</strong> al progetto.</p>
+<figure>
+<img src="DrawIo/organizationChart.png" style="width:90.0%" alt="" /><figcaption>Organization Chart</figcaption>
+</figure></li>
+<li><p><strong>Sessioni successive:</strong> successivamente il processo è stato continuo, sono stati svolti degli <strong>incontri periodici</strong> per:</p>
+<ul class="incremental">
+<li><p>controllare che il progetto proseguisse nella direzione sperata;</p></li>
+<li><p><strong>sciogliere</strong> alcuni <strong>dubbi</strong> sorti in corso d’opera;</p></li>
+<li><p><strong>verificare</strong> la corretta <strong>comprensione</strong> di alcuni concetti chiave.</p></li>
+</ul></li>
+</ul>
 </section>
-<section id="definizione-ubiquitus-language" data-number="3.2">
-<h2 data-number="3.2"><span class="header-section-number">3.2</span> Definizione Ubiquitus language</h2>
+<section id="svolgimento" data-number="3.1.2">
+<h3 data-number="3.1.2"><span class="header-section-number">3.1.2</span> Svolgimento</h3>
+<section id="comunicazione" data-number="3.1.2.1">
+<h4 data-number="3.1.2.1"><span class="header-section-number">3.1.2.1</span> Comunicazione</h4>
+<p>Data l’ovvia problematicità nell’incontrarsi, la comunicazione è stata gestita da remoto, utilizzando le seguenti piattaforme:</p>
+<ul class="incremental">
+<li><p><strong>Telegram</strong>, per chiamate vocali e brevi chiarimenti</p></li>
+<li><p><strong>Discord</strong>, per la condivisione schermo con gli artefatti visuali</p></li>
+</ul>
+<p>Durante le interazioni sono state create multiple <strong>rappresentazioni visuali</strong> a guida e supporto della conversazione.</p>
+</section>
+<section id="percorso" data-number="3.1.2.2">
+<h4 data-number="3.1.2.2"><span class="header-section-number">3.1.2.2</span> Percorso</h4>
+<ul class="incremental">
+<li><p>Il gruppo parlando con il <strong>responsabile del canile</strong> (il maggiore esperto del dominio) ha <strong>indagato</strong> con maggiore enfasi i concetti necessari per la creazione di un <strong>buon software</strong>, tralasciando dettagli <strong>pleonastici</strong>.</p></li>
+<li><p>Il <strong>focus</strong> è stato su capire quello che serve per lo sviluppo di un software che soddisfi le <strong>reali necessità</strong> del cliente. I dettagli su cui l’esperto del dominio ricadeva spesso, infatti, hanno rivelato dove le energie dovessero essere maggiormente spese.</p></li>
+<li><p>In questo caso gli <strong>esperti</strong> del dominio sono anche i <strong>clienti</strong>. Questi ultimi forniscono il <strong>problem-space</strong>, mentre i primi forniscono il <strong>solution-space</strong>.</p></li>
+</ul>
+<p>Per la comprensione degli obbiettivi di più alto business value, si è costruita in maniera interattiva e collaborativa un’impact map, sotto la supervisione di team, scrum master e product-owner. L’uso di questo diagramma mira a mantenere un livello non troppo formale da risultare incomprensibile agli estranei al dominio, ma nemmeno totalmente informale, perdendo efficacia comunicativa.</p>
+<figure>
+<img src="DrawIo/impactMap.png" style="width:100.0%" alt="" /><figcaption>Impact-map obbiettivi business</figcaption>
+</figure>
+<p>Il risultato ha portato in evidenza i due principali obbiettivi di business, evidenziando in maniera chiara la loro suddivisione, e le soluzioni per raggiungere i risulati attesi.</p>
+<p>Con una visone d’insieme leggermente più definita, ci siamo cimentati nella stesura delle <strong>user stories</strong> per ogni ruolo. Dalla moltitudine emersa, sono state identificate, cercando di seguire i requisiti di business individuati, le più calzanti, legate ad ogni obiettivo dell’<strong>impact map</strong>.</p>
+<p>La definizione delle user-stories ha portato naturalmente a indagare il significato di alcuni termini usati. Questo ha spinto subito allo sviluppo concorrente di un ubiquitous language per i vocaboli più importanti. Questo è stato poi continuamente raffinato durante i successivi meeting. Nel prossimo capitolo viene analizzato questo processo.</p>
+</section>
+</section>
+</section>
+<section id="definizione-ubiquitous-language" data-number="3.2">
+<h2 data-number="3.2"><span class="header-section-number">3.2</span> Definizione Ubiquitous Language</h2>
 <p>L’Ubiquitous Language deve essere espresso nel modello di dominio, infatti unisce le persone del team di progetto. Lo scopo è eliminare le imprecisioni e le contraddizioni degli esperti di dominio, non è infatti imposto da questi, ma raggiunto collaborativamente. L’Ubiquitous Language si evolve nel tempo, non è definito interamente in una sola riunione, i concetti spesso si aggiungono, vengono sviscerati e partecipano nella comprensione del dominio. Infatti quelli che non fanno parte dell’Ubiquitous Language devono essere rifiutati.</p>
-<p><span id="tab:UL" label="tab:UL">[tab:UL]</span></p>
+<figure>
+<img src="DrawIo/ubiquitousLanguage.png" style="width:90.0%" alt="" /><figcaption>Tabella ubiquitous language</figcaption>
+</figure>
+<p>Termine &amp; Equivalenza &amp; Descrizione<br />
+Gestore &amp; Manager &amp; Persona che ha in carico il canile<br />
+Veterinario &amp; Vet &amp; Medico esterno al canile che viene contattato per visite mediche consulenze sanitarie e terapie<br />
+Blue &amp; 3000.00 &amp; 4000.00<br />
+Sum &amp; 6000.00 &amp; 9000.00</p>
 </section>
 </section>
 <section id="analisi-dei-requisiti" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Analisi dei Requisiti</h1>
+<p>In questa fase sono stati individuati i <strong>requisiti del sistema</strong>, partendo dalle descrizioni di alto livello, ottenute dal committente durante il <strong>knowledge crunching</strong>. Successivamente si è proceduto con un raffinamento che ha portato alla definizione di requisiti più <strong>specifici</strong>, <strong>chiari</strong> e <strong>strutturati</strong>.</p>
 <section id="requisiti-di-business" data-number="4.1">
 <h2 data-number="4.1"><span class="header-section-number">4.1</span> Requisiti di Business</h2>
+<p>Si definiscono di seguito le aspettative del cliente e i requisiti che il prodotto dovrà soddisfare, espressi con una terminologia ad elevato livello astrattivo.</p>
+<ul class="incremental">
+<li><p>Il prodotto dovrà <strong>diminuire l’intervento umano</strong> necessario per la quotidiana cura degli ospiti (Riempimento ciotola acqua/cibo); la riduzione del lavoro deve essere maggiore o uguale al 30%.</p></li>
+<li><p>Il prodotto dovrà consentire di <strong>diminuire il lavoro su base volontaria</strong>, grazie alla riduzione delle operazioni di cura quotidiana, permettendo ai volontari di concentrarsi solo sulla socializzazione e lo svago dell’animale. Diminuisce così l’interferenza al di fuori delle loro mansioni, e migliora la tracciabilità del lavoro svolto, essendo il lavoro volontario incostante e meno affidabile.</p></li>
+<li><p>Opzionalmente il prodotto dovrà <strong>fornire un monitoraggio a distanza</strong> degli animali ospitati. Questo consentirà al personale incaricato di monitorare parametri come: frequenza cardiaca e temperatura corporea. Verrà diminuito anche l’intervento veterinario, non essendo necessaria la presenza in loco del professionista. La riduzione delle presenze dovrà consentire di diminuire i costi di un valore maggiore o uguale al 10%.</p></li>
+</ul>
 </section>
 <section id="requisiti-utente" data-number="4.2">
 <h2 data-number="4.2"><span class="header-section-number">4.2</span> Requisiti Utente</h2>
+<p>Di seguito vengono riportate le richieste mosse dal cliente in maniera informale evitando termini tecnici, successivamente tali richieste saranno formalizzate per quanto possibile. Il prodotto dovrà fornire:</p>
+<ul class="incremental">
+<li><p>l’accesso al sistema da qualunque dispositivo munito di connessione alla rete, anche esterna al canile</p></li>
+<li><p>prestazioni adeguate alle operazioni richieste (con soglie adeguate caso per caso), come il rilevare se il cane ha bisogno di cibo o acqua</p></li>
+<li><p>una restrizione delle funzionalità disponibili in base all’utente</p></li>
+<li><p>un interfaccia intuitiva, comprensiva di una pagina per l’accesso e un menu principale</p></li>
+<li><p>uno storico per ogni animale</p></li>
+<li><p>un accesso rapido e reattivo evitando tempi troppo lunghi per le operazioni</p></li>
+<li><p>un sistema di sorveglianza semi automatizzato in grado di identificare eventuali anomalie, come cani che escono senza permesso</p></li>
+<li><p><strong>opzionalmente</strong> delle notifiche sullo stato di salute dell’animale al personale</p></li>
+<li><p>delle notifiche in caso di malfunzionamento del sistema stesso</p></li>
+<li><p>delle notifiche, nel caso in cui il cibo sia in esaurimento</p></li>
+</ul>
 <section id="user-stories" data-number="4.2.1">
 <h3 data-number="4.2.1"><span class="header-section-number">4.2.1</span> User stories</h3>
-</section>
-<section id="casi-duso" data-number="4.2.2">
-<h3 data-number="4.2.2"><span class="header-section-number">4.2.2</span> Casi d’uso</h3>
+<p>Di seguito sono riportate tutte le <strong>user stories</strong> ritenute utili per lo sviluppo del prodotto.</p>
+<ul class="incremental">
+<li><p>Come <strong>gestore</strong> voglio:</p>
+<ul class="incremental">
+<li><p>poter visualizzare le informazioni relative all’occupante di una gabbia</p></li>
+<li><p>voglio poter impostare i dati dell’occupante di una gabbia</p></li>
+<li><p>poter rimuovere un cane da una gabbia</p></li>
+<li><p>poter visualizzare i consumi TOTALI del canile</p></li>
+</ul></li>
+<li><p>Come <strong>responsabile sanitario</strong> voglio:</p>
+<ul class="incremental">
+<li><p><em>opzionalmente</em> poter <strong>visualizzare i battiti</strong> di un cane</p></li>
+<li><p><em>opzionalmente</em> ricevere una <strong>notifica</strong> in caso di rilevazione di <strong>anomalie</strong> nei <strong>battiti</strong> o nella di un cane</p></li>
+<li><p><em>opzionalmente</em> poter <strong>visualizzare la temperatura corporea</strong> di un cane</p></li>
+<li><p><em>opzionalmente</em> ricevere una <strong>notifica</strong> in caso di rilevazione di <strong>anomalie</strong> nella <strong>temperatura</strong> corporea di un cane</p></li>
+<li><p>poter <strong>impostare la quantità di cibo</strong> da erogare a un cane</p></li>
+<li><p>poter <strong>impostare</strong> gli intervalli dei <strong>parametri vitali</strong> fuori dai quali vi è un’anomalia</p></li>
+<li><p>poter <strong>impostare</strong> gli intervalli delle <strong>quantità di cibo e acqua</strong> assunti, fuori dai quali vi è un’anomalia</p></li>
+<li><p>poter <strong>impostare</strong> gli intervalli della <strong>temperatura</strong> e dei <strong>battiti</strong> al di fuori dai quali vi è un’anomalia</p></li>
+<li><p>poter visualizzare i <strong>consumi di cibo</strong> relativi a un cane in un determinato lasso di tempo</p></li>
+<li><p>poter i <strong>consumi di acqua</strong> relativi a un cane in un determinato lasso di tempo</p></li>
+<li><p>ricevere una <strong>notifica</strong> in caso di <strong>anomalie</strong> nella quantità di <strong>acqua</strong> assunta da un cane</p></li>
+<li><p>ricevere una <strong>notifica</strong> in caso di <strong>anomalie</strong> nella quantità di <strong>cibo</strong> assunto da un cane</p></li>
+<li><p>poter <strong>impostare</strong> i dati relativi allo <strong>stato di salute</strong> di un cane</p></li>
+</ul></li>
+<li><p>Come <strong>addetto alla sorveglianza</strong> voglio:</p>
+<ul class="incremental">
+<li><p>poter visualizzare le immagini acquisite dalla videocamera di sorveglianza</p></li>
+<li><p>notificato in caso di uscita non autorizzata di un cane</p></li>
+<li><p><em>opzionalmente</em> essere notificato in caso di rilevazione di suoni forti o anomali</p></li>
+<li><p><em>opzionalmente</em> poter visualizzare l’umidità e la temperatura ambientale</p></li>
+</ul></li>
+</ul>
 </section>
 </section>
 <section id="requisiti-funzionali" data-number="4.3">
 <h2 data-number="4.3"><span class="header-section-number">4.3</span> Requisiti Funzionali</h2>
+<section id="casi-duso" data-number="4.3.1">
+<h3 data-number="4.3.1"><span class="header-section-number">4.3.1</span> Casi d’uso</h3>
+<figure>
+<img src="DrawIo/useCaseWholeSystem.png" style="width:90.0%" alt="" /><figcaption>Diagramma dei casi d’uso del sistema, rappresenta le principali azioni effettuate degli attori</figcaption>
+</figure>
+<p>Si elencano i requisiti funzionali per ognuno dei seguenti macro-componenti:</p>
+<ul class="incremental">
+<li><p>Applicativo web</p></li>
+<li><p>Applicativo video</p></li>
+<li><p>Opzionale collare</p></li>
+<li><p>Strumentazione gabbia</p></li>
+</ul>
+</section>
+<section id="applicativo-web" data-number="4.3.2">
+<h3 data-number="4.3.2"><span class="header-section-number">4.3.2</span> Applicativo web</h3>
+<p>L’applicativo web deve consentire ad ogni utente di accedere con una serie di credenziali, e dividere le operazioni consentite in base ai permessi concessi. Il sito è suddiviso in tre pagine principali:</p>
+<ul class="incremental">
+<li><p><strong>pagina di login</strong> La pagina iniziale a cui ogni utente deve far riferimento per effettuare l’accesso. Sostanzialmente contiene solo gli elementi necessari per effettuare il <strong>login</strong>, non è prevista una funzione di registrazione autonoma.</p></li>
+<li><p><strong>home gestore</strong> Il gestore ha accesso alla pagina di amministrazione, dov’è possibile:</p>
+<ul class="incremental">
+<li><p>registrare un nuovo utente</p></li>
+<li><p>rliminare un utente</p></li>
+<li><p>visualizzare le statistiche del canile</p></li>
+</ul></li>
+<li><p><strong>home addetto rifornimenti</strong> La schermata deve consentire di:</p>
+<ul class="incremental">
+<li><p>visualizzare le eventuali notifiche</p></li>
+<li><p>visualizzare i consumi di un cane</p></li>
+<li><p>impostare la quantità di cibo adeguata per taglia di cane</p></li>
+</ul></li>
+<li><p><strong>home addetto sorveglianza</strong> La home del sorvegliante deve fornire:</p>
+<ul class="incremental">
+<li><p>un accesso in diretta alle videocamere disponibili</p></li>
+<li><p>deve essere possibile aggiungere o rimuovere una videocamera</p></li>
+<li><p>visualizzare le notifiche se presenti</p></li>
+</ul></li>
+<li><p><strong>home altri addetti</strong> In un futuro sviluppo del prodotto è certamente contemplata l’aggiunta di altre mansioni o addetti.</p></li>
+<li><p><strong>responsabile sanitario</strong> La pagina deve consentire di:</p>
+<ul class="incremental">
+<li><p>visualizzare lo stato di salute di un cane</p></li>
+<li><p>visualizzare i consumi di un cane</p></li>
+<li><p>impostare la quantità di cibo per un cane degente o in terapia</p></li>
+<li><p>aggiornare lo stato di salute di un cane</p></li>
+</ul></li>
+</ul>
+<p>Nonostante un addetto possa ricoprire più ruoli, è stato scelto di modellare separatamente ogni mansione, questo consente: un maggiore controllo, rende più chiara la struttura e aiuta il lettore nella comprensione. Inoltre l’applicativo consentirà ad un utente di detenere uno o più ruoli, rendendo più agevole l’utilizzo.</p>
+</section>
+<section id="opzionale-collare" data-number="4.3.3">
+<h3 data-number="4.3.3"><span class="header-section-number">4.3.3</span> Opzionale: collare</h3>
+<p>Il collare smart deve costantemente inviare aggiornamenti sui parametri vitali dell’animale quali:</p>
+<ul class="incremental">
+<li><p>La frequenza cardiaca</p></li>
+<li><p>La temperatura dell’animale</p></li>
+</ul>
+</section>
+<section id="strumentazione-gabbia" data-number="4.3.4">
+<h3 data-number="4.3.4"><span class="header-section-number">4.3.4</span> Strumentazione gabbia</h3>
+<p>La gabbia smart deve:</p>
+<ul class="incremental">
+<li><p>monitorare il consumo di cibo e acqua del cane inviando aggiornamenti costanti</p></li>
+<li><p>rifornire la ciotola di acqua quando troppo bassa</p></li>
+<li><p>rifornire la ciotola di cibo quando troppo vuota</p></li>
+</ul>
+</section>
+<section id="strumentazione-videosorveglianza" data-number="4.3.5">
+<h3 data-number="4.3.5"><span class="header-section-number">4.3.5</span> Strumentazione videosorveglianza</h3>
+<p>La strumentazione deve fornire uno streaming video e audio costante nel tempo. La bidirezionalità è opzionale.</p>
+</section>
 </section>
 <section id="requisiti-non-funzionali" data-number="4.4">
 <h2 data-number="4.4"><span class="header-section-number">4.4</span> Requisiti non Funzionali</h2>
+<p>Il primo vicolo individuato è quello economico. Il costo del servizio, essendo l’attività non a scopo di lucro e mantenuta grazie all’azione dei volontari, deve essere minimo. Questo è comprensivo dell’istallazione, dei materiali e dei costi di servizio. Un secondo vincolo rappresenta la sicurezza, l’eventuale introduzione di strumentazione all’interno del canile non deve rappresentare in alcun modo un pericolo per la salute dell’animale.</p>
+<p>Il sistema dovrà rispettare alcuni requisiti non funzionali che ne determineranno la <strong>qualità</strong>:</p>
+<section id="di-sistema" data-number="4.4.1">
+<h3 data-number="4.4.1"><span class="header-section-number">4.4.1</span> Di Sistema</h3>
+<ul class="incremental">
+<li><p><strong>Reattività</strong>:</p>
+<ul class="incremental">
+<li><p>l’utente non deve percepire <strong>ritardi</strong> nell’ordine dei secondi tra l’invio di un comando e l’esecuzione dello stesso all’interno della piattaforma.</p></li>
+<li><p>le notifiche standard del sistema devono essere mostrate ai relativi utenti con un ritardo complessivo massimo non superiore al minuto.</p></li>
+<li><p>le notifiche urgenti del sistema, ossia quelle relative a malfunzionamenti gravi o alla salute dell’animale, devono essere mostrate ai relativi utenti con un ritardo complessivo massimo non superiore ai dieci secondi.</p></li>
+</ul></li>
+<li><p><strong>Scalabilità</strong>: L’applicativo deve necessariamente consentire di aumentare o diminuire il numero di animali gestiti. Ciò deve avvenire senza una sensibile ripercussione sulle prestazioni del sistema e un disagio minimo a livello pratico. Per prevenire, inoltre, che la presenza di una connessione cablata limiti la scalabilità del sistema, è desiderabile che non ci siano altri collegamenti al di fuori dell’alimentazione già presente.</p></li>
+<li><p><strong>Fault tolerance</strong>: la <strong>gestione degli errori</strong> deve essere adeguatamente implementata affinché le interruzioni involontarie non danneggino innanzitutto la salute degli animali. Eventuali malfunzionamenti di apparecchiature o sensoristica all’interno del canile non devono pregiudicare il funzionamento complessivo dell’applicativo, ma al massimo della singola unità logica.</p></li>
+</ul>
+</section>
+<section id="della-sensoristica" data-number="4.4.2">
+<h3 data-number="4.4.2"><span class="header-section-number">4.4.2</span> Della Sensoristica</h3>
+<ul class="incremental">
+<li><p><strong>Precisione</strong>:</p>
+<ul class="incremental">
+<li><p><strong>Bilancia</strong> lo scostamento massimo tra più misure deve essere inferiore o uguale a 10 grammi.</p></li>
+<li><p><strong>Temperatura</strong> lo scostamento massimo tra più misure deve essere inferiore o uguale a 2 gradi.</p></li>
+<li><p><strong>Umidità</strong> lo scostamento massimo tra più misure deve essere inferiore o uguale a 5%.</p></li>
+<li><p><strong>Livello acqua</strong> lo scostamento massimo tra più misure deve essere inferiore o uguale a 1 centimetro.</p></li>
+<li><p><strong>Frequenza cardiaca</strong> lo scarto tra misure sulla stessa frequenza deve essere al massimo 10 battiti.</p></li>
+</ul></li>
+<li><p><strong>Risoluzione</strong>:</p>
+<ul class="incremental">
+<li><p><strong>Bilancia</strong> il range di misura, partendo da vuota, deve riuscire a comprendere almeno un Kg.</p></li>
+<li><p><strong>Temperatura</strong> il range deve variare tra 0 e 50 gradi.</p></li>
+<li><p><strong>Umidità</strong> il range di umidità deve essere incluso tra 20-80%.</p></li>
+<li><p><strong>Livello acqua</strong> Il range deve variare almeno di tre cm.</p></li>
+<li><p><strong>Videocamera</strong>: necessaria almeno una risoluzione di 420p, non è richiesta la visione notturna.</p></li>
+<li><p><strong>Frequenza cardiaca</strong> la misurazione deve essere in grado di rilevare una frequenza che oscilla tra i 60 e i 160 battiti al minuto.</p></li>
+<li><p><strong>Microfono</strong> deve essere in grado di determinare suoni ad elevata intensità compresi tra 50 e 130 dB.</p></li>
+</ul></li>
+<li><p><strong>Accuratezza</strong>:</p>
+<ul class="incremental">
+<li><p><strong>Bilancia</strong> lo scostamento massimo dal valore reale deve essere inferiore o uguale a 10 grammi.</p></li>
+<li><p><strong>Temperatura</strong> Lo scostamento dalla temperatura effettiva deve essere minore di 2 gradi.</p></li>
+<li><p><strong>Umidità</strong> Si accetta un massimo di 5% accuratezza.</p></li>
+<li><p><strong>Livello acqua</strong> l’accuratezza minima deve essere di 2cm.</p></li>
+<li><p><strong>Frequenza cardiaca</strong> l’errore non deve superare i cinque battiti al minuto.</p></li>
+</ul></li>
+</ul>
+</section>
 </section>
 <section id="requisiti-implementativi" data-number="4.5">
 <h2 data-number="4.5"><span class="header-section-number">4.5</span> Requisiti Implementativi</h2>
@@ -275,8 +503,18 @@
 </section>
 <section id="aspetti-di-domain-driven-design" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Aspetti di Domain Driven Design</h1>
-<section id="individuazione-del-core-domain" data-number="5.1">
-<h2 data-number="5.1"><span class="header-section-number">5.1</span> Individuazione del Core Domain</h2>
+<section id="individuazione-domains-map-e-core-domain" data-number="5.1">
+<h2 data-number="5.1"><span class="header-section-number">5.1</span> Individuazione Domains map e core domain</h2>
+<p>All’interno del Knowledge Krunching, domande significative sono state fatte per capire i concetti fondamentali del dominio. Non tutte le parti hanno egual importanza, in questo capitolo si cerca individuare il core domain. Infatti, è necessario ridurre la complessità focalizzandosi su quelle più importanti, ciò aiuta a diminuire la difficoltà globale. Inoltre c’è da specificare che il core domain non va confuso con l’organizzazione dell’azienda, nel nostro caso il software va a risolvere un problema mirato, non coincidente con l’intero ambito aziendale. Ulteriore attenzione è stata fatta al fatto che il core possa cambiare con il tempo.</p>
+<figure>
+<img src="DrawIo/domainsMap.png" style="width:50.0%" alt="" /><figcaption>Rappresentazione grafica dei domini</figcaption>
+</figure>
+<p>Sono stati identificati tre domain, dove:</p>
+<ul class="incremental">
+<li><p><strong>Sanità</strong> è il <strong>core domain</strong>. Contiene tutta la logica e le funzioni utili a determinare lo stato di salute dell’animale, partendo dai soli dati vitali.</p></li>
+<li><p><strong>Cura quotidiana</strong> è il <strong>support domain</strong>. Tramite la cura e le informazioni ricavate dalle azioni quotidiane dell’animale supporta il <strong>core domain</strong> nell’analisi di anomalie quali patologie, problemi di salute o comportamentali.</p></li>
+<li><p><strong>Sorveglianza</strong> è il sub domain relativo alla gestione e monitoraggio video del canile.</p></li>
+</ul>
 </section>
 <section id="identificazione-dei-subdomain" data-number="5.2">
 <h2 data-number="5.2"><span class="header-section-number">5.2</span> Identificazione dei Subdomain</h2>
@@ -308,43 +546,46 @@
 </section>
 <section id="iterazioni" data-number="9">
 <h1 data-number="9"><span class="header-section-number">9</span> Iterazioni</h1>
-<section id="sprint-1" data-number="9.1">
-<h2 data-number="9.1"><span class="header-section-number">9.1</span> Sprint 1</h2>
-<section id="pianificazione" data-number="9.1.1">
-<h3 data-number="9.1.1"><span class="header-section-number">9.1.1</span> Pianificazione</h3>
-<section id="parte-1" data-number="9.1.1.1">
-<h4 data-number="9.1.1.1"><span class="header-section-number">9.1.1.1</span> Parte 1</h4>
+<section id="sprint-0" data-number="9.1">
+<h2 data-number="9.1"><span class="header-section-number">9.1</span> Sprint 0</h2>
+</section>
+<section id="sprint-1" data-number="9.2">
+<h2 data-number="9.2"><span class="header-section-number">9.2</span> Sprint 1</h2>
+<section id="pianificazione" data-number="9.2.1">
+<h3 data-number="9.2.1"><span class="header-section-number">9.2.1</span> Pianificazione</h3>
+<section id="parte-1" data-number="9.2.1.1">
+<h4 data-number="9.2.1.1"><span class="header-section-number">9.2.1.1</span> Parte 1</h4>
 <p>raffina e rivedi i prod. backlog, scelta sprint goal (what)</p>
 </section>
-<section id="parte-2" data-number="9.1.1.2">
-<h4 data-number="9.1.1.2"><span class="header-section-number">9.1.1.2</span> Parte 2</h4>
+<section id="parte-2" data-number="9.2.1.2">
+<h4 data-number="9.2.1.2"><span class="header-section-number">9.2.1.2</span> Parte 2</h4>
 <p>si decidono gli item (how), solo team senza prod owner</p>
 </section>
 </section>
-<section id="daily-scrum" data-number="9.1.2">
-<h3 data-number="9.1.2"><span class="header-section-number">9.1.2</span> Daily scrum</h3>
+<section id="daily-scrum" data-number="9.2.2">
+<h3 data-number="9.2.2"><span class="header-section-number">9.2.2</span> Daily scrum</h3>
 </section>
-<section id="meeting-finale" data-number="9.1.3">
-<h3 data-number="9.1.3"><span class="header-section-number">9.1.3</span> Meeting finale</h3>
-<section id="product-backlog-refinement" data-number="9.1.3.1">
-<h4 data-number="9.1.3.1"><span class="header-section-number">9.1.3.1</span> Product backlog refinement</h4>
+<section id="meeting-finale" data-number="9.2.3">
+<h3 data-number="9.2.3"><span class="header-section-number">9.2.3</span> Meeting finale</h3>
+<section id="product-backlog-refinement" data-number="9.2.3.1">
+<h4 data-number="9.2.3.1"><span class="header-section-number">9.2.3.1</span> Product backlog refinement</h4>
 </section>
-<section id="sprint-review" data-number="9.1.3.2">
-<h4 data-number="9.1.3.2"><span class="header-section-number">9.1.3.2</span> Sprint review</h4>
+<section id="sprint-review" data-number="9.2.3.2">
+<h4 data-number="9.2.3.2"><span class="header-section-number">9.2.3.2</span> Sprint review</h4>
 </section>
-<section id="retrospettiva" data-number="9.1.3.3">
-<h4 data-number="9.1.3.3"><span class="header-section-number">9.1.3.3</span> Retrospettiva</h4>
+<section id="retrospettiva" data-number="9.2.3.3">
+<h4 data-number="9.2.3.3"><span class="header-section-number">9.2.3.3</span> Retrospettiva</h4>
 </section>
 </section>
 </section>
-<section id="sprint-2" data-number="9.2">
-<h2 data-number="9.2"><span class="header-section-number">9.2</span> Sprint 2</h2>
+<section id="sprint-2" data-number="9.3">
+<h2 data-number="9.3"><span class="header-section-number">9.3</span> Sprint 2</h2>
 </section>
-<section id="sprint-3" data-number="9.3">
-<h2 data-number="9.3"><span class="header-section-number">9.3</span> Sprint 3</h2>
+<section id="sprint-3" data-number="9.4">
+<h2 data-number="9.4"><span class="header-section-number">9.4</span> Sprint 3</h2>
 </section>
-<section id="sprint-4" data-number="9.4">
-<h2 data-number="9.4"><span class="header-section-number">9.4</span> Sprint 4</h2>
+<section id="sprint-4" data-number="9.5">
+<h2 data-number="9.5"><span class="header-section-number">9.5</span> Sprint 4</h2>
 </section>
 </section>
 <section id="conclusioni" class="unnumbered" data-number="">
