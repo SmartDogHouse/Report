@@ -74,7 +74,7 @@
                                                         </ul></li>
                                                         <li><a href="#aspetti-di-domain-driven-design"><span class="toc-section-number">5</span> Aspetti di Domain Driven Design</a>
                                                         <ul class="incremental">
-                                                        <li><a href="#individuazione-domains-map-e-core-domain"><span class="toc-section-number">5.1</span> Individuazione Domains map e core domain</a></li>
+                                                        <li><a href="#individuazione-domains-map-e-core-domain"><span class="toc-section-number">5.1</span> Individuazione Domains Map e Core-Domain</a></li>
                                                         <li><a href="#identificazione-dei-subdomain"><span class="toc-section-number">5.2</span> Identificazione dei Subdomain</a></li>
                                                         <li><a href="#definizione-dei-bounded-context"><span class="toc-section-number">5.3</span> Definizione dei Bounded Context</a></li>
                                                         <li><a href="#definizione-delle-context-map"><span class="toc-section-number">5.4</span> Definizione delle Context Map</a></li>
@@ -260,10 +260,7 @@
 <li><p>le <strong>mansioni</strong> che vengono svolte quotidianamente;</p></li>
 <li><p>i <strong>processi di gestione</strong>.</p></li>
 </ul>
-<p>Queste conoscenze hanno permesso di dare il <strong>kick-off</strong> al progetto.</p>
-<figure>
-<img src="DrawIo/organizationChart.png" style="width:90.0%" alt="" /><figcaption>Organization Chart</figcaption>
-</figure></li>
+<p>Queste conoscenze hanno permesso di dare il <strong>kick-off</strong> al progetto.</p></li>
 <li><p><strong>Sessioni successive:</strong> successivamente il processo è stato continuo, sono stati svolti degli <strong>incontri periodici</strong> per:</p>
 <ul class="incremental">
 <li><p>controllare che il progetto proseguisse nella direzione sperata;</p></li>
@@ -311,6 +308,14 @@ Gestore &amp; Manager &amp; Persona che ha in carico il canile<br />
 Veterinario &amp; Vet &amp; Medico esterno al canile che viene contattato per visite mediche consulenze sanitarie e terapie<br />
 Blue &amp; 3000.00 &amp; 4000.00<br />
 Sum &amp; 6000.00 &amp; 9000.00</p>
+<section id="glossario-degli-incarichi" data-number="3.2.1">
+<h3 data-number="3.2.1"><span class="header-section-number">3.2.1</span> Glossario degli incarichi</h3>
+<p>La definizione di un organigramma generico che individua le figure che operano all’interno del canile e le loro interazioni è stata raggiunta in seguito all’analisi della struttura gerarchica dei due canili che sono stati interpellati in qualità di esperti del dominio. Si è cercato di cogliere gli aspetti comuni e di utilizzare le differenze come base per elaborare un modello che interiorizzasse un livello di astrazione tale da permettere al sistema che ne deriverà di adattarsi a un qualsiasi canile. Il seguente organigramma più che sulle effettive figure nasce dall’astrazione dei principali ruoli che esse ricoprono. Questa scelta è dovuta al fatto che dallo <strong>storytelling</strong> di entrambi i canili è emerso un certo grado di caoticità nella suddivisione delle mansioni che spesso, per necessità, tendono ad essere svolte da chi si trova lì in quel momento. Da ciò deriva che, più o meno, tutti i dipendenti dovrebbero essere in grado di fare tutto anche se, nella pratica, una suddivisione dei ruoli esiste, seppure non netta. Ciò accade anche per le mansioni di tipo burocratico, la cui suddivisione avviene mediante accordo verbale tra i colleghi e non in base a ruoli scritti. De facto, si sa che a occuparsi di un certo tipo di pratiche è una determinata persona, ma, sulla carta, i dipendenti hanno lo stesso identico contratto.</p>
+<p>I canili da noi consultati, tuttavia, sono di piccole/medie dimensioni. Più il canile è grande, più la gestione risulta complicata e di conseguenza diventa sempre più forte la necessità di definire delle responsabilità. Per questo motivo il seguente organigramma è stato costruito in modo da suddividere secondo criteri logici e concettuali le mansioni, mappandole con delle figure, ma permettendo alla stessa persona di inglobarne più di una.</p>
+<figure>
+<img src="DrawIo/organizationChart.png" style="width:90.0%" alt="" /><figcaption>Organization Chart</figcaption>
+</figure>
+</section>
 </section>
 </section>
 <section id="analisi-dei-requisiti" data-number="4">
@@ -367,6 +372,14 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 <li><p>ricevere una <strong>notifica</strong> in caso di <strong>anomalie</strong> nella quantità di <strong>cibo</strong> assunto da un cane</p></li>
 <li><p>poter <strong>impostare</strong> i dati relativi allo <strong>stato di salute</strong> di un cane</p></li>
 </ul></li>
+<li><p>Come <strong>addetto ai rifornimenti</strong> voglio:</p>
+<ul class="incremental">
+<li><p>essere notificato se in una gabbia sta per esaurirsi il cibo</p></li>
+<li><p>poter impostare la qta di cibo da erogare a tutti i cani di una determinata taglia</p></li>
+<li><p>poter visualizzare quanto cibo ha consumato un cane in un determinato lasso di tempo</p></li>
+<li><p>poter visualizzare quanta acqua ha consumato un cane in un determinato lasso di tempo</p></li>
+<li><p>ricevere una notifica in caso di malfunzionamento al sistema</p></li>
+</ul></li>
 <li><p>Come <strong>addetto alla sorveglianza</strong> voglio:</p>
 <ul class="incremental">
 <li><p>poter visualizzare le immagini acquisite dalla videocamera di sorveglianza</p></li>
@@ -400,7 +413,7 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 <li><p><strong>home gestore</strong> Il gestore ha accesso alla pagina di amministrazione, dov’è possibile:</p>
 <ul class="incremental">
 <li><p>registrare un nuovo utente</p></li>
-<li><p>rliminare un utente</p></li>
+<li><p>eliminare un utente</p></li>
 <li><p>visualizzare le statistiche del canile</p></li>
 </ul></li>
 <li><p><strong>home addetto rifornimenti</strong> La schermata deve consentire di:</p>
@@ -499,13 +512,18 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 </section>
 <section id="requisiti-implementativi" data-number="4.5">
 <h2 data-number="4.5"><span class="header-section-number">4.5</span> Requisiti Implementativi</h2>
+<p>Si definiscono i constraint a livello di implementazione che sarà necessario rispettare nella realizzazione del progetto.</p>
+<section id="metodologie-e-tecnologie-utilizzate" data-number="4.5.1">
+<h3 data-number="4.5.1"><span class="header-section-number">4.5.1</span> Metodologie e Tecnologie Utilizzate</h3>
+<p>Il software dovrà essere realizzato utilizzando almeno in parte le tecnologie studiate durante il corso di Smart-City. Dovranno inoltre essere necessariamente applicati i principi e i paradigmi assimilati durante lo stesso. Lo scopo infatti è quello di sviluppare software di valore sociale e importanza strategica per le amministrazioni e l’economia locale. L’applicazione software dovrà essere infatti d’ausilio alla realizzazione di servizi innovativi in contesti di città digitali. E’ necessario al raggiungimento di tale scopo, l’utilizzo di tecnologie di sensing e sistemi embedded per l’interfacciamento con il mondo fisico. Il focus preferibilmente sarà sulla programmazione di sistemi studiati, quali Raspberry PI e microcontrollori. A questi dovranno essere interfacciati sensori e attuatori IoT, tra i quali ve ne devono essere alcuni di complessità non banale. L’utilizzo dei protocolli di comunicazione dovrà essere adeguato all’uso che ne verrà fatto (MQTT). La metodologia di progettazione inoltre dovrà favorire lo sviluppo di applicativi mobili, in grado di essere usati in contesti e con dispositivi differenti. Altre tecnologie preferibilmente utilizzabili, data la diffusione oramai pervasiva, sono Cloud Computing e Fog Computing, eventualmente con piattaforme studiate come Amazon Web Services. Per la parte interfaccia utente verranno sviluppate Dashboard ad-hoc per la visualizzazione delle informazioni ricavate dai dati trasmessi dai sensori. Infine verrà possibilmente anche inclusa una parte di visione artificiale tramite l’utilizzo di videocamere per lo streaming, eventualmente con una minima elaborazione per la sorveglianza.</p>
+</section>
 </section>
 </section>
 <section id="aspetti-di-domain-driven-design" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Aspetti di Domain Driven Design</h1>
 <section id="individuazione-domains-map-e-core-domain" data-number="5.1">
-<h2 data-number="5.1"><span class="header-section-number">5.1</span> Individuazione Domains map e core domain</h2>
-<p>All’interno del Knowledge Krunching, domande significative sono state fatte per capire i concetti fondamentali del dominio. Non tutte le parti hanno egual importanza, in questo capitolo si cerca individuare il core domain. Infatti, è necessario ridurre la complessità focalizzandosi su quelle più importanti, ciò aiuta a diminuire la difficoltà globale. Inoltre c’è da specificare che il core domain non va confuso con l’organizzazione dell’azienda, nel nostro caso il software va a risolvere un problema mirato, non coincidente con l’intero ambito aziendale. Ulteriore attenzione è stata fatta al fatto che il core possa cambiare con il tempo.</p>
+<h2 data-number="5.1"><span class="header-section-number">5.1</span> Individuazione Domains Map e Core-Domain</h2>
+<p>All’interno del Knowledge crunching, domande più significative possibili sono state fatte agli esperti per capire i concetti fondamentali del dominio. Non tutte le parti però hanno egual importanza, in questo capitolo si cerca di individuare il core domain. Infatti, è necessario ridurre la complessità focalizzandosi solo sulle porzioni più importanti del modello, ciò aiuta a diminuire la difficoltà globale. Inoltre, bisogna specificare che il core domain non va confuso con l’organizzazione dell’azienda, ciò che è importante nella gerarchia o nel modello di business non coincide necessariamente con la parte più importante della richiesta. Nel nostro caso, il software va a risolvere un problema mirato, che non collima con l’intero ambito aziendale. Si notino infatti altri problemi emersi, quali l’accalappiamento e la burocrazia, che non concernono il nostro core-domain. Ulteriore attenzione è stata prestata al fatto che il core possa cambiare con il tempo, durante i confronti periodici con il cliente le sue esigenze possono cambiare, o meglio, venir chiarite più adeguatamente agli sviluppatori. Per minimizzare questo rischio si è fatto largo uso dello Sketching. Essendo il modello visuale utile a tutti, sia nel farsi capire che nel comprendere gli altri, in questo capitolo si riportano gli schemi usati.</p>
 <figure>
 <img src="DrawIo/domainsMap.png" style="width:50.0%" alt="" /><figcaption>Rappresentazione grafica dei domini</figcaption>
 </figure>
