@@ -1,9 +1,11 @@
 \chapter{Aspetti di Domain Driven Design}
-    \section{Individuazione Domains map e core domain}	
-    All'interno del Knowledge Krunching, domande significative sono state fatte per capire i concetti fondamentali del dominio.
-    Non tutte le parti hanno egual importanza, in questo capitolo si cerca individuare il core domain. Infatti, è necessario ridurre la complessità focalizzandosi su quelle più importanti, ciò aiuta a diminuire la difficoltà globale.
-    Inoltre c'è da specificare che il core domain non va confuso con l’organizzazione dell'azienda, nel nostro caso il software va a risolvere un problema mirato, non coincidente con l'intero ambito aziendale.
-    Ulteriore attenzione è stata fatta al fatto che il core possa cambiare con il tempo.
+    \section{Individuazione Domains Map e Core-Domain}	
+    All'interno del Knowledge crunching, domande più significative possibili sono state fatte agli esperti per capire i concetti fondamentali del dominio.
+    Non tutte le parti però hanno egual importanza, in questo capitolo si cerca di individuare il core domain. Infatti, è necessario ridurre la complessità focalizzandosi solo sulle porzioni più importanti del modello, ciò aiuta a diminuire la difficoltà globale.
+    Inoltre, bisogna specificare che il core domain non va confuso con l’organizzazione dell'azienda, ciò che è importante nella gerarchia o nel modello di business non coincide necessariamente con la parte più importante della richiesta. Nel nostro caso, il software va a risolvere un problema mirato, che non collima con l'intero ambito aziendale. Si notino infatti altri problemi emersi, quali l'accalappiamento e la burocrazia, che non concernono il nostro core-domain.
+    Ulteriore attenzione è stata prestata al fatto che il core possa cambiare con il tempo, durante i confronti periodici con il cliente le sue esigenze possono cambiare, o meglio, venir chiarite più adeguatamente agli sviluppatori.
+    Per minimizzare questo rischio si è fatto largo uso dello	Sketching. Essendo il modello visuale utile a tutti, sia nel farsi capire che nel comprendere gli altri, in questo capitolo si riportano gli schemi usati.
+    
     
     %TABELLA DOMINI
     \begin{figure}[ht]
@@ -23,5 +25,12 @@
         \item \textbf{Sorveglianza} è il sub domain relativo alla gestione e monitoraggio video del canile.
     \end{itemize}
     \section{Identificazione dei Subdomain}
+    %I sottodomini sono stati creati per il replacement piuttosto per il riuso 
     \section{Definizione dei Bounded Context}
+    %focus sul confine tra i moduli
     \section{Definizione delle Context Map}
+    %Per creare una context map 
+    %Non troppo nel detaglio
+    %Descriva lo stato del codice in real-time
+    %Mostri i punti di integrazione tra i vari context
+    
