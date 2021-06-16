@@ -25,14 +25,38 @@
     \end{itemize}
     
     \section{Identificazione dei Subdomain}
-    %I sottodomini sono stati creati per il replacement piuttosto per il riuso 
+    Una volta individuato il core-domain, sono emersi anche i domini secondari. %I sottodomini sono stati creati per il replacement piuttosto per il riuso 
+    
+    %TABELLA SUBDOMAIN
+    \begin{figure}[ht]
+        \caption{Subdomains}
+        \centering
+        \includegraphics[width=0.9\textwidth]{DrawIo/subDomainsView.png}
+    \end{figure}
     
     \section{Definizione dei Bounded Context}
-    %focus sul confine tra i moduli
+    Un altro importante step è il riconoscimento dei Bounded Contexts. In questa fase il focus è incentrato sul confine tra i moduli individuati in precedenza. Lo scopo è di trovare delle porzioni isolate con confini ben definiti. L’isolamento deve essere non di funzionalità tecnica ma di dominio. Questo paradigma è riconoscibile anche nel trend attuale dei micro-servizi, che, tuttavia sono costruiti attorno ai confini di deployment, non del modello. Ciò assicura l’integrità e la facile scalabilità.
+    Il modello del dominio infatti cresce in complessità nel tempo. Questo accade soprattutto nella filosofia Agile che abbraccia il cambiamento. Una continua revisione e raffinamento vengono portati avanti durante tutto l'arco della durata del progetto, per soddisfare differenti business use cases e nuove richieste del cliente. 
+    Multipli team che lavorano allo stesso modello, inoltre, possono intralciarsi a vicenda e creare incomprensioni divergenti, a causa delle ambiguità nel linguaggio. 
+    Queste sono le sfide avendo un single model, ed è per questo che è meglio avere più contexts/subdomains.
+    Nello schema sottostante i Bounded Contexts sono stati collocati, assieme ai SubDomains che li contengono, in base alla loro complessità e alla relativa Business Differentiation. 
+    
+    %TABELLA BOUNDED CONTEXTS
+    \begin{figure}[ht]
+        \caption{Bounded Contexts}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Miro/BoundedContext.jpg}
+    \end{figure}
     
     \section{Definizione delle Context Map}
     %Per creare una context map 
     %Non troppo nel detaglio
     %Descriva lo stato del codice in real-time
     %Mostri i punti di integrazione tra i vari context
+    %TABELLA CONTEXT MAP
+    \begin{figure}[ht]
+        \caption{Context Map}
+        \centering
+        \includegraphics[width=0.9\textwidth]{Miro/ContextMap.jpg}
+    \end{figure}
     
