@@ -3,6 +3,9 @@
     \section{Architettura Generale}
     \section{Pattern Architetturali Utilizzati}
     \section{Scelte Tecnologiche Cruciali}
+        \subsection{AWS}
+        Tra i servizi messi a disposizione da AWS vi è anche Amazon Cognito che permette di gestire gli utenti. 
+        valutato amazon incognito ma è stato scartato perchè gli utenti sono troppo pochi
         \subsection{Microcontrollori}
         Per quanto riguarda l'implementazione del codice nel microcontrollore, sono state presi in considerazione quattro scelte relative ai framework di sviluppo e ai linguaggi da adottare: 
         \begin{itemize}
@@ -14,11 +17,11 @@
             
             \item \textbf{Espruino} è il sub domain relativo alla gestione e monitoraggio video del canile.
         \end{itemize}
-        Sicuramente il più performante e con più librerie è C, ma risulta anche difficilmente testabile e di difficile comprensione ai non esperti. Node-RED, basato su Node.js, ha il pieno vantaggio del suo modello non bloccante e event-driven. MicroPython d'altra parte offre un modello ad oggetti, testabile, sia semplice che elastico, con una buona base di librerie. Infine, Espruino, interprete JavaScript anch'esso, di facile utilizzo e dall'interfaccia semplificata. 
+        Sicuramente il più performante e con più librerie è C, ma risulta anche difficilmente testabile e pone challange non indifferenti per la configurazione dei sensori. Node-RED, basato su Node.js, ha il pieno vantaggio del suo modello non bloccante e event-driven. MicroPython d'altra parte offre un modello ad oggetti, testabile, sia semplice che elastico, con una buona base di librerie. Infine, Espruino, interprete JavaScript anch'esso, di facile utilizzo e dall'interfaccia semplificata. 
         I fattori chiave che il team ha preso in considerazione per la scelta sono stati: 
         \begin{itemize}
             \item la potenza espressiva rapportata alla chiarezza del linguaggio. 
             \item la testabilità del codice
-            \item il numero di libsrerie e la futura possibilità di estensione del progetto.
+            \item il numero di librerie e la futura possibilità di estensione del progetto.
         \end{itemize}
         Alla luce delle considerazioni fatte, si è scelto MicroPython per lo sviluppo, il testing e l'automatizzazione.
