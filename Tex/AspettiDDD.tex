@@ -5,7 +5,7 @@
     Non tutte le parti però hanno egual importanza, in questo capitolo si cerca di individuare il core domain. Infatti, è necessario ridurre la complessità focalizzandosi solo sulle porzioni più importanti del modello, ciò aiuta a diminuire la difficoltà globale.
     Inoltre, bisogna specificare che il core domain non va confuso con l’organizzazione dell'azienda, ciò che è importante nella gerarchia o nel modello di business non coincide necessariamente con la parte più importante della richiesta. Nel nostro caso, il software va a risolvere un problema mirato, che non collima con l'intero ambito aziendale. Si notino infatti altri problemi emersi, quali l'accalappiamento e la burocrazia, che non concernono il nostro core-domain.
     Ulteriore attenzione è stata prestata al fatto che il core possa cambiare con il tempo, durante i confronti periodici con il cliente le sue esigenze possono cambiare, o meglio, venir chiarite più adeguatamente agli sviluppatori.
-    Per minimizzare questo rischio si è fatto largo uso dello	Sketching. Essendo il modello visuale utile a tutti, sia nel farsi capire che nel comprendere gli altri, in questo capitolo si riportano gli schemi usati.
+    Per minimizzare questo rischio si è fatto largo uso dello Sketching. Essendo il modello visuale utile a tutti, sia nel farsi capire che nel comprendere gli altri, in questo capitolo si riportano gli schemi usati.
     
     
     %TABELLA DOMINI
@@ -25,13 +25,20 @@
     \end{itemize}
     
     \section{Identificazione dei Subdomain}
-    Una volta individuato il core-domain, sono emersi anche i domini secondari. %I sottodomini sono stati creati per il replacement piuttosto per il riuso 
+    Una volta individuato il core-domain, sono emersi anche i domini secondari e i sottodomini. 
+    Sono stati definiti i seguenti subdomain:
+    \begin{itemize}
+        \item \textbf{Cura quotidiana:} racchiude tutti gli aspetti che riguardano la quotidiana gestione dei cani. Rientrano in questo sotto-dominio il \textbf{nutrimento} e ciò che è strettamente collegato ad esso, ovvero la \textbf{distribuzione} del cibo, il \textbf{consumo} e la rilevazione di \textbf{anomalie} nell'alimentazione.  
+        \item \textbf{Sanità:} rappresenta tutto ciò che è collegato al \textbf{monitoraggio} della salute del cane e alla rilevazione di \textbf{anomalie} che necessitano di attenzione medica.
+        \item \textbf{Sorveglianza:} riguarda il monitoraggio del canile mediante \textbf{videocamera} che è utile non solo per aspetti legati alla \textbf{sicurezza} ma anche per la stretta \textbf{sorveglianza} delle condizioni dei cani prossimi al parto o che hanno una situazione sanitaria che richiede una vigilanza continua anche nelle ore notturne.
+    \end{itemize}
+    Particolare attenzione è stata fatta a creare i sottodomini per il replacement piuttosto per il riuso.
     
     %TABELLA SUBDOMAIN
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \caption{Subdomains}
         \centering
-        \includegraphics[width=0.7\textwidth]{DrawIo/subDomainsView.png}
+        \includegraphics[width=0.8\textwidth]{DrawIo/subDomainsView.png}
     \end{figure}
     
     \section{Definizione dei Bounded Context}
@@ -45,7 +52,7 @@
     \begin{figure}[ht]
         \caption{Bounded Contexts}
         \centering
-        \includegraphics[width=0.7\textwidth]{Miro/BoundedContext.jpg}
+        \includegraphics[width=0.8\textwidth]{Miro/BoundedContext.jpg}
     \end{figure}
     
     \section{Definizione delle Context Map}

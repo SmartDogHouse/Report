@@ -29,39 +29,47 @@ In questa fase sono stati individuati i \textbf{requisiti del sistema}, partendo
         \subsection{User stories}
         Di seguito sono riportate tutte le \textbf{user stories} ritenute utili per lo sviluppo del prodotto.
         \begin{itemize}
-            \item Come \textbf{gestore} voglio:
+            \item Come \textbf{gestore}
+            voglio:
             \begin{itemize}
-                \item poter visualizzare le informazioni relative all’occupante di una gabbia
+                \item poter visualizzare le i dati relativi all’occupante di una gabbia
                 \item voglio poter impostare i dati dell’occupante di una gabbia
                 \item poter rimuovere un cane da una gabbia
                 \item poter visualizzare i consumi TOTALI del canile
+                \item \textit{opzionalmente} poter visualizzare l’umidità e la temperatura ambientale 
+                \item poter \textbf{impostare} i dati relativi allo \textbf{stato di salute} di un cane
+                \item poter visualizzare i \textbf{consumi di cibo} relativi a un cane in un determinato lasso di tempo
+                \item poter visualizzare i \textbf{consumi di acqua} relativi a un cane in un determinato lasso di tempo
             \end{itemize}
-            \item Come \textbf{responsabile sanitario} voglio:
+            
+            \item Come \textbf{responsabile sanitario}
+            voglio:
             \begin{itemize}
-                    \item \textit{opzionalmente} poter \textbf{visualizzare i battiti} di un cane 
-                    \item  \textit{opzionalmente} ricevere una \textbf{notifica} in caso di rilevazione di \textbf{anomalie} nei \textbf{battiti} o nella di un cane
-                    \item \textit{opzionalmente} poter \textbf{visualizzare la temperatura corporea} di un cane
-                    \item \textit{opzionalmente} ricevere una \textbf{notifica} in caso di rilevazione di \textbf{anomalie} nella \textbf{temperatura} corporea di un cane
-                    \item poter \textbf{impostare la quantità di cibo} da erogare a un cane
-                    \item poter \textbf{impostare} gli intervalli dei \textbf{parametri vitali} fuori dai quali vi è un’anomalia
-                    \item poter \textbf{impostare} gli intervalli delle \textbf{quantità di cibo e acqua } assunti, fuori dai quali vi è un’anomalia
-                    \item poter \textbf{impostare} gli intervalli della \textbf{temperatura} e dei \textbf{battiti} al di fuori dai quali vi è un’anomalia
-                    \item poter visualizzare i \textbf{consumi di cibo} relativi a un cane in un determinato lasso di tempo
-                    \item poter i \textbf{consumi di acqua} relativi a un cane in un determinato lasso di tempo
-                    \item ricevere una \textbf{notifica} in caso di \textbf{anomalie} nella quantità di \textbf{acqua} assunta da un cane
-                    \item ricevere una \textbf{notifica} in caso di \textbf{anomalie} nella quantità di \textbf{cibo} assunto da un cane
-                    \item poter \textbf{impostare} i dati relativi allo \textbf{stato di salute} di un cane
+                \item \textit{opzionalmente} poter \textbf{visualizzare i battiti} di un cane 
+                \item  \textit{opzionalmente} ricevere una \textbf{notifica} in caso di rilevazione di \textbf{anomalie} nei \textbf{battiti} o nella di un cane
+                \item \textit{opzionalmente} poter \textbf{visualizzare la temperatura corporea} di un cane
+                \item \textit{opzionalmente} ricevere una \textbf{notifica} in caso di rilevazione di \textbf{anomalie} nella \textbf{temperatura} corporea di un cane
+                 \item \textit{opzionalmente} poter \textbf{impostare} gli intervalli di \textbf{temperatura e battiti} fuori dai quali vi è un’anomalia
+                \item poter \textbf{impostare} gli intervalli delle \textbf{quantità di cibo e acqua } assunti, fuori dai quali vi è un’anomalia
+                \item ricevere una \textbf{notifica} in caso di \textbf{anomalie} nella quantità di \textbf{acqua} assunta da un cane
+                \item ricevere una \textbf{notifica} in caso di \textbf{anomalie} nella quantità di \textbf{cibo} assunto da un cane
+                \item poter \textbf{impostare} i dati relativi allo \textbf{stato di salute} di un cane
+                \item poter \textbf{impostare la quantità di cibo} da erogare a un cane
+                \item poter visualizzare i \textbf{consumi di cibo} relativi a un cane in un determinato lasso di tempo
+                \item poter visualizzare i \textbf{consumi di acqua} relativi a un cane in un determinato lasso di tempo
             \end{itemize}
             
             \item Come \textbf{addetto ai  rifornimenti}
             voglio:
             \begin{itemize}
                 \item essere notificato se in una gabbia sta per esaurirsi il cibo
-                \item poter impostare la qta di cibo da erogare a tutti i cani di una determinata taglia
-                \item poter visualizzare quanto cibo ha consumato un cane in un determinato lasso di tempo
-                \item poter visualizzare quanta acqua ha consumato un cane in un determinato lasso di tempo
                 \item ricevere una notifica in caso di malfunzionamento al sistema
+                \item poter impostare la quantità di cibo da erogare a tutti i cani di una determinata taglia
+                \item poter \textbf{impostare la quantità di cibo} da erogare a un cane
+                \item poter visualizzare i \textbf{consumi di cibo} relativi a un cane in un determinato lasso di tempo
+                \item poter visualizzare i \textbf{consumi di acqua} relativi a un cane in un determinato lasso di tempo
             \end{itemize}
+            
             \item Come \textbf{addetto alla sorveglianza}
             voglio:
             \begin{itemize}
@@ -75,7 +83,7 @@ In questa fase sono stati individuati i \textbf{requisiti del sistema}, partendo
         Di seguito viene riportato lo schema, sotto-forma di diagramma di Venn, esplicativo delle intersezioni tra le User-Stories e le figure dell'organigramma. 
         %TABELLA CONTEXT MAP
         \begin{figure}[ht]
-            \caption{Diagramma User-Stories}
+            \caption{Diagramma di Venn delle User-Stories}
             \centering
             \includegraphics[width=1\textwidth]{Miro/DiagrammaUserStories.jpg}
         \end{figure}
