@@ -1,0 +1,12 @@
+name: Daily Poll
+on:
+  schedule:
+    - cron: "0 11 * * *" #UTC Time
+  workflow_dispatch:
+jobs:
+  BuildLatexJob:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Send curl message
+        shell: bash
+        run: curl -X POST -H 'Content-Type:application/json' -d '{"chat_id":"${{ secrets.TELEGRAM_TO }}", "options":["Mattina","Pomeriggio","Tardo pomeriggio","Sera"], "question":"Domani quali sono le vostre disponibilità?", "is_anonymous":false, "allows_multiple_answers":true}}' https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendPoll
