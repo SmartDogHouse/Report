@@ -308,6 +308,9 @@ Gestore &amp; Manager &amp; Persona che ha in carico il canile<br />
 Veterinario &amp; Vet &amp; Medico esterno al canile che viene contattato per visite mediche consulenze sanitarie e terapie<br />
 Blue &amp; 3000.00 &amp; 4000.00<br />
 Sum &amp; 6000.00 &amp; 9000.00</p>
+<figure>
+<img src="Miro/MindMapUL.jpg" style="width:100.0%" alt="" /><figcaption>Mind Map Ubiquitous Language</figcaption>
+</figure>
 <section id="glossario-degli-incarichi" data-number="3.2.1">
 <h3 data-number="3.2.1"><span class="header-section-number">3.2.1</span> Glossario degli incarichi</h3>
 <p>La definizione di un organigramma generico che individua le figure che operano all’interno del canile e le loro interazioni è stata raggiunta in seguito all’analisi della struttura gerarchica dei due canili che sono stati interpellati in qualità di esperti del dominio. Si è cercato di cogliere gli aspetti comuni e di utilizzare le differenze come base per elaborare un modello che interiorizzasse un livello di astrazione tale da permettere al sistema che ne deriverà di adattarsi a un qualsiasi canile. Il seguente organigramma più che sulle effettive figure nasce dall’astrazione dei principali ruoli che esse ricoprono. Questa scelta è dovuta al fatto che dallo <strong>storytelling</strong> di entrambi i canili è emerso un certo grado di caoticità nella suddivisione delle mansioni che spesso, per necessità, tendono ad essere svolte da chi si trova lì in quel momento. Da ciò deriva che, più o meno, tutti i dipendenti dovrebbero essere in grado di fare tutto anche se, nella pratica, una suddivisione dei ruoli esiste, seppure non netta. Ciò accade anche per le mansioni di tipo burocratico, la cui suddivisione avviene mediante accordo verbale tra i colleghi e non in base a ruoli scritti. De facto, si sa che a occuparsi di un certo tipo di pratiche è una determinata persona, ma, sulla carta, i dipendenti hanno lo stesso identico contratto.</p>
@@ -351,10 +354,14 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 <ul class="incremental">
 <li><p>Come <strong>gestore</strong> voglio:</p>
 <ul class="incremental">
-<li><p>poter visualizzare le informazioni relative all’occupante di una gabbia</p></li>
+<li><p>poter visualizzare le i dati relativi all’occupante di una gabbia</p></li>
 <li><p>voglio poter impostare i dati dell’occupante di una gabbia</p></li>
 <li><p>poter rimuovere un cane da una gabbia</p></li>
 <li><p>poter visualizzare i consumi TOTALI del canile</p></li>
+<li><p><em>opzionalmente</em> poter visualizzare l’umidità e la temperatura ambientale</p></li>
+<li><p>poter <strong>impostare</strong> i dati relativi allo <strong>stato di salute</strong> di un cane</p></li>
+<li><p>poter visualizzare i <strong>consumi di cibo</strong> relativi a un cane in un determinato lasso di tempo</p></li>
+<li><p>poter visualizzare i <strong>consumi di acqua</strong> relativi a un cane in un determinato lasso di tempo</p></li>
 </ul></li>
 <li><p>Come <strong>responsabile sanitario</strong> voglio:</p>
 <ul class="incremental">
@@ -362,23 +369,23 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 <li><p><em>opzionalmente</em> ricevere una <strong>notifica</strong> in caso di rilevazione di <strong>anomalie</strong> nei <strong>battiti</strong> o nella di un cane</p></li>
 <li><p><em>opzionalmente</em> poter <strong>visualizzare la temperatura corporea</strong> di un cane</p></li>
 <li><p><em>opzionalmente</em> ricevere una <strong>notifica</strong> in caso di rilevazione di <strong>anomalie</strong> nella <strong>temperatura</strong> corporea di un cane</p></li>
-<li><p>poter <strong>impostare la quantità di cibo</strong> da erogare a un cane</p></li>
-<li><p>poter <strong>impostare</strong> gli intervalli dei <strong>parametri vitali</strong> fuori dai quali vi è un’anomalia</p></li>
+<li><p><em>opzionalmente</em> poter <strong>impostare</strong> gli intervalli di <strong>temperatura e battiti</strong> fuori dai quali vi è un’anomalia</p></li>
 <li><p>poter <strong>impostare</strong> gli intervalli delle <strong>quantità di cibo e acqua</strong> assunti, fuori dai quali vi è un’anomalia</p></li>
-<li><p>poter <strong>impostare</strong> gli intervalli della <strong>temperatura</strong> e dei <strong>battiti</strong> al di fuori dai quali vi è un’anomalia</p></li>
-<li><p>poter visualizzare i <strong>consumi di cibo</strong> relativi a un cane in un determinato lasso di tempo</p></li>
-<li><p>poter i <strong>consumi di acqua</strong> relativi a un cane in un determinato lasso di tempo</p></li>
 <li><p>ricevere una <strong>notifica</strong> in caso di <strong>anomalie</strong> nella quantità di <strong>acqua</strong> assunta da un cane</p></li>
 <li><p>ricevere una <strong>notifica</strong> in caso di <strong>anomalie</strong> nella quantità di <strong>cibo</strong> assunto da un cane</p></li>
 <li><p>poter <strong>impostare</strong> i dati relativi allo <strong>stato di salute</strong> di un cane</p></li>
+<li><p>poter <strong>impostare la quantità di cibo</strong> da erogare a un cane</p></li>
+<li><p>poter visualizzare i <strong>consumi di cibo</strong> relativi a un cane in un determinato lasso di tempo</p></li>
+<li><p>poter visualizzare i <strong>consumi di acqua</strong> relativi a un cane in un determinato lasso di tempo</p></li>
 </ul></li>
 <li><p>Come <strong>addetto ai rifornimenti</strong> voglio:</p>
 <ul class="incremental">
 <li><p>essere notificato se in una gabbia sta per esaurirsi il cibo</p></li>
-<li><p>poter impostare la qta di cibo da erogare a tutti i cani di una determinata taglia</p></li>
-<li><p>poter visualizzare quanto cibo ha consumato un cane in un determinato lasso di tempo</p></li>
-<li><p>poter visualizzare quanta acqua ha consumato un cane in un determinato lasso di tempo</p></li>
 <li><p>ricevere una notifica in caso di malfunzionamento al sistema</p></li>
+<li><p>poter impostare la quantità di cibo da erogare a tutti i cani di una determinata taglia</p></li>
+<li><p>poter <strong>impostare la quantità di cibo</strong> da erogare a un cane</p></li>
+<li><p>poter visualizzare i <strong>consumi di cibo</strong> relativi a un cane in un determinato lasso di tempo</p></li>
+<li><p>poter visualizzare i <strong>consumi di acqua</strong> relativi a un cane in un determinato lasso di tempo</p></li>
 </ul></li>
 <li><p>Come <strong>addetto alla sorveglianza</strong> voglio:</p>
 <ul class="incremental">
@@ -388,6 +395,10 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 <li><p><em>opzionalmente</em> poter visualizzare l’umidità e la temperatura ambientale</p></li>
 </ul></li>
 </ul>
+<p>Di seguito viene riportato lo schema, sotto-forma di diagramma di Venn, esplicativo delle intersezioni tra le User-Stories e le figure dell’organigramma.</p>
+<figure>
+<img src="Miro/DiagrammaUserStories.jpg" style="width:100.0%" alt="" /><figcaption>Diagramma di Venn delle User-Stories</figcaption>
+</figure>
 </section>
 </section>
 <section id="requisiti-funzionali" data-number="4.3">
@@ -536,12 +547,36 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 </section>
 <section id="identificazione-dei-subdomain" data-number="5.2">
 <h2 data-number="5.2"><span class="header-section-number">5.2</span> Identificazione dei Subdomain</h2>
+<p>Una volta individuato il core-domain, sono emersi anche i domini secondari e i sottodomini. Sono stati definiti i seguenti subdomain:</p>
+<ul class="incremental">
+<li><p><strong>Cura quotidiana:</strong> racchiude tutti gli aspetti che riguardano la quotidiana gestione dei cani. Rientrano in questo sotto-dominio il <strong>nutrimento</strong> e ciò che è strettamente collegato ad esso, ovvero la <strong>distribuzione</strong> del cibo, il <strong>consumo</strong> e la rilevazione di <strong>anomalie</strong> nell’alimentazione.</p></li>
+<li><p><strong>Sanità:</strong> rappresenta tutto ciò che è collegato al <strong>monitoraggio</strong> della salute del cane e alla rilevazione di <strong>anomalie</strong> che necessitano di attenzione medica.</p></li>
+<li><p><strong>Sorveglianza:</strong> riguarda il monitoraggio del canile mediante <strong>videocamera</strong> che è utile non solo per aspetti legati alla <strong>sicurezza</strong> ma anche per la stretta <strong>sorveglianza</strong> delle condizioni dei cani prossimi al parto o che hanno una situazione sanitaria che richiede una vigilanza continua anche nelle ore notturne.</p></li>
+</ul>
+<p>Particolare attenzione è stata fatta a creare i sottodomini per il replacement piuttosto per il riuso.</p>
+<figure>
+<img src="DrawIo/subDomainsView.png" style="width:80.0%" alt="" /><figcaption>Subdomains</figcaption>
+</figure>
 </section>
 <section id="definizione-dei-bounded-context" data-number="5.3">
 <h2 data-number="5.3"><span class="header-section-number">5.3</span> Definizione dei Bounded Context</h2>
+<p>Un altro importante step è il riconoscimento dei Bounded Contexts. In questa fase il focus è incentrato sul confine tra i moduli individuati in precedenza. Lo scopo è di trovare delle porzioni isolate con confini ben definiti. L’isolamento deve essere non di funzionalità tecnica ma di dominio. Questo paradigma è riconoscibile anche nel trend attuale dei micro-servizi, che, tuttavia sono costruiti attorno ai confini di deployment, non del modello. Ciò assicura l’integrità e la facile scalabilità. Il modello del dominio infatti cresce in complessità nel tempo. Questo accade soprattutto nella filosofia Agile che abbraccia il cambiamento. Una continua revisione e raffinamento vengono portati avanti durante tutto l’arco della durata del progetto, per soddisfare differenti business use cases e nuove richieste del cliente. Multipli team che lavorano allo stesso modello, inoltre, possono intralciarsi a vicenda e creare incomprensioni divergenti, a causa delle ambiguità nel linguaggio. Queste sono le sfide avendo un single model, ed è per questo che è meglio avere più contexts/subdomains. Nello schema sottostante i Bounded Contexts sono stati collocati, assieme ai SubDomains che li contengono, in base alla loro complessità e alla relativa Business Differentiation.</p>
+<figure>
+<img src="Miro/BoundedContext.jpg" style="width:80.0%" alt="" /><figcaption>Bounded Contexts</figcaption>
+</figure>
 </section>
 <section id="definizione-delle-context-map" data-number="5.4">
 <h2 data-number="5.4"><span class="header-section-number">5.4</span> Definizione delle Context Map</h2>
+<p>Avendo individuato nel sistema ci sono più Bounded Context, è importante riconoscere come dialogano. Creare una mappa concettuale [Fig. <a href="#fig:ContextMap" data-reference-type="ref" data-reference="fig:ContextMap">5.1</a>] per definire i rapporti tra i Bounded Contexts è essenziale per il mantenimento del codice e dei vincoli di isolamento. La mappa, durante lo sviluppo, rappresenta lo stato presente e evolve in sincrono con il sistema stesso, più che rappresentare lo stato ideale futuro. Questo permette di chiarire anche agli eventuali team responsabili dei Bounded Context, i punti di contatto.</p>
+<p>Il livello scelto è molto più vicino al business, al Domain Problem, che al software. Nonostante ciò non è stata tralasciata la visione della parte implementativa, che comunque dovrà rispecchiare questo modello. Si può notare ciò dalla doppia suddivisione dello schema, sia dal punto di vista dei Sub-Domains, indicati in giallo, che dal punto di vista delle macro-componenti del sistema, indicate a sinistra.</p>
+<p>Nella parte fisica, in tutti e tre i sub-domains, troviamo dei contesti che fungono da "supplier" verso altri. Le relazioni tra Bounded Contexts infatti sono state definite seguendo il più possibile i pattern del DDD. In questo caso si nota una Upstream/Downstream Relationship: è stato definito chi è il context customer o chi supplier in base al contesto che fornisce il flusso di informazioni e quello che le riceve. La distribuzione automatizzata è composta da due sottocontesti, uno relativo al cibo erogato e misurato e l’altro all’acqua. Nei primi due casi i dati, essendo i dati trasmessi di grandezza esigua e di facile memorizzazione, vengono trasmessi ai contesti che si occupano della rilevazione e archiviazione degli stessi. Questi due Bounded Context condividono necessariamente uno Shared Kernel, i dati rilevati appartengono infatti allo stesso concetto del modello, ossia all’animale. Essendo la distribuzione del cibo personalizzata in base alla classe dell’animale, un ulteriore contesto relativo alla gestione dei consumi è stato necessario, poichè attivamente definisce quali quantità erogare all’animale. Il flusso video, d’altra parte, data la mole di dati ha come customer direttamente la rilevazione delle anomalie della sicurezza. Questo Bounded Context, assieme agli affini che rilevano anomalie sanitarie e nei consumi, dopo aver preso in ingresso i dati, avvisano delle irregolarità il sistema delle notifiche. Questo passaggio è stato effettuato per mezzo di un "Open Host - Service" che espone le funzionalità del sistema notifiche.</p>
+<section id="bounded-context-integration" data-number="5.4.1">
+<h3 data-number="5.4.1"><span class="header-section-number">5.4.1</span> Bounded Context Integration</h3>
+<p>Come specificato, è emersa la necessità di integrare dal punto di vista logico i due Bouned Context relativi ai consumi, nonostante si sia cercato di mantenerli il più possibile autonomi. L’integrazione infatti non deve avvenire mai prima a livello di codice, ma deve dipendere da un’integrazione a livello concettuale.</p>
+<figure>
+<img src="Miro/ContextMap.jpg" id="fig:ContextMap" style="width:90.0%" alt="" /><figcaption>Context Map<span label="fig:ContextMap"></span></figcaption>
+</figure>
+</section>
 </section>
 </section>
 <section id="design-architetturale" data-number="6">
@@ -554,6 +589,27 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 </section>
 <section id="scelte-tecnologiche-cruciali" data-number="6.3">
 <h2 data-number="6.3"><span class="header-section-number">6.3</span> Scelte Tecnologiche Cruciali</h2>
+<section id="aws" data-number="6.3.1">
+<h3 data-number="6.3.1"><span class="header-section-number">6.3.1</span> AWS</h3>
+<p>Tra i servizi messi a disposizione da AWS vi è anche Amazon Cognito che permette di gestire gli utenti. valutato amazon incognito ma è stato scartato perchè gli utenti sono troppo pochi</p>
+</section>
+<section id="microcontrollori" data-number="6.3.2">
+<h3 data-number="6.3.2"><span class="header-section-number">6.3.2</span> Microcontrollori</h3>
+<p>Per quanto riguarda l’implementazione del codice nel microcontrollore, sono state presi in considerazione quattro scelte relative ai framework di sviluppo e ai linguaggi da adottare:</p>
+<ul class="incremental">
+<li><p><strong>C</strong> è il linguaggio attualmente più diffuso nell’ambito.</p></li>
+<li><p><strong>Node-RED</strong> è un tool di programmazione flow-based basato su browser, sviluppato su NodeJs e programmabile in JavaScript.</p></li>
+<li><p><strong>MicroPython</strong> è il sub domain relativo alla gestione e monitoraggio video del canile.</p></li>
+<li><p><strong>Espruino</strong> è il sub domain relativo alla gestione e monitoraggio video del canile.</p></li>
+</ul>
+<p>Sicuramente il più performante e con più librerie è C, ma risulta anche difficilmente testabile e pone challange non indifferenti per la configurazione dei sensori. Node-RED, basato su Node.js, ha il pieno vantaggio del suo modello non bloccante e event-driven. MicroPython d’altra parte offre un modello ad oggetti, testabile, sia semplice che elastico, con una buona base di librerie. Infine, Espruino, interprete JavaScript anch’esso, di facile utilizzo e dall’interfaccia semplificata. I fattori chiave che il team ha preso in considerazione per la scelta sono stati:</p>
+<ul class="incremental">
+<li><p>la potenza espressiva rapportata alla chiarezza del linguaggio.</p></li>
+<li><p>la testabilità del codice</p></li>
+<li><p>il numero di librerie e la futura possibilità di estensione del progetto.</p></li>
+</ul>
+<p>Alla luce delle considerazioni fatte, si è scelto MicroPython per lo sviluppo, il testing e l’automatizzazione.</p>
+</section>
 </section>
 </section>
 <section id="design-di-dettaglio" data-number="7">
@@ -566,6 +622,19 @@ Sum &amp; 6000.00 &amp; 9000.00</p>
 <h1 data-number="9"><span class="header-section-number">9</span> Iterazioni</h1>
 <section id="sprint-0" data-number="9.1">
 <h2 data-number="9.1"><span class="header-section-number">9.1</span> Sprint 0</h2>
+<p>All’interno dello sprint 0 il focus è stato sullo scegliere le giuste tecnologie di sviluppo e sull’apprenderle in maniera sufficiente per il kick-off del progetto.</p>
+<section id="deliverables" data-number="9.1.0.0.1">
+<h5 data-number="9.1.0.0.1"><span class="header-section-number">9.1.0.0.1</span> Deliverables</h5>
+<p>al termine di questo sprint si sono acquisite le competenze di base per poter iniziare a lavorare con AWS e i dispositivi IoT. Inoltre ci si è portati avanti con lo scheletro del sito.</p>
+<ul class="incremental">
+<li><p>ambiente di lavoro Linux standardizzato e virtualizzato</p></li>
+<li><p>sito linkato, con le prime due pagine base: home e login</p></li>
+<li><p>ESP32 con firmware installato MicroPython, script e guida all’uso</p></li>
+<li><p>codice per sensori base, test relativi e stubs per eseguirli senza necessità del micro-controllore</p></li>
+<li><p>repository software con CI e test automatizzati</p></li>
+<li><p>database progettato e popolato con qualche dato ai fini di testing</p></li>
+</ul>
+</section>
 </section>
 <section id="sprint-1" data-number="9.2">
 <h2 data-number="9.2"><span class="header-section-number">9.2</span> Sprint 1</h2>
