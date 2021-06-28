@@ -1,10 +1,28 @@
 % -*- root: ../main.tex -*-
 \chapter{Iterazioni}
+Gli sprint sono stati portati avanti nel seguente modo:
+    \paragraph{Sprint Planning}
+        Pianificazione a inizio sprint degli obiettivi, tempistiche e responsabilità nel periodo dello sprint corrente. Diviso in due parti:
+        \begin{itemize}
+        \item\textbf{parte 1} 
+            Viene raffinato e rivisto il product backlog, viene effettuata la scelta dello sprint goal (what).
+        \item\textbf{parte 2}
+            Si decidono gli item e viene raffinato come implementarli (how). Effettuato con solo il team senza la figura del product owner
+        \end{itemize}
+    \paragraph{[Iterativo] Daily scrum} Breve meeting svolto giornalmente. Viene utilizzato per gli aggiornamenti sull'andamento del progetto, senza scendere nei dettagli implementativi.
+    \paragraph{[Occasionale] Pair Programming } Utilizzato per risolvere problemi che causano il blocco di un componente del team per parecchio tempo su una issue.
+    \paragraph{Meeting finale}
+        Riflessioni e considerazioni finali sullo spint passato. Suggerimenti per migliorare il prossimo. Diviso in tre parti: 
+        \begin{itemize}
+        \item\textbf{Product backlog refinement} aggiunta di dettagli e riordino del product backlog
+        \item\textbf{Sprint review} è stato ispezionato l'incremento, il Minimum Viable Product o di risultati sul processo. Discernere cosa è stato fatto e cosa no
+        \item\textbf{Retrospettiva} Considerazioni sul team stesso e sui miglioramenti per il prossimo sprint. 
+        \end{itemize}
 
 \section{Sprint 0}
 All'interno dello sprint 0 il focus è stato sullo scegliere le giuste tecnologie di sviluppo e sull'apprenderle in maniera sufficiente per il kick-off del progetto.
-
-\paragraph{Deliverables} al termine di questo sprint si sono acquisite le competenze di base per poter iniziare a lavorare con AWS e i dispositivi IoT. Inoltre ci si è portati avanti con lo scheletro del sito.
+\paragraph{Deliverables} 
+al termine di questo sprint si sono acquisite le competenze di base per poter iniziare a lavorare con AWS e i dispositivi IoT. Inoltre ci si è portati avanti con lo scheletro del sito.
 \begin{itemize}
     \item ambiente di lavoro Linux standardizzato e virtualizzato
     \item sito linkato, con le prime due pagine base: home e login
@@ -12,24 +30,25 @@ All'interno dello sprint 0 il focus è stato sullo scegliere le giuste tecnologi
     \item codice per sensori base, test relativi e stubs per eseguirli senza necessità del micro-controllore
     \item repository software con CI e test automatizzati 
     \item database progettato e popolato con qualche dato ai fini di testing
-    
 \end{itemize}
 
 \section{Sprint 1}
-    \subsection{Pianificazione}
-        \subsubsection{Parte 1} 
-            raffina e rivedi i prod. backlog, scelta sprint goal (what)
-        \subsubsection{Parte 2}
-            si decidono gli item (how), solo team senza prod owner
-    \subsection{Daily scrum}
-    \subsection{Meeting finale}
-        \subsubsection{Product backlog refinement}
-        \subsubsection{Sprint review}
-        \subsubsection{Retrospettiva}
+All'interno dello sprint 1 il focus è stato sull'usare le competenze tecnologiche acquisite precedentemente per sviluppare i componenti principali del progetto. Sono stati scelti come obiettivi le user stories per l'automatizzazione di cibo e acqua e la visualizzazione delle informazioni relative a un animale sulla webpage.
+\paragraph{Deliverables}
+al termine di questo sprint sono state implementate le funzioni base dei maggiori componenti per l'automatizzazione fisica di cibo e acqua e il relativo prototipo fisico. Sono state aggiunte sull'applicativo la vista delle informazioni dell'animale e l'impostazione del cibo da erogargli. 
+\begin{itemize}
+    \item codice per i sensori/attuatori per acqua e cibo, con stubs, test e automatizzazione. (Livello acqua, elettrovalvola, motore, bilancia, laser e rilevatore di luce)
+    \item prototipo fisico per i sensori per acqua e cibo. 
+    \item database migliorato e rifattorizzato
+    \item visualizzazione dei dati del cane sul sito 
+    \item visualizzazione dei grafici delle statistiche sul sito 
+\end{itemize}
 
-    
 \section{Sprint 2}
-
+\begin{itemize}
+    \item implementata coverage dei test Python, con relativa pagina web su github pages. Aggiunta Quality Assurance con SonarCloud, Codacy e Codefactor
+    \item implementata Continuous Delivery con GitHub Actions
+\end{itemize}
 
 \section{Sprint 3}
 
