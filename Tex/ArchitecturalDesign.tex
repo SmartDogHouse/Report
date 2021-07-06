@@ -1,13 +1,24 @@
 % -*- root: ../main.tex -*-
 \chapter{Design Architetturale}
+    Dopo un intenso periodo di Domain Driven Design, si è passati si è proceduto alla fase di Design Architetturale, agevolata di molto da quest'ultimo. Infatti da un confronto mirato con il cliente l'architettura ottimale è emersa quasi naturalmente. Lasciando spazio alla definizione dei dettagli più tecnici che riportiamo in seguito.
     \section{Architettura Generale}
+    L'architettura generale del sistema è stata concepita in due macro aree: la parte IoT [Fig. \ref{fig:DesignArchitettura}. in alto] e la parte cloud [Fig. \ref{fig:DesignArchitettura}. in basso]. Le due sfruttano la connessione internet per connettersi, lo scambio di messaggi avviene attraverso il protocollo MQTT, mentre il flusso video viene passato per mezzo del protocollo RTSP. 
     
-    \section{Pattern Architetturali Utilizzati}
+    Il sistema IoT risiede su una rete privata e comunica all'esterno per mezzo di questi due protocolli. Le parti salienti sono la sensoristica che fornisce le informaioni sull'ambiente circostante al microcontrollore, il quale le elabora e utilizza gli attuatori in base alle informazioni ricavate sia dai sensori che dal cloud.
+    
+    La parte cloud si interfaccia per mezzo dell'applicativo IOT Core ai sensori, i messaggi MQTT vengono elaborati da AWS Lambda e, qualora opportuno, immagazzinati come dati nel database. L'applicativo web, hostato su AWS Amplify, si interfaccia anch'esso con AWS Lambda, passando per Amazon API Gateway. Questo sia per recuperare i dati dal database DynamoDB e mostrare le statistiche, che per diramare il cambio dei settaggi fino ai microcontrollori. Infine, l'applicativo si occupa anche di mostrare il flusso video proveniente dalla board per le telecamere di sorveglianza. 
+    %immagine architettura generale
+    \begin{figure}[H]
+        \caption{Design dell'architettura generale del sistema}
+        \label{fig:DesignArchitettura}
+        \centering
+       \includegraphics[width=0.8\textwidth]{DrawIo/Architecture.png}
+    \end{figure}
     
     \section{Scelte Tecnologiche Cruciali}
         \subsection{AWS}
         Tra i servizi messi a disposizione da AWS vi è anche Amazon Cognito che permette di gestire gli utenti. 
-        E' stato valutato Amazon Cognito ma è stato scartato perchè gli utenti sono troppo pochi.
+        E' stato valutato Amazon Cognito ma è stato scartato perché gli utenti sono troppo pochi.
         
         \subsection{Protocolli di comunicazione}
         Come protocolli di comunicazione sono stati considerati i principali protocolli per la comunicazione IoT. Tra quelli di livello applicazione: 
@@ -26,7 +37,7 @@
         Le board Arduino sono state scartate quasi subito, per la poca potenza computazionale e la necessità di moduli aggiuntivi per le connessioni. 
         La board RaspBerry Pi è stata scelta per task più computazionalmente onerosi, legati alla gestione ambientale, quali la video sorveglianza e l'analisi immagini. 
         Questa scelta non può essere invece adottata per la gestione delle gabbie. Le principali motivazioni risiedono nel fatto che il numero è variabile e il costo supererebbe molto superiore al budget. 
-        La scelta in questo caso è ricaduta sull'ESP, non solo per il forte fattore cost competitive, e per il supporto a BT e WiFi integrati, ma anche per il supporto della community e l'ottima potenza computazionale. Inoltre, rinunciando all'analisi immagini e alla qualità video a favore dei costi, il cliente potrà anche scegliere di sostituire la board RaspBerry con un più economico ESP32-CAM.
+        La scelta in questo caso è ricaduta sull'ESP, non solo per il forte fattore cost-competitive, e per il supporto a BlueTooth e WiFi integrati, ma anche per il supporto della community e l'ottima potenza computazionale. Inoltre, rinunciando all'analisi immagini e alla qualità video a favore dei costi, il cliente potrà anche scegliere di sostituire la board Raspberry con un più economico ESP32-CAM.
         Con l'ESP8266 le prime settimane il lavoro di indagine preliminare ha rilevato qualche che risultava troppo limitato per utilizzare MicroPython.
         Tra ESP8266 e ESP32 è stato preferito quest'ultimo, anche per lasciare della capacità di calcolo per eventuali future espansioni e richieste del committente. 
         \subsubsection{Linguaggio di programmazione}
@@ -44,4 +55,12 @@
             \item la testabilità del codice
             \item il numero di librerie e la futura possibilità di estensione del progetto.
         \end{itemize}
-        Alla luce delle considerazioni fatte, si è scelto  \textbf{MicroPython} per lo sviluppo, il testing e l'automatizzazione.
+        Alla luce delle considerazioni fatte, si è scelto \textbf{MicroPython} per lo sviluppo, il testing e l'automatizzazione.
+
+    \section{Pattern Architetturali Utilizzati}
+        \subsection{Pusblish-Subscribe}
+        
+        \subsection{Master-Slave}
+        \subsection{Scheduling Cooperativo}
+        \subsection{State Machine}
+    
