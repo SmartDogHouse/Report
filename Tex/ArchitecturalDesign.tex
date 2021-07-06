@@ -1,27 +1,47 @@
 % -*- root: ../main.tex -*-
 \chapter{Design Architetturale}
     \section{Architettura Generale}
+    
     \section{Pattern Architetturali Utilizzati}
+    
     \section{Scelte Tecnologiche Cruciali}
         \subsection{AWS}
         Tra i servizi messi a disposizione da AWS vi è anche Amazon Cognito che permette di gestire gli utenti. 
-        valutato amazon incognito ma è stato scartato perchè gli utenti sono troppo pochi
+        E' stato valutato Amazon Cognito ma è stato scartato perchè gli utenti sono troppo pochi.
+        
+        \subsection{Protocolli di comunicazione}
+        Come protocolli di comunicazione sono stati considerati i principali protocolli per la comunicazione IoT. Tra quelli di livello applicazione: 
+        \begin{itemize}
+            \item \textbf{AMQP (Advanced Message Queuing Protocol)}, protocollo che consente a un'ampia gamma di sistemi e applicazioni di interagire, creando messaggistica standardizzata su scala industriale.
+            \item \textbf{CoAP (Constrained Application Protocol)}, protocollo adatto alle limitazioni di larghezza di banda e di rete, per dispositivi con capacità limitata, ma prevalentemente per la connessione nelle comunicazioni da computer a computer. 
+            \item \textbf{DDS (Data Distribution Service)}, protocollo per comunicazioni peer-to-peer. In generale semplifica la distribuzione, incrementa l'affidabilità e riduce la complessità.
+            \item \textbf{MQTT (Message Queue Telemetry Transport)}, protocollo di messaggistica progettato per comunicazioni IoT. MQTT usa un criterio di tipo publish-subscribe ed è ideale per dispositivi di dimensioni ridotte che richiedono efficienza a livello di larghezza di banda e uso della batteria.
+        \end{itemize}
+        La scelta è ricaduta su MQTT per la sua leggerezza ed efficienza, per la possibilità di instaurare comunicazioni bidirezionali tra molti dispositivi. Il design inoltre è molto semplificato dalla possibilità di creare topic a cui iscriversi o in cui pubblicare i messaggi.
+        
         \subsection{Microcontrollori}
+        \subsubsection{Hardware}
+        Le piattaforme di sviluppo per l'IoT tenute presente sono state molteplici, da board con potenza computazionale più elevata, come Raspberry Pi, a scendere fino a ESP e le varianti Arduino. 
+        
+        Le board Arduino sono state scartate quasi subito, per la poca potenza computazionale e la necessità di moduli aggiuntivi per le connessioni. 
+        La board RaspBerry Pi è stata scelta per task più computazionalmente onerosi, legati alla gestione ambientale, quali la video sorveglianza e l'analisi immagini. 
+        Questa scelta non può essere invece adottata per la gestione delle gabbie. Le principali motivazioni risiedono nel fatto che il numero è variabile e il costo supererebbe molto superiore al budget. 
+        La scelta in questo caso è ricaduta sull'ESP, non solo per il forte fattore cost competitive, e per il supporto a BT e WiFi integrati, ma anche per il supporto della community e l'ottima potenza computazionale. Inoltre, rinunciando all'analisi immagini e alla qualità video a favore dei costi, il cliente potrà anche scegliere di sostituire la board RaspBerry con un più economico ESP32-CAM.
+        Con l'ESP8266 le prime settimane il lavoro di indagine preliminare ha rilevato qualche che risultava troppo limitato per utilizzare MicroPython.
+        Tra ESP8266 e ESP32 è stato preferito quest'ultimo, anche per lasciare della capacità di calcolo per eventuali future espansioni e richieste del committente. 
+        \subsubsection{Linguaggio di programmazione}
         Per quanto riguarda l'implementazione del codice nel microcontrollore, sono state presi in considerazione quattro scelte relative ai framework di sviluppo e ai linguaggi da adottare: 
         \begin{itemize}
-            \item \textbf{C} è il linguaggio attualmente più diffuso nell'ambito. 
-            
+            \item \textbf{C++} è il linguaggio attualmente più diffuso nell'ambito. 
             \item \textbf{Node-RED} è un tool di programmazione flow-based basato su browser, sviluppato su NodeJs e programmabile in JavaScript.
-            
-            \item \textbf{MicroPython} è il sub domain relativo alla gestione e monitoraggio video del canile.
-            
-            \item \textbf{Espruino} è il sub domain relativo alla gestione e monitoraggio video del canile.
+            \item \textbf{MicroPython} è un porting più leggero del compilatore Python3, eseguibile direttamente su microcontrollori. Include le principali librerie di Python e moduli aggiuntivi per l'accesso all'hardware di basso livello.
+            \item \textbf{Espruino} è un interprete JavaScript open-source per microcontrollori. E' stato progettato per unità con poca RAM.
         \end{itemize}
-        Sicuramente il più performante e con più librerie è C, ma risulta anche difficilmente testabile e pone challange non indifferenti per la configurazione dei sensori. Node-RED, basato su Node.js, ha il pieno vantaggio del suo modello non bloccante e event-driven. MicroPython d'altra parte offre un modello ad oggetti, testabile, sia semplice che elastico, con una buona base di librerie. Infine, Espruino, interprete JavaScript anch'esso, di facile utilizzo e dall'interfaccia semplificata. 
+        Sicuramente il più performante e con più librerie è C, ma risulta anche difficilmente testabile e pone challange non indifferenti per la configurazione dei sensori e per lo sviluppo di programmi molto complessi. Node-RED, basato su Node.js, ha il pieno vantaggio del suo modello non bloccante e event-driven. MicroPython d'altra parte offre un modello ad oggetti, testabile, sia semplice che elastico, con una buona base di librerie. Infine, Espruino, interprete JavaScript anch'esso, di facile utilizzo e dall'interfaccia semplificata. 
         I fattori chiave che il team ha preso in considerazione per la scelta sono stati: 
         \begin{itemize}
             \item la potenza espressiva rapportata alla chiarezza del linguaggio. 
             \item la testabilità del codice
             \item il numero di librerie e la futura possibilità di estensione del progetto.
         \end{itemize}
-        Alla luce delle considerazioni fatte, si è scelto MicroPython per lo sviluppo, il testing e l'automatizzazione.
+        Alla luce delle considerazioni fatte, si è scelto  \textbf{MicroPython} per lo sviluppo, il testing e l'automatizzazione.
