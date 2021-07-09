@@ -103,43 +103,71 @@ coltitle=black,center title}}
 %\graphicspath{{Images/}{DrawIo/}}
 \newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
 
-
-\def\SmartCity{0} % 1=True(SmartCity version), 0=False(Full version)
+% Smart City Version
+\def\SmartCity{1} % 1=True(SmartCity version), 0=False(Full version)
 
 \title{\LARGE
-\ifthenelse{\SmartCity=1}{
-\hrulefill \\
-    RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
-\hrulefill \\
-}
-Smart DogHouse
+    
+    \ifthenelse{\SmartCity=1}{ % SOLO per smart-city
+    \hrulefill \\
+        RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
+    \hrulefill \\
+    }
+    
+    Smart DogHouse
 }
 
 \author{
+    \ifthenelse{\SmartCity=1}{ % SOLO per smart-city
+    Numero Gruppo: 97 \\ \\ \\
+    }
+    
     Kiade Sara \\ \emailaddr{sara.kiade@studio.unibo.it}
     \and 
     Caminati Gyordan \\ \emailaddr{gyordan.caminati@studio.unibo.it} 
     \and
     Lirussi Igor \\ \emailaddr{igor.lirussi@studio.unibo.it}
+    \\ \\ \\ 
+
 }
 
 \date{\today}
+
 
 \begin{document}
 \maketitle
 \include{Tex/Abstract}
 \tableofcontents
 
-\include{Tex/Intro}
-\include{Tex/DevProcess}
-\include{Tex/AnalysisProblemSpace}
-\include{Tex/AnalysisRequirements}
-\include{Tex/AspettiDDD}
-\include{Tex/ArchitecturalDesign}
-\include{Tex/Design}
-\include{Tex/Implementation}
-\include{Tex/Sprints}
-\include{Tex/Conclusion}
+% CONTENUTI
+    \include{Tex/Intro}
+    \include{Tex/StateOfTheArt}
+
+\ifthenelse{\SmartCity=0}{ % NON per smart-city
+    \include{Tex/DevProcess}
+    \include{Tex/AnalysisProblemSpace}
+}
+
+    \include{Tex/AnalysisRequirements}
+
+\ifthenelse{\SmartCity=0}{ % NON per smart-city
+    \include{Tex/AspettiDDD}
+}
+
+    \include{Tex/ArchitecturalDesign}
+    \include{Tex/Design}
+    \include{Tex/Implementation}
+    \include{Tex/TestingAndPerformance}
+    \include{Tex/LargeScaleDeployment}
+    \include{Tex/WorkPlan}
+
+
+\ifthenelse{\SmartCity=0}{ % NON per smart-city
+    \include{Tex/Sprints}
+}
+
+    \include{Tex/Conclusion}
+
 
 \nocite{*} % Includes all references from the `references.bib` file
 \printbibliography[title={Bibliografia completa}]
