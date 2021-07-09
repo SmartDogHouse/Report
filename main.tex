@@ -103,8 +103,16 @@ coltitle=black,center title}}
 %\graphicspath{{Images/}{DrawIo/}}
 \newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
 
+
+\def\SmartCity{0} % 1=True(SmartCity version), 0=False(Full version)
+
 \title{\LARGE
-    Smart DogHouse
+\ifthenelse{\SmartCity=1}{
+\hrulefill \\
+    RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
+\hrulefill \\
+}
+Smart DogHouse
 }
 
 \author{
