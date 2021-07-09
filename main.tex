@@ -104,17 +104,23 @@ coltitle=black,center title}}
 \newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 % Smart City Version
-\def\SmartCity{1} % 1=True(SmartCity version), 0=False(Full version)
+\def\SmartCity{0} % 1=True(SmartCity version (shorter)), 0=False(Full version)
 
-\title{\LARGE
     
-    \ifthenelse{\SmartCity=1}{ % SOLO per smart-city
-    \hrulefill \\
+\ifthenelse{\SmartCity=1}{ % SOLO per smart-city
+    
+    \title{\LARGE
         RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
-    \hrulefill \\
+        \hrulefill \\
+        Smart DogHouse \\ 
+        \hrulefill \\
     }
-    
-    Smart DogHouse
+}{ % SOLO normale
+    \title{\LARGE
+        \hrulefill \\
+        Smart DogHouse \\
+        \hrulefill \\
+    }
 }
 
 \author{
