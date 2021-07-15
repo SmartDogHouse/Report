@@ -4,3 +4,75 @@
 % 3000 - 6000 battute
 
 \chapter{Testing e Performance}
+\section{Automazione Gabbia e Monitoraggio Cane}
+\subsection{Hardware}
+Per quanto riguarda l'automazione di cibo e acqua e il monitoraggio dei parametri vitali dell'animale sono state testate multiple soluzioni hardware. In fase di validazione del progetto sono stati prese in esame principalmente due board che soddisfassero i requisiti di economicità, connettività e prestazioni: L'ESP8266 e il successore ESP32. 
+Entrambi offrono la connettività Wi-Fi integrata e buona potenza computazionale, cosa di cui è carente la board Arduino, e un costo contenuto (5€ per il primo e 7€ per il secondo, dati del primo semestre 2021) rispetto alla board Raspberry. Quest'ultima board offre connettività e prestazioni ma i costi sono decisamente fuori budget per il committente e per la natura distribuita dei compiti. La piattaforma ESP si è rivelata un buon compromesso e quindi si è passati a testarne i due differenti modelli.
+
+Dopo i testing eseguiti in fase iniziale sono emerse differenze sostanziali nei tempi di avvio del programma e di connessione. Inoltre l'ESP8266 ha riscontrato spesso problemi nel caricamento dei file e nell'esecuzione di micropython. Di seguito si riporta la tabella riassuntiva per i tempi di esecuzione/comunicazione, accompagnati dalle caratteristiche dell'hardware. 
+ %tab 
+\begin{tcolorbox}[tab2,tabularx={c||c|c|Y|Y},title=Confronto Prestazioni Microcontrollori Testati,boxrule=0.5pt]
+\hline
+board & velocità processore & costo & tempo medio avvio programma & tempo medio connessione MQTT \\
+\hline
+\hyperlink{https://en.wikipedia.org/wiki/ESP8266}{ESP8266} & 80 MHz & 5€ & 8,1 s & 6,3 s\\
+\hline
+\hyperlink{https://en.wikipedia.org/wiki/ESP32}{ESP32} & 160 MHz (dual core) & 7€ & 5,2 s & 3,4 s\\
+\hline
+\end{tcolorbox}
+Alla luce della minima differenza di prezzo tra i due device rispetto alla capacità computazionale, la scelta è ricaduta sul più recente ESP32.
+
+\section{Videosorveglianza}
+\subsection{Hardware}
+Come anticipato in precedenza, il lato visione, di per se più computazionalmente oneroso, ha reso necessaria un'analisi più approfondita delle performance e la scelta è ricaduta su Raspberry Pi e ESP32-CAM. Inizialmente stato implementato un server web in C, per l'ESP ma il development è stato in seguito interrotto per la scarsa potenza potenza di quest'ultimo nell'elaborazione delle immagini. E' stato tuttavia ritenuto valido per un'alternativa economica per il semplice streaming video senza elaborazione e notifica.
+Le board Raspberry Pi testate sono state le seguenti, con i rispettivi tempi di elaborazione:
+ %tab 
+\begin{tcolorbox}[tab2,tabularx={c||c|c|c|Y},title=Confronto Prestazioni Raspberry Testati,boxrule=0.5pt]
+\hline
+board & velocità processore & memoria RAM & costo & tempo medio forward immagine NN*  \\
+\hline
+\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 3 A+} & 1.4 GHz & 512 MB & 20€ & 6.3 s  \\
+\hline
+\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 3 B+} & 1.4 GHz & 1 GB & 30€ & 3.1 s \\
+\hline
+\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 4} & 1.5 GHz & 2 GB & 50€ & 2.4 s \\
+\hline
+\end{tcolorbox}
+* i tempi si riferiscono all'attesa media per ottenere i risultati di object-detection attraverso una rete neurale con architettura Yolo3 con lo stesso set di immagini.
+
+Considerando il rapporto costo/prestazioni, la scelta è ricaduta sul Raspberry Pi 3 B+ che con soli 0.7 secondi di distacco dal suo successore si posiziona su una fascia decisamente più economica.
+
+
+\subsection{Software}
+Per quanto riguarda il software sono state testate le prestazioni deidue metodi per la detection di anomalie/intrusioni.Il secondo, più elaborato, su riconoscimento oggetti per mezzo di una rete neurale. 
+    \subsubsection{Motion Detection} Il primo, più lineare, si basa su elaborazione delle immagini tramite background-subtraction per rilevare del movimento. Le semplici operazioni di sfocatura gaussiana, differenza, soglia e calcolo dell'area sono state studiate per ottenere alte prestazioni circa la velocità di esecuzione dell'algoritmo. 
+    I test sperimentali sulla piattaforma scelta Raspberry Pi 3B+ hanno rilevato una media di 30 FPS sul materiale di test. Questa misura si è rivelata parecchio costante, poichè l'algoritmo non effettua un'analisi semantica delle immagini ma semplicemente delle operazioni matematiche indipendentemente dal contenuto. L'unico overhead dell'algoritmo risiede infatti nel calcolo dell'area dell'immagine cambiata qualora presente. Più questa è grande più tempo viene impiegato per calcolarla. Rispetto ai tempi di esecuzione e alle normale fluttuazioni delle prestazioni non è stata rilevata una differenza degna di nota (Si vedano gli FPS nonostante la grande area rilevata in [Fig. \ref{fig:MDcomparison}] 
+    
+    La velocità dell'algoritmo va a discapito della precisione dello stesso. A seguito delle rilevazioni la matrice di confusione risulta non ottimale. Le motivazioni principali trovate risiedono nei seguenti scenari:
+    - qualora una figura anomala darilevare stesse ferma o si muovesse lentamente, la soglia non sarebbe abbastanza alta da venir rilevata e ciò comporta dei falsi negativi. Non avendo nozione della semantica dell'immagine, l'algoritmo non può venir calibrato ulteriormente.
+    - qualora un oggetto irrilevante (es: una mosca che passa vicino sulle lenti) produca un cambiamento significativo nell'immagine, la soglia viene superata e viene prodotto un falso positivo. Anche qui la mancanza di discernimento dell'algoritmo non può essere superata se non cambiandolo.
+    - qualora l'oggetto estraneo sia lontano l'area di cambiamento risulta piccola e non supera la soglia, producendo falsi negativi. Se la soglia viene abbassata si incorre in falsi positivi per via di minimi cambiamenti ambientali.
+    
+    \begin{figure}[H]
+        \caption{Surveillance with Motion Detection}
+        \label{fig:MDcomparison}
+        \centering
+        \includegraphics[width=0.5\textwidth]{Images/MDcomparison.png}
+    \end{figure}
+
+
+    \subsubsection{Object Detection}
+    Alte prestazioni circa le rilevazioni
+    \begin{tcolorbox}[tab2,tabularx={c||c|c|},title=Confronto Prestazioni Neural Networks Testate,boxrule=0.5pt]
+    \hline
+    Architettura & Frames al secondo & Rilevazioni  \\
+    \hline
+    \hyperlink{https://pjreddie.com/darknet/yolo/}{Yolo V3} & 0.4 & 699  \\
+    \hline
+    \hyperlink{https://pjreddie.com/darknet/yolo/}{Yolo V2-Tiny} & 3.5 & 20  \\
+    \hline
+    \hyperlink{https://pjreddie.com/darknet/yolo/}{Yolo V3-Tiny} & 3.3 & 214 \\
+    \hline
+    \hyperlink{https://pjreddie.com/darknet/yolo/}{Yolo V4-Tiny} & 2.9 & 269 \\
+    \hline
+    \end{tcolorbox}

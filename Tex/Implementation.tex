@@ -33,6 +33,18 @@ Una volta rilevati i singoli battiti con il modello matematico, il calcolo del b
 bpm = \frac{ N_{beats}*60 s/min }{T_{diff}} = \frac{ N_{beats}*60 s/min }{T_{last}-T_{first}} 
 \end{equation}
 Il battito cardiaco risultante viene poi inviato periodicamente al Database e, qualora ci fossero anomalie, una notifica viene invece generata e inviata immediatamente.
+
+\section{Raspberry}
+Il raspberry è stato scelto come board per la computazione delle immagini di video-sorveglianza. 
+Il principale concorrente a questa scelta, l'ESP32-CAM è stato testato per lo streaming video ma non è provvisto delle risorse computazionali necessarie per il rilevamento di anomalie. 
+Avendo un costo inferiore rispetto al Raspberry è stato comunque considerato come alternativa low-cost. 
+Il motion detector base è stato costruito come segue:
+Accumulating the weighted average of the previous N frames
+Taking the current frame and subtracting it from the weighted average of frames
+Thresholding the output of the subtraction to highlight the regions with substantial differences in pixel values (“white” for foreground and “black” for background)
+Applying basic image processing techniques such as erosions and dilations to remove noise
+Utilizing contour detection to extract the regions containing motion
+
 \input{Tex/Implementation/IgorLirussi}
 \input{Tex/Implementation/SaraKiade}
 \input{Tex/Implementation/GyordanCaminati}
