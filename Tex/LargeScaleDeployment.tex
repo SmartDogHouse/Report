@@ -4,3 +4,9 @@
 % 6000 - 12000 battute
 
 \chapter{Analisi di Deployment su Larga Scala}
+L'applicativo è stato modellato in ogni sua parte per scalare facilmente all'occorrenza. Il design distribuito e in cloud ne facilita l'eventuale evoluzione su larga scala.
+Verranno di seguito brevemente analizzati due scenari: 
+\begin{itemize}
+    \item  \textbf{Evoluzione Interna} In termini di scalabilità del singolo software lo scenario più realistico consiste nell'aggiunta di elementi (gabbie o animali) da parte di un grande canile. L'aggiunta, anche cospicua, di elementi non porterebbe ulteriore complessità al sistema. Gli unici requisiti riguardano comprare l'hardware specifico da installare. Questo si occuperà attraverso il programma di mandare i dati direttamente al cloud, il quale li processerà e mostrerà le informazioni aggiornate sull'applicativo.
+    \item  \textbf{Diffusione su Larga Scala} In termini di diffusione del software in molteplici copie lo scenario riguarderebbe l'adozione del applicativo da parte di molteplici amministrazioni. Grazie all'adozione dei servizi AWS in Cloud, la availability e scalability del sistema è garantita anche a alti livelli.
+\end{itemize}
