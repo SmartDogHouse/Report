@@ -4,21 +4,17 @@
 % 3000 - 6000 battute
 
 \chapter{Testing e Performance}
-\section{Automazione Gabbia e Monitoraggio Cane}
+\section{Automazione Gabbia e Monitoraggio Salute}
 \subsection{Hardware}
 Per quanto riguarda l'automazione di cibo e acqua e il monitoraggio dei parametri vitali dell'animale sono state testate multiple soluzioni hardware. In fase di validazione del progetto sono stati prese in esame principalmente due board che soddisfacessero i requisiti di economicità, connettività e prestazioni: L'ESP8266 e il successore ESP32. 
 Entrambi offrono la connettività Wi-Fi integrata e buona potenza computazionale, cosa di cui è carente la board Arduino, e un costo contenuto (5€ per il primo e 7€ per il secondo, dati del primo semestre 2021) rispetto alla board Raspberry. Quest'ultima board offre connettività e prestazioni ma i costi sono decisamente fuori budget per il committente e per la natura distribuita dei compiti. La piattaforma ESP si è rivelata un buon compromesso e quindi si è passati a testarne i due differenti modelli.
 
 Dopo i testing eseguiti in fase iniziale sono emerse differenze sostanziali nei tempi di avvio del programma e di connessione. Inoltre l'ESP8266 ha riscontrato spesso problemi nel caricamento dei file e nell'esecuzione di micropython. Di seguito si riporta la tabella riassuntiva per i tempi di esecuzione/comunicazione, accompagnati dalle caratteristiche dell'hardware. 
  %tab 
-\begin{tcolorbox}[tab2,tabularx={c||c|c|Y|Y},title=Confronto Prestazioni Microcontrollori Testati,boxrule=0.5pt]
-\hline
-board & velocità processore & costo & tempo medio avvio programma & tempo medio connessione MQTT \\
-\hline
-\hyperlink{https://en.wikipedia.org/wiki/ESP8266}{ESP8266} & 80 MHz & 5€ & 8,1 s & 6,3 s\\
-\hline
-\hyperlink{https://en.wikipedia.org/wiki/ESP32}{ESP32} & 160 MHz (dual core) & 7€ & 5,2 s & 3,4 s\\
-\hline
+\begin{tcolorbox}[tab2,tabularx={c||c|c|Y|Y},title=Confronto Prestazioni Microcontrollori Testati,boxrule=0.5pt] \hline
+board & velocità processore & costo & tempo medio avvio programma & tempo medio connessione MQTT \\ \hline
+\hyperlink{https://en.wikipedia.org/wiki/ESP8266}{ESP8266} & 160 MHz & 5€ & 8,1 s & 9,3 s\\ \hline
+\hyperlink{https://en.wikipedia.org/wiki/ESP32}{ESP32} & 240 MHz (dual core) & 7€ & 5,2 s & 3,4 s\\ \hline
 \end{tcolorbox}
 Alla luce della minima differenza di prezzo tra i due device rispetto alla capacità computazionale, la scelta è ricaduta sul più recente ESP32.
 
@@ -31,11 +27,11 @@ Le board Raspberry Pi testate sono state le seguenti, con i rispettivi tempi di 
 \hline
 board & velocità processore & memoria RAM & costo & tempo medio forward immagine NN*  \\
 \hline
-\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 3 A+} & 1.4 GHz & 512 MB & 20€ & 6.3 s  \\
+\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 3 A+} & 1.4 GHz (quad-core) & 512 MB & 20€ & 6.3 s  \\
 \hline
-\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 3 B+} & 1.4 GHz & 1 GB & 30€ & 3.1 s \\
+\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 3 B+} & 1.4 GHz (quad-core) & 1 GB & 30€ & 3.1 s \\
 \hline
-\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 4} & 1.5 GHz & 2 GB & 50€ & 2.4 s \\
+\hyperlink{https://en.wikipedia.org/wiki/Raspberry_Pi}{Pi 4} & 1.5 GHz (quad-core) & 2 GB & 50€ & 2.4 s \\
 \hline
 \end{tcolorbox}
 * i tempi si riferiscono all'attesa media per ottenere i risultati di object-detection attraverso una rete neurale con architettura Yolo3 con lo stesso set di immagini.
@@ -56,9 +52,11 @@ Per quanto riguarda il software sono state testate le prestazioni dei due metodi
     \end{figure}
     
     La velocità dell'algoritmo va a discapito della precisione dello stesso. A seguito delle rilevazioni la matrice di confusione risulta non ottimale. Le motivazioni principali trovate risiedono nei seguenti scenari:
-    - qualora una figura anomala da rilevare stesse ferma o si muovesse lentamente, la soglia non sarebbe abbastanza alta da venir rilevata e ciò comporta dei falsi negativi. Non avendo nozione della semantica dell'immagine, l'algoritmo non può venir calibrato ulteriormente.
-    - qualora un oggetto irrilevante (es: una mosca che passa vicino sulle lenti) produca un cambiamento significativo nell'immagine, la soglia viene superata e viene prodotto un falso positivo. Anche qui la mancanza di discernimento dell'algoritmo non può essere superata se non cambiandolo.
-    - qualora l'oggetto estraneo sia lontano l'area di cambiamento risulta piccola e non supera la soglia, producendo falsi negativi. Se la soglia viene abbassata si incorre in falsi positivi per via di minimi cambiamenti ambientali.
+    \begin{itemize}
+        \item qualora una figura anomala da rilevare stesse ferma o si muovesse lentamente, la soglia non sarebbe abbastanza alta da venir rilevata e ciò comporta dei falsi negativi. Non avendo nozione della semantica dell'immagine, l'algoritmo non può venir calibrato ulteriormente.
+        \item qualora un oggetto irrilevante (es: una mosca che passa vicino sulle lenti) produca un cambiamento significativo nell'immagine, la soglia viene superata e viene prodotto un falso positivo. Anche qui la mancanza di discernimento dell'algoritmo non può essere superata se non cambiandolo.
+        \item qualora l'oggetto estraneo sia lontano l'area di cambiamento risulta piccola e non supera la soglia, producendo falsi negativi. Se la soglia viene abbassata si incorre in falsi positivi per via di minimi cambiamenti ambientali.
+    \end{itemize}
     
     La matrice di confusione risultante in [Fig. \ref{fig:MDmatrix}] risulta chiaramente sbilanciata con parecchi falsi positivi. Questo deriva chiaramente dall'impossibilità discussa di discernere tra oggetti in movimento "non allarmanti" e viceversa.
     Per ovviare a questo problema nella sezione successiva si discuterà l'uso delle reti neurali e le prestazioni inerenti l'uso dell'object-detection.
