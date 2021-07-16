@@ -25,6 +25,7 @@
         E' stato valutato Amazon Cognito ma è stato scartato perché gli utenti sono troppo pochi.
         
         \subsection{Protocolli di comunicazione}
+        \subsubsection{Scambio messaggi}
         Come protocolli di comunicazione sono stati considerati i principali protocolli per la comunicazione IoT. Tra quelli di livello applicazione: 
         \begin{itemize}
             \item \textbf{AMQP (Advanced Message Queuing Protocol)}, protocollo che consente a un'ampia gamma di sistemi e applicazioni di interagire, creando messaggistica standardizzata su scala industriale.
@@ -34,7 +35,11 @@
         \end{itemize}
         La scelta è ricaduta su MQTT per la sua leggerezza ed efficienza, per la possibilità di instaurare comunicazioni bidirezionali tra molti dispositivi. Il design inoltre è molto semplificato dalla possibilità di creare topic a cui iscriversi o in cui pubblicare i messaggi.
         
-        \subsection{Microcontrollori}
+        \subsubsection{Streaming Video}
+        Per lo streaming video sono stati considerate due opzioni: streaming attraverso RTSP e attraverso HTTP con un server e HTML5. 
+        RTSP è di sicuro la scelta più popolare perché adottato come protocollo dalle IP-cam e telecamere di sorveglianza. Nonostante ciò non è compatibile con HTTP e, non potendo fare lo stream su HTTP direttamente, non è visualizzabile nativamente dai browser. Questo protocollo è infatti usato internamente alle reti private. Volendo esporre il flusso video anche al di fuori della rete privata del committente la scelta è ricaduta sulla seconda opzione. Inoltre, con questa tecnologia alla videosorveglianza si ha accesso con qualsiasi browser, da computer o da smartphone.
+        
+        \subsection{Microcontrollori e Soc}
         \subsubsection{Hardware}
         Le piattaforme di sviluppo per l'IoT tenute presente sono state molteplici, da board con potenza computazionale più elevata, come Raspberry Pi, a scendere fino a ESP e le varianti Arduino. 
         
@@ -59,12 +64,20 @@
             \item la testabilità del codice
             \item il numero di librerie e la futura possibilità di estensione del progetto.
         \end{itemize}
-        Alla luce delle considerazioni fatte, si è scelto \textbf{MicroPython} per lo sviluppo, il testing e l'automatizzazione.
+        Alla luce delle considerazioni fatte, si è scelto \textbf{MicroPython} per lo sviluppo, il testing e l'automatizzazione nei microcontrollori. Questo permette di allinearsi con l'utilizzo di \textbf{Pyhton} per il Raspberry.
 
     \section{Pattern Architetturali Utilizzati}
+        \subsection{Client-Server}
+        L'utilizzo del pattern client-server, nella videosorveglianza, ha permesso di esporre il flusso video su un server apposito e di accederci da qualunque dispositivo dotato di connessione. 
+    
         \subsection{Pusblish-Subscribe}
+        L'utilizzo del pattern publish-subscribe, è stata una scelta chiave per la modularità del sistema. La divisione in topic ha portato un maggiore ordine e una modellazione più vicina al vero dominio. 
         
         \subsection{Master-Slave}
+        E' stato fatto uso dell'architettura master-slave per la gestione dei microcontrollori. Questa permette di espanderne il numero a piacimento, mandando istruzioni specifiche o generali per controllarne il comportamento.
+        
         \subsection{Scheduling Cooperativo}
+        Nei sistemi embedded è stato adottato lo scheduling cooperativo per evitare tante pitfall dello scheduling preemptive, quali l'interruzione di un processo di misura Hard Real Time, quale quello della chiusura della valvola dell'acqua o la misura del battito cardiaco.
+        
         \subsection{State Machine}
-    
+        Per definire il comportamento dei microcontrollori in maniera chiara è stata usata la modellazione con macchine a stati. Questa ha permesso di ridurre la probabilità di bug nel software e di isolare i componenti permettendo una futura espansione del comportamento. 
