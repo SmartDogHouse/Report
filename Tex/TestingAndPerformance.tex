@@ -53,7 +53,7 @@ Per quanto riguarda il software sono state testate le prestazioni dei due metodi
     
     La velocità dell'algoritmo va a discapito della precisione dello stesso. A seguito delle rilevazioni la matrice di confusione risulta non ottimale. Le motivazioni principali trovate risiedono nei seguenti scenari:
     \begin{itemize}
-        \item qualora una figura anomala da rilevare stesse ferma o si muovesse lentamente, la soglia non sarebbe abbastanza alta da venir rilevata e ciò comporta dei falsi negativi. Non avendo nozione della semantica dell'immagine, l'algoritmo non può venir calibrato ulteriormente.
+        \item qualora una figura da rilevare stesse ferma o si muovesse lentamente, la soglia non sarebbe abbastanza alta da venir rilevata e ciò comporta dei falsi negativi. Non avendo nozione della semantica dell'immagine, l'algoritmo non può venir calibrato ulteriormente.
         \item qualora un oggetto irrilevante (es: una mosca che passa vicino sulle lenti) produca un cambiamento significativo nell'immagine, la soglia viene superata e viene prodotto un falso positivo. Anche qui la mancanza di discernimento dell'algoritmo non può essere superata se non cambiandolo.
         \item qualora l'oggetto estraneo sia lontano l'area di cambiamento risulta piccola e non supera la soglia, producendo falsi negativi. Se la soglia viene abbassata si incorre in falsi positivi per via di minimi cambiamenti ambientali.
     \end{itemize}
