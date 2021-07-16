@@ -126,19 +126,50 @@ Utilizing contour detection to extract the regions containing motion
         Nonostante gli sviluppatori di SAM confermino il supporto alle chiamate CORS locali non siamo riusciti a farle funzionare in altra maniera.
         
 \subsection{Deployment} 
+        Il repository è stato collegato e configurato per il continuous deploymnet, così da pubblicare e rilasciare le modifiche online non appena rilasciate se il sito compila, il sito essendo pubblico è stato protetto da password grazie ad amplify.
         
         
 \section{Funzioni Serverless}
-    Le principarli difficoltà in questa parte del progetto sono legate all'apprendimento delle tecnologie \textbf{AWS} utilizzate,
+    Le principali difficoltà in questa parte del progetto sono legate all'apprendimento delle tecnologie \textbf{AWS} utilizzate,
     quali:
     \begin{itemize}
-        \item \textbf{Lambda}
-        \item \textbf{IoT Core}
-        \item \textbf{CloudWatch}
-        \item \textbf{IAM}
-        \item \textbf{API gateway}
+        \item \textbf{Lambda} I due principali problemi incontrati sono stati:
+         \begin{itemize}
+             \item Lo sviluppo e il testing in locale che richiede l'ausilio della \textbf{SAM CLI} e della \textbf{AWS CLI}.
+             \item L'utilizzo del sdk di AWS per javascript sopratutto quando era necessario contattare altri servizi come IoT Core o API Gateways.
+         \end{itemize}
+
+        \item \textbf{IoT Core} Non sono stati riscontrate particolari difficolta se non con i certificati che non sono in un formato compatibile con la libreria \texttt{Umqtt} di micropython.
+        \item \textbf{CloudWatch} Consultare i log delle funzioni lambda non risulta complicato, stesso non si può dire per i log delle websocket.
+        \item \textbf{IAM} Il sistema dei permessi di AWS è molto articolato e ci sono più modi per fornire i permessi, in generale la gestione dei permessi è stata faticosa. Alcuni permessi sono molto immediati, altri come quello per consultare i log di \textbf{CloudWatch} delle websocket molto meno, non tanto per i permessi più per il tool grafico o la sintassi di SAM.
+        \item \textbf{API gateway} L'esposizione delle \texttt{API} \textbf{REST} e delle web socket non è stata difficoltosa.
+        \item \textbf{SAM} Forse la parte più complicata dell'applicativo serverless, fornisce la possibilità di effettuare il deploy di \textbf{Stack} su \textbf{AWS CloudFormation}, con una sintassi tutta sua, orchestrare il deploy di : Funzioni Lambda, Regole IoT Core, Permessi IAM, Tabelle DynamoDB, API REST, Websocket e CloudWatch Event via crono. Nonostante il grande sforzo per sfruttare al meglio SAM, il lavoro potrebbe essere ulteriormente automatizzato e perfezionato. 
     \end{itemize}
     
+\subsection{Deployment} 
+        L'intero stack che esclude il database principale, Aws Aplify e i dispositivi IOT può essere dispiegato tramite il comando \texttt{sam build \&\& sam deploy}
+        Attualmente il deploy è dipendente da alcune variabili che sono configurabili con il flag \texttt{-g}, altre variabili sono incorporate e potrebbero essere scorporate alla stessa maniera se si volesse rendere il deploy multi-account.
+        
+\section{Database DynamoDB}
+        Lo sviluppo del database è una parte critica del progetto,
+        in un ottica di rendere l'applicativo veloce e scalabile il più possibile, abbiamo scelto di procedere con lo sviluppo di una tabella DynamoDB.
+        DynamoDB offre una scalabilità e una velocità di interrogazione superiori ai database relazionali, per questo lo abbiamo scelto, inoltre la sua prefetta integrazione con il \textbf{back-end} lo rendeva ancora più appetibile.
+        
+        Le difficoltà durante lo sviluppo del database sono state enormi.
+        Partendo dalla documentazione e dalle guide che siamo riusciti a reperire, subito ci siamo trovati in difficoltà con il mindset necessario allo sviluppo del database, troppo legati all'ambito relazionale.
+        Il database ha passato molti \textbf{schemi} diversi che sono stati raffinati mano a mano che la complessità e i meccanismi del DB venivano compresi.
+        Questo comportava continue modifiche al DB e il testare e studiare sono diventati essenziali, motivo per cui abbiamo scelto di non includerlo all'interno del deploy \textbf{SAM}, non si voleva complicare il complicato.
+        
+\subsection{Tool utilizzati}
+    Durante lo sviluppo abbiamo utilizzato due strimenti per aiutarci aiutatrci nella comprensione e nello sviluppo del sistema:
+    \begin{itemize}
+        \item \textbf{NoSQL Workbench} Il nuovo tool grafico di AWS ci ha permesso di visualizzare con maggiore chiarezza il database e di elaborare le query utilizzando \textbf{PartiQL}.
+        Inoltre ci ha anche permesso di effettuare la creazione di tabelle utilizzando la connessione ad AWS.
+    \end{itemize}\textbf{PartiQL} Una gradita sorpresa durante lo studi e lo sviluppo del database. Infatti questo consente di interrogare \textbf{DynamoDB} utilizzando la classica sintassi \textbf{SQL}, molto più espressiva dell'\textbf{SDK} javascript.
+    Purtroppo l'implementazione al supporto \textbf{PartiQL} non è supportata totalmente e quindi grossa parte della sintassi \textbf{SQL}
+    come proiezioni e query annidate non sono disponibili.
+    Questo rende l'implementazione delle query più frammentata, e ci ha obbligato a riscrivere varie parti di codice e DB.
+    Tali limiti sono intrinseci di DynamoDB e non una mancaza di sviluppo parziale.
 
 \input{Tex/Implementation/IgorLirussi}
 \input{Tex/Implementation/SaraKiade}
