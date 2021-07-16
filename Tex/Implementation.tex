@@ -45,6 +45,101 @@ Thresholding the output of the subtraction to highlight the regions with substan
 Applying basic image processing techniques such as erosions and dilations to remove noise
 Utilizing contour detection to extract the regions containing motion
 
+\section{Web App}
+
+    
+    La \textbf{Web App} è stata sviluppata come un prototipo funzionante, ma che per essere considerato completo richiederebbe ancora lavoro di rifinitura.
+    
+    \subsection{Considerazioni tecnologiche}
+    
+        L'applicazione è stata sviluppata utilizzando \textbf{nodeJS} e \textbf{VueJS}. 
+        Una scelta guidata dalla semplicità del framework javascript, che a differenza di \textbf{React} e \textbf{Angular} offre una curva di apprendimento ben più bassa, favorendo lo sviluppo. 
+        \textbf{VueJS} forniva inoltre il vantaggio di integrarsi perfettamente con AWS \textbf{Amplify}, a livello di \textbf{front-end}.
+        Mentre a livello di \textbf{back-end} le comunicazioni sono perfettamente supportate dato che anche l'applicativo \textbf{back-end} è stato sviluppato anch'esso \textbf{nodeJS}.
+        
+        Il comparto estetico è sviluppato utilizzato \textbf{Vuetify} un estensione di \textbf{VueJS} che sembrava integrarsi meglio con il framework rispetto a \textbf{BootstrapVue}.
+        
+        Per la comunicazione con le API \textbf{REST} si è scelto di utilizzare \textbf{AXIOS} rispetto ad \textbf{AJAX} questo perche risulta di facile integrazione con \textbf{VueJS}, supporta le \textbf{SPA} e consente il facile utilizzo di \texttt{Async} e \texttt{Await}.
+        
+        Mentre per le \texttt{websocket} si è scelto di usare le librerie di default, principalmente per la loro semplicità di utilizzo, è stata valutata l'adozione  \texttt{Socket.io} che forniva maggiori funzionalità  e supporto a comunicazioni   come l'utilizzo di \texttt{fall back}.
+        Tali funzionalità però per un uso base non erano utili è quindi stata accantonata.
+        
+        Per le rotte della pagina è stato utilizzato \textbf{VueRouter}
+        essendo l'unica alternativa.
+        
+        Infine per facilitare lo sviluppo è stato utilizzato \textbf{Vuex} che consente di accedere da più punti ad un'oggetto condiviso.
+        
+    \subsection{Note sull'codice}
+        Per questini di velocità e leggibilità si è diciso di dividere l'applicativo su più \texttt{view} : \textbf{Home} e \textbf{Login}.
+        
+        Ogni \texttt{view} è composta da più componenti che a loro volta sono composti.
+        
+        Tutti gli elementi di \textbf{VueJS} sono stati strutturati seguendo il modello del \textbf{Single File Components} che prevede di inserire il codice per lo \textbf{Style}(CSS), \textbf{Markup}(Vue/HTML) e \textbf{Script}(JavaScript) tutto nello stesso file.
+        
+    \subsection{Difficoltà durante lo sviluppo}
+    
+        Lo sviluppo della \textbf{Web App}  è stato fluido fino all'integrazione delle prima chiamata alle \textbf{API}, qui ci siamo resi conto che le api non potevano essere chiamate direttamente dal \textbf{Broswer}.
+        Mentre funzionavano perfettamente utilizzando sistemi come \textbf{Postman} e \textbf{Reqbin}. 
+        
+        L'errore \textbf{Cross-Origin Resource Sharing} (CORS), riguarda la possibilità di utilizzare altre sorgenti per attingere informazioni, questo genere di verifica è effettuata solo dal Broswer ed è invece saltata su Postman e simili.
+        
+        Dopo un investigazione siamo giunti alla conclusione che in fase di \textbf{sviluppo} avremmo potuto consentire ogni richiesta. Abbiamo quindi aggiunto le seguenti linee di codice nel file \texttt{Template.yaml} di \textbf{SAM}, questo per istruire il proxy cors di AWS a rispondere alle richieste con i campi aggiunti:
+        \begin{lstlisting}
+        Globals:
+          Api:
+            EndpointConfiguration: REGIONAL
+            Cors:
+              AllowMethods: "'*'"
+              AllowHeaders: "'*'"
+              AllowOrigin: "'*'"
+        \end{lstlisting}
+        
+        L'errore smise di apparire, ma con la necessità di testare sempre più funzioni e l'impossibilità effettuare il deploy di sam per ogni prova, abbiamo iniziato ad eseguire una istanza di AWS \textbf{Lambda} localmente tramite il comando : \texttt{sam build \&\& sam local start-api}.
+        
+        Giunti a questo punto il problema si è ripresentato e questa volta la soluzione è stata molto più ostica da trovare.
+        Nonostante il problema fosse lo stesso e che quindi mancasse la risposta \textbf{CORS}.
+
+        %CORS LATO BROSWER
+        \begin{figure}[H]
+            \caption{Errore lato Broswer}
+            \label{fig:ErrorCorsBroswer}
+            \centering
+            \includegraphics[width=1\textwidth]{Images/CorsErrorFrontEnd.PNG}
+        \end{figure}
+        
+        %CORS LATO CONSOLE
+        \begin{figure}[H]
+            \caption{Errore lato console}
+            \label{fig:ErrorCorsConsole}
+            \centering
+            \includegraphics[width=1\textwidth]{Images/CorsErrorConsole.PNG}
+        \end{figure}
+    
+        Volenterosi di utilizzare e testare le funzioni lambda localmente abbiamo cercato una soluzione in maniera esaustiva,
+        giunti finalmente \href{https://github.com/aws/aws-sam-cli/issues/323#issuecomment-483650280}{Issue} che ha fornito la soluzione se pur non ottimale.
+        
+        Il comando utilizzato: \texttt{npx lcp --proxyUrl http://localhost:3000/}
+        
+        La soluzione adottata consiste nell'avviare un server proxy CORS che risponda alle richieste \textbf{OPTIONS} e poi reindirizzi all'immagine docker di lambda. 
+        Ovviamente la WebApp dovra contattare il proxy e non direttamente il container.
+        
+        Nonostante gli sviluppatori di SAM confermino il supporto alle chiamate CORS locali non siamo riusciti a farle funzionare in altra maniera.
+        
+\subsection{Deployment} 
+        
+        
+\section{Funzioni Serverless}
+    Le principarli difficoltà in questa parte del progetto sono legate all'apprendimento delle tecnologie \textbf{AWS} utilizzate,
+    quali:
+    \begin{itemize}
+        \item \textbf{Lambda}
+        \item \textbf{IoT Core}
+        \item \textbf{CloudWatch}
+        \item \textbf{IAM}
+        \item \textbf{API gateway}
+    \end{itemize}
+    
+
 \input{Tex/Implementation/IgorLirussi}
 \input{Tex/Implementation/SaraKiade}
 \input{Tex/Implementation/GyordanCaminati}
