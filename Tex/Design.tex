@@ -11,6 +11,7 @@
         \centering
         \includegraphics[width=1\textwidth]{Images/CiboAcqua.png}
     \end{figure}
+
     
     \subsection{Acqua}
     Per far fronte alla misurazione dei consumi, è stato innanzitutto necessario scegliere un sensore per ricavarne il \textbf{livello del liquido} [Fig. \ref{fig:ciboacqua}]. Il sensore deve ritornare un valore proporzionale alla percentuale di liquido rimanente. I consumi dell'animale a questo punto verranno inviati in cloud.
@@ -78,8 +79,28 @@
     
     
 \section{Design Monitoraggio Parametri Vitali}
-
+Per il monitoraggio dei parametri vitali il design fisico è stato semplificato di molto, richiedendo due sensori e un microcontrollore. Il \textbf{design del prototipo fisico}, con i sensori in giallo e la spiegazione del suo funzionamento [Fig. \ref{fig:collare}] sono riportati di seguito.
+    \begin{figure}[H]
+        \caption{Design Prototipo Collare (sensori in giallo)}
+        \label{fig:collare}
+        \centering
+        \includegraphics[width=0.6\textwidth]{Images/Collare.png}
+    \end{figure}
+Il primo device di sensing necessario è quello di \textbf{temperatura}, che periodicamente deve inviare i valori letti al cloud. Eventualmente, se i valori sono fuori norma, deve segnalarlo inviando una notifica immediatamente.
+Il secondo sensore è necessariamente quello dei \textbf{battiti}. Anch'esso deve inviare a intervalli regolari i battiti per minuto in cloud, affinché vengano registrati. In caso di anomalie tali da portare i valori oltre il minimo o il massimo, una notifica deve essere mandata tempestivamente. 
+La macchina a stati si compone semplicemente di due stati divisi che ciclano su loro stessi, inviando periodicamente i valori letti ed eventualmente le notifiche per le anomalie.
+    
 \section{Design Videosorveglianza}
+Per la videosorveglianza il design ha richiesto necessariamente, come descritto in precedenza, una board più potente che sostenesse l'elaborazione delle immagini. Di seguito il \textbf{design del prototipo fisico}, con i sensori in giallo e la spiegazione del suo funzionamento [Fig. \ref{fig:canile}]. 
+    \begin{figure}[H]
+        \caption{Design Prototipo Monitoraggio Canile (sensori in giallo)}
+        \label{fig:canile}
+        \centering
+        \includegraphics[width=0.6\textwidth]{Images/Canile.png}
+    \end{figure}
+Per quanto riguarda i sensori, ovviamente è necessaria una \textbf{videocamera}, che catturi l'ambiente circostante e mandi il flusso video alla board per un analisi. Oltre alla videocamera, opzionalmente, sono stati modellati un \textbf{sensore di temperatura e umidità}, per salvare in cloud i parametri ambientali del canile, e un \textbf{device di sensing sonoro}, per rilevare suoni forti continuativi.
+La board deve anche fornire opzionalmente lo streaming video della telecamera, facendo da server, per l'addetto alla sorveglianza. 
+Il flusso dei dati è chiaramente unidirezionale, dai sensori e dalla webcam verso l'esterno, come da architettura generale [Fig. \ref{fig:DesignArchitettura}].
 
 \section{Design del Database}
 Per immagazzinare i dati necessari all'applicazione si è deciso di utilizzare \textbf{Dynamo DB}.
@@ -104,7 +125,7 @@ La progettazione del database è stata portata a termine seguendo diversi passag
         \item Definizione di uno schema \textbf{ER} da utilizzare come base di partenza;
         \item Individuazione degli \textbf{accessi} mediante la definizione delle \textbf{query} principali;
         \item Definizione dei \textbf{pattern} di Primary Key e Sort Key;
-        \item Aggiunta di un \textbf{ global index};
+        \item Introduzione di indici e campi aggiuntivi;
     \end{enumerate}
     
     \subsection{Definizione di un ER}
@@ -135,7 +156,7 @@ La progettazione del database è stata portata a termine seguendo diversi passag
     \end{figure}
     
     \subsubsection{Rilevazioni ambientali}
-    Anche per quanto riguarda le rilevazioni ambientali ci si trova di fronte a un'area separata dalle precedenti, perché non ha alcun tipo di correlazione né con i cani, né con gli utenti. Esse sono modellate con una tabella che ne immagazzina il \texttt{timestamp}, il \texttt{type}, che serve a distinguere le rilevazioni di temperatura e quelle di umidità e il \texttt{value} che, nel caso della temperatura è espresso in gradi mentre nel caso dell'umidità è espresso in percentuale. 
+    Anche per quanto riguarda le rilevazioni ambientali ci si trova di fronte a un'area separata dalle precedenti, perché non ha alcun tipo di correlazione né con i cani, né con gli utenti. Esse sono modellate con una tabella di nome \texttt{Env\_Logs} che ne immagazzina il \texttt{timestamp}, il \texttt{type}, che serve a distinguere le rilevazioni di temperatura e quelle di umidità e il \texttt{value} che, nel caso della temperatura è espresso in gradi mentre nel caso dell'umidità è espresso in percentuale. 
 
     \subsection{Individuazione degli accessi}
     Una volta ottenuta una bozza dello schema Entity Relationship si è passati a definire gli accessi in base alle query che sarà necessario chiamare per interrogare il database.
@@ -156,7 +177,81 @@ La progettazione del database è stata portata a termine seguendo diversi passag
             \begin{itemize}
                 \item visualizzazione storico delle rilevazioni di un cane
                 \item visualizzazione dei consumi di un cane
-                \item visualizzazione dell'ultima rilevazione di temperatura e battiti di un cane
+                \item inserimento di un nuovo cane 
+                \item interrogazione sull'orario e la quantità dei pasti
+                \item a fine giornata, comparazione dei consumi totali di acqua e cibo odierni, per ciascun cane, con i rispettivi range giornalieri contenuti nel profilo dell'animale.
             \end{itemize}
-        
+    \item \textbf{Frequenza bassa} (meno di una volta a settimana)        
+        \begin{itemize}
+            \item impostazione delle soglie dei consumi di un cane oltre le quali vi è un'anomalia
+            \item impostazione delle soglie dei parametri vitali di un cane oltre le quali vi è un'anomalia
+            \item aggiornamento del programma dei pasti
+            \item aggiornamento dello stato di un cane 
+        \end{itemize}
     \end{itemize}
+    
+    \subsection{Definizione dei pattern di Primary Key e Sort Key}
+    Dopo aver individuato le interrogazioni che verranno fatte sul database e le loro frequenze si è passati alla progettazione vera e propria dell'\textbf{unica tabella} del database. A differenza di un database relazionale, infatti, DynamoDB non permette di ricorrere alle \textbf{join}, se non con dei workaround la quale adozione è un chiaro sintomo del fatto che non si è scelta correttamente la tipologia di database da adottare. 
+    La tabella che è stata creata è strutturata con i seguenti campi:
+\begin{itemize}
+    \item \textbf{PK}: o Primary Key, è la chiave primaria e consiste in una stringa che determinerà la natura del record a cui appartiene. 
+    \item \textbf{SK}: o Sort Key, è la chiave di ordinamento e consiste anch'essa in una stringa che segue uno specifico pattern e che assieme alla PK determinerà univocamente il record.
+    \item \textbf{Altri campi}: che sono dati dall'unione dei campi di tutte le entità che si è deciso di coinvolgere, con l'aggiunta di alcuni campi introdotti per fornire un'indicizzazione o per inserire delle ridondanze che facilitino l'accesso.
+    
+    I pattern che sono stati definiti per PK e SK sono i seguenti:
+        \begin{figure}[H]
+        \caption{Pattern PK e SK suddivisi per entità di riferimento}
+        \label{fig:KeyPattern}
+        \centering
+        \includegraphics[width=0.6\textwidth]{DrawIo/KeysPattern.png}
+    \end{figure}
+\end{itemize}
+    Dalla tabella, oltre ai pattern per i valori delle chiavi è possibile anche intuire il modo in cui si è deciso di effettuare la trasposizione dallo schema relazionale. Si può notare infatti che:
+    \begin{itemize}
+        \item \textbf{\texttt{Food\_Schedule}}: si è deciso di mantenere la programmazione dei pasti separata dai dati del cane poiché mantenerla come struttura dati all'interno del profilo avrebbe reso meno immediata la modifica e il recupero degli orari e delle quantità che il sistema automatizzato deve erogare.  
+        \item \textbf{\texttt{Dog\_Log}}: la stessa decisione è stata presa per quanto riguarda i dati delle rilevazioni, poiché la query che permette l'inserimento di questi dati è quella che verrà chiamata con la massima frequenza ed era quindi importante facilitarne la fruizione.
+        \item \texttt{\texttt{User}}: una sorte diversa è spettata ai ruoli ricoperti dagli utenti. Si è deciso di modellare i ruoli come una set di stringhe all'interno del profilo dell'utente, poiché si tratterebbe di un campo che viene modificato raramente.
+    \end{itemize}
+    
+    \subsection{Introduzione di indici e campi aggiuntivi}
+    L'ultima fase è stata quella di individuare quali altre modifiche potevano essere apportate al risultato finale della tabella per favorire le interrogazioni.
+    Si è deciso pertanto di:
+    \begin{itemize}
+        \item aggiungere i \textbf{campi} \texttt{last\_temp} e \texttt{last\_hb} nel profilo del cane per permettere una più prestante interrogazione nel momento in cui, nella homepage del sito si vogliono visualizzare le ultime rilevazioni dei parametri vitali del cane. In assenza di questi due campi sarebbe stato necessario interrogare il database con un range di timestamp sensato per ottenere una fetta dello storico delle rilevazioni, ordinarle e restituire la più recente. Questo per la temperatura che per la frequenza cardiaca.
+        \item aggiungere un nuovo \textbf{indice} sul campo \textbf{\texttt{size}} per permettere di effettuare alcune query basandosi sulla taglia del cane.
+    \end{itemize}
+    
+    
+\section{Design WebApp}
+
+La WebApp è stata suddivisa in due \textbf{Macro} aree:
+\begin{itemize}
+    \item \textbf{Login}: la schermata si occupa di fornire un accesso base all'utente, l'unica funzione esposta è la possibilità di effettuare il \textbf{login}, attualmente rappresenta un placeholder, dato che non contine alcuna logica né funzione utile, questo per concentrarsi maggiormente su aspetti più inerenti. 
+    \item \textbf{Home}: fornisce tutte le funzioni principali dell'applicativo,
+    la schermata è divisa in schede, ogni scheda è a sua volta divisa in più componenti, uno per la visualizzazione dei cani presenti e uno per le azioni specifiche da attuare su di esso, o in generale.
+    L'unica scheda che contiene un solo
+    
+    dove ogni scheda consente determinate operazioni:
+    \begin{itemize}
+        \item \textbf{Gestore}: Consente di effettuare le principali azioni del sito, l'unica azione proibita e l'accesso alla videocamera.
+        \item \textbf{Addetto alla salute}: C
+        \item \textbf{Addetto ai rifornimenti}:
+        \item \textbf{Altro addetto}: placeholder per funzioni future
+    \end{itemize}    
+    
+\end{itemize}
+
+
+\section{Design Serverless Application}
+
+L'esposizione delle funzioni del back-end, segue a braccetto la definizione delle query necessarie per interrogare e inserire nuovi dati all'interno di DynamoDB.
+
+Le funzioni sono state divise per innesco, dove abbiamo: 
+\begin{itemize}
+    \item Lambda ad innesco \textbf{API REST}: rappresentano la maggioranza delle funzioni, sono ulteriormente divise in base allo scopo di interrogazione(GET) o inserimento(POST)
+    \item Lambda ad innesco \textbf{Crono}: i consumi dei cani sono controllati a fine giornata per verificare che le soglie dei consumi siano nei parametri. 
+    l'innesco avviene tramite eventi \textbf{CloudWatch}
+    \item Lambda ad innesco \textbf{MQTT}: rappresentano i diretti inserimenti delle rilevazioni all'interno del database, sono in ascolto su un sul topic \textbf{ESP/\#}, questo consente di ascoltare tutti i messaggi provenienti da i sotto topic.
+\end{itemize}
+
+

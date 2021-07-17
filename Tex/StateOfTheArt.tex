@@ -4,5 +4,39 @@
 % 3000 - 6000 battute
 
 \chapter{Stato dell'Arte}
-Il topic scelto non gode di particolare attenzione in letteratura, ne sono presenti specifici paper in materia. Alcune ricerche sono state fatte riguardo l'automazione dell’alimentazione per gli allevamenti, ma di forte imprinting economico. 
-Alcune soluzioni commerciali offrono la distribuzione automatica del cibo ad orari temporizzati, senza possibilità di dosaggio o di rilevamento dei consumi. 
+Il topic scelto non gode di particolare attenzione in letteratura. Alcune ricerche sono state fatte riguardo l'automazione dell’alimentazione per gli allevamenti, ma si tratta di progetti con un forte imprinting economico. 
+Alcune soluzioni commerciali offrono la distribuzione automatica del cibo ad orari temporizzati, senza possibilità di dosaggio o di rilevamento dei consumi.
+Mentre altre soluzioni si focalizzano soprattutto sul monitoraggio e la notifica dei parametri vitali dell'animale.
+
+La nostra soluzione tenta di fondere le due idee e di proporre un sistema remoto e scalabile, che sì, monitori i parametri vitali ma che possa anche fornire un automatismo alla gestione del cibo e dell'acqua del cane e che, inoltre, sia in grado di intercettare la presenza di sintomi riguardanti il consumo di cibo e acqua in base all'analisi dei dati precedenti .
+
+Nell'ambito dei sensori, lo stato dell'arte è in continua evoluzione, e possiamo trovare sensori \href{https://ciigar.csc.ncsu.edu/files/bib/Brugarolas2015-DogHeartMonitor.pdf}{ad hoc} in ambito di ricerca e soluzioni  \href{https://petpace.com/}{proprietarie} simili in commercio, seppur poche.
+
+I sensori di battiti tradizionali utilizzano un fascio luminoso per identificare la frequenza del battito cardiaco. Questa tecnologia si presta male per gli animali che presentano del pelo, come i cani, per questo sono in via di sviluppo sensori specifici che utilizzano principi diversi. Attualmente sono in corso delle
+\href{https://vcs.vetmed.wsu.edu/research/clinical-studies/clinincal-studies-detail/vcs-clinical-studies/2017/06/28/new-ecg-technology}{ricerche} su sensori di altro genere che possano essere adatti anche anche ai cani.
+Nonostante ciò la nostra soluzione utilizza un sensore
+\href{https://www.amazon.it/Haljia-Sensore-frequenza-cardiaca-Raspberry/dp/B01CBGH4N6}{classico}. Presupponendo che si utilizzi un collare smart solo per gli animali che, a causa del loro stato di salute, sono in osservazione, è possibile supporre che il pelo possa essere rasato durante il periodo di degenza.
+
+Per quanto riguarda le soluzioni riguardanti l'automatizzazione del cibo e dell'acqua le soluzioni commerciali sono davvero \href{https://www.fruugo.it/alimentatore-automatico-per-animali-domestici-a-43-l-capacita-alimentatore-intelligente-per-alimentazione-intelligente-per-lalimentazione-del-tempo-e-razionale-con-telecamera-telecomandato-tipo-di-lusso/p-55093501-111996468?language=it&ac=croud}{tante} molto simili.
+
+Da questo punto di vista la nostra soluzione può dirsi all'avanguardia pur non essendo incentrata sull'uso domestico. Grossa parte di questi sistemi, infatti, usano: sensori del livello dell'acqua, bilance e sensori luminosi.
+Inoltre alcuni sistemi più all'avanguardia consentono, tramite l'utilizzo di tecnologie come \textbf{BLE}, di monitorare da \textbf{App} i consumi e gli allarmi, non fornendo però alcun tipo di inferenza.
+
+Attualmente il nostro sistema fornisce un'inferenza banale, ciò non toglie che in un futuro sviluppo associato ad uno studio comportamentale dell'animale non sia possibile implementare inferenze più complesse.
+
+Quanto appena detto costituisce lo stato dell'arte nell'uso commerciale.
+Per quanto riguarda lo specifico ambito del canile, invece, non sono state trovate applicazioni simili.
+
+Per avere una visione più chiara di quello che è lo stato dei canili in Italia ci siamo rivolti a due \textbf{canili}:
+\begin{itemize}
+    \item \textbf{ACPA - Canile intercomunale di Cesena} Ci siamo recati fisicamente al canile di Cesena per discutere e toccare con mano lo stato tecnologico dello stabile, questo per valutare la fattibilità e la bontà della nostra soluzione.
+    \item \textbf{Canile intercomunale "Soffio di Vento"- Pisa} Abbiamo contattato in via totalmente telematica il canile per comprendere se una soluzione del genere esistesse o fosse adottata da qualche parte e per avere una visione concreta dei problemi che vengono riscontrati per i quali avremmo potuto proporre una soluzione.
+\end{itemize}
+
+Entrambe le fonti ci hanno confermato che almeno in Italia lo stato dei canili risulta essere tecnologicamente obsoleto.
+La soluzione proposta ha ricevuto un caloroso interesse da parte di entrambi i canili, con particolare entusiasmo per le rilevazioni dei consumi e il monitoraggio dei parametri vitali, con notifiche in caso di rilevazioni anomale.
+Attualmente i canili contattati sono privi di una qualunque forma di \textbf{monitoraggio}, o \textbf{automatizzazione} di qualunque genere.
+Il punto di forza di questo progetto risiede nella sua semplicità di dispiegamento, nelle tecnologie altamente accessibili e nel fatto che molti canili avrebbero il bisogno di una soluzione simile.
+Il \textbf{collare} e l'\textbf{inferenza} sui consumi sono la parte che ha riscosso più successo poiché l'automatizzazione presenta alcuni svantaggi.
+A detta del canile di Cesena dipende dalle norme del canile e dal modo con cui si vogliono addestrare i cani poiché buona parte delle pratiche di addestramento ruota attorno al cibo, che viene utilizzato sia come premio che come modo per far si che l'umano venga percepito come alpha.
+La più grande critica mossa riguarda il fatto che se l'animale viene nutrito in maniera automatica allora non sarà abituato a ricevere cibo da persone, ed essendo l'adozione dei cani lo scopo principe del canile è probabile che il sistema automatizzato venga adottato solo da canili di grandezza medio-grande o la quale gestione non prevede l'addestramento. 

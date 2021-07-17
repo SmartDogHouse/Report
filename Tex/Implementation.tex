@@ -4,9 +4,119 @@
 % 10000 - 21000 battute
 
 \chapter{Implementazione}
-\section{Microcontrollori}
-\subsection{Battito Cardiaco}
-Un parte particolarmente complessa è stata quella della modellazione del sensore per il battito. Il sensore, qualora interpellato, fornisce un singolo valore direttamente proporzionale alla dilatazione dei vasi sanguigni. Ne deriva la necessità di attuare misurazioni frequenti per non incorrere nella perdita della breve variazione di un battito. Abbiamo stabilito la frequenza di campionamento in base a quanto segue:
+\section{Software Microcontrollori}
+\paragraph{Classe principale}
+Come spiegato nel capitolo Scelte tecnologiche cruciali, i microcontrollori sono stati programmati in \textbf{MicroPython}. Nella classe principale, condivisa e riutilizzabile tra tutti i microcontrollori, dopo la connessione a internet e al broker MQTT è stato creato uno \textbf{scheduler}.  Questo si occupa di eseguire i \textbf{task a lui assegnati}, siano relativi al cibo, all'acqua, o ai parametri vitali. 
+In questo modo è facilmente programmabile il comportamento di un microcontrollore con task modulari.
+    \begin{lstlisting}
+        # array of tasks
+        print("Creating array of tasks")
+        tasks = [smart_collar_temperature_task.get_behaviour(), smart_collar_heartbeat_task.get_behaviour()]  # array of coroutines
+        
+        # create the scheduler and start tasks
+        print("--- Starting Scheduler ---")
+        scheduler = Scheduler()
+        scheduler.start(tasks)
+    \end{lstlisting}
+    
+
+    \paragraph{Classi per sensori e attuatori}
+    Avendo adottato MicroPython è stato possibile usufruire del linguaggio ad oggetti per modellare attuatori e sensori come classi, con proprietà chiamabili all'occorrenza. Ogni classe è stata testata individualmente grazie ai test scritti appositamente per prevenire comportamenti indesiderati. Si può trovare il diagramma delle classi di ogni device con cui si interfaccia il microcontrollore in [Fig. \ref{fig:classdiagram}]. 
+    
+    \begin{figure}[H]
+        \caption{Diagramma delle classi}
+        \label{fig:classdiagram}
+        \centering
+        \includegraphics[width=0.8\textwidth]{DrawIo/ClassDiagram.png}
+    \end{figure}
+    
+    In particolare, ogni device di sensing, è stato modellato ereditando dalla classe Sensor, che mette a disposizione una serie di metodi per poter calcolare la media pesata, la percentuale misurata nel range minimo e massimo e l'ultima misurazione. La media è pesata è calcolata esponenzialmente in base alle ultime misure, le quali hanno peso maggiore:
+    \begin{lstlisting}
+    def measure(self):
+        """measures 3 times, measure is the mean of them, updates global average, returns measure."""
+        sum_raw_measures = 0
+        for _ in range(3):
+            sum_raw_measures += self.raw_measure()
+        self.last_measure = sum_raw_measures / 3
+        # average calculated from last average, weighted and actual measure, weighted
+        self.average = self.last_measure * self.average_converging_speed +                           self.average * ( 1 - self.average_converging_speed)
+        return self.last_measure
+    \end{lstlisting}
+  
+\subsection{Gestione Cibo e Acqua}
+    \subsubsection{Cibo}
+    L'implementazione del task relativo alla gestione del cibo da passare allo scheduler è stato implementato in una classe dedicata. Il comportamento che il task espone rispecchia la macchina a stati discussa nel design [Fig. \ref{fig:statediagramFood}]. Grazie alla possibilità di Python di avere funzioni higher-order, il loop principale esegue ciclicamente lo stato corrente:
+    
+    \begin{lstlisting}
+        async def get_behaviour(self):
+        """ async method called returns a coroutine"""
+        while True:
+            # executes the current state
+            await self.state()
+    \end{lstlisting}
+    Quando il task è creato, nel costruttore è possibile scegliere lo stato iniziale assegnando la funzione relativa allo stato corrente. 
+    \begin{lstlisting}
+        # state variable holds the current state, this is the initial state
+        self.state = self.check_food_consumption
+    \end{lstlisting}
+    All'interno di ogni stato vengono effettuate le operazioni necessarie e, qualora le condizioni si verifichino, le transizioni a un nuovo stato.
+    \begin{lstlisting} 
+        # check consumption
+        self.reduction_percentage = self.previous_sent_perc - self.scale.get_percentage()
+        print("\t\tReduction Percentage: {:.2f}".format(self.reduction_percentage))
+        if self.reduction_percentage >= PERCENTAGE_CONSUMPTION_THRESHOLD:
+            self.state = self.send_food_consumption
+            return
+    \end{lstlisting}
+    Particolarmente impegnativa è stata la modellazione della bilancia. Questa va tarata inizialmente affinché il peso della ciotola vuota non vada ad influire sul peso del cibo. Inoltre parecchie prove sono state effettuate per trovare il coefficiente di conversione tra i valori del sensore e il peso in grammi.
+    Infine la gestione del motore bidirezionale per aprire e chiudere lo sportellino di accesso al cibo ha anch'esso richiesto parecchia cura, dovendo implementare una classe che si preoccupasse di invertire la polarità al motore attraverso un ponte-H e la logica di interruzione del movimento al momento giusto. 
+    
+    \subsubsection{Acqua}
+    Il task relativo alla gestione della ciotola dell'acqua è stato implementato, similmente a quello del cibo, in una classe apposita, per poter essere passato allo scheduler. Essendo i task più di uno, a questo punto è sorto naturale implementare una classe task da cui tutti quelli descritti nel seguente capitolo erediteranno.
+    La logica a stati del design è stata implementata rispecchiandolo a pieno. Ciò perché la precedente modellazione dei sensori ha agevolato di parecchio la scrittura del codice, rendendolo pulito e facilmente comprensibile. 
+    \begin{lstlisting} 
+        # measure
+        self.waterSensor.measure()
+        print("\t\t\tWater Measure:  {:.2f}".format(self.waterSensor.get_percentage()))
+        # check empty
+        if self.waterSensor.get_percentage() < self.min_water_lvl_perc:
+            print("\t\t\tWater LOW: {:.2f} < {:.2f}".format(self.waterSensor.get_percentage(), self.min_water_lvl_perc))
+            if self.valve_present:
+                print("\t\t\tOpening Valve")
+                self.valve.open()
+                self.state = self.fill_water_bowl
+                return
+    \end{lstlisting}
+    In questo caso il sensore dell'acqua è stato ampliato con delle funzioni per il ritorno della percentuale. Non è possibile infatti dedurre il quantitativo bevuto da un'animale semplicemente dal sensore, poiché il range di questo è proporzionale all'altezza del liquido nel contenitore, ma non è dato sapere la sua capienza. Per questo motivo il parametro capienza massima può essere passato al dispositivo di sensing. Grazie a questo dato verrà calcolata la quantità di acqua bevuta al diminuire della percentuale rilevata dal sensore.
+    
+    \paragraph{Comunicazioni}
+    Entrambi i task di cibo e acqua adottano il protocollo MQTT per comunicare con il cloud. Lo scambio è bidirezionale ed è gestito dalla classe "MQTTManager". Questa si occupa dell'invio dei messaggi e, qualora il task "MQTTMessageChecker" sia in esecuzione, di ricevere i messaggi dal server. Questi messaggi innescheranno la gestione delle callback passando allo scheduler un task "MQTTMessageHandler".
+    I messaggi sono scambiati in formato JSON. 
+    Ogni unità di controllo gabbia inizialmente si identifica mandando un messaggio al broker. In seguito vengono iniziate le rilevazioni per i consumi e, in caso di necessità, un messaggio affinché il server invii la notifica all'addetto.
+    \begin{figure}[H]
+        \caption{Sequenza scambio dei messaggi del sistema acqua}
+        \label{fig:sequencewater}
+        \centering
+        \includegraphics[width=0.8\textwidth]{DrawIo/sequenceWaterAutomation.png}
+    \end{figure}
+
+\subsection{Monitoraggio Parametri Vitali}
+\subsubsection{Temperatura}
+Il task relativo al monitoraggio della temperatura nel collare è stato sviluppato affinché possa essere usato con due sensori diversi: il ds18x20 e il dht11. 
+Creando il task si può scegliere il modello posseduto e, quando lo scheduler inizierà a eseguire ciclicamente le misurazioni, i dati e le notifiche verranno inviati in cloud.
+    \begin{lstlisting} 
+        # measure temp
+        if self.using_ds18x20:
+            temp = self.check_ds18x20()
+        else:
+            temp = self.check_dht()
+        # send data
+        self.mqtt_manager.send_msg(self.topic, "Temperature: {}".format(temp))
+    \end{lstlisting}
+
+\subsubsection{Battito Cardiaco}
+Il task relativo al battito cardiaco svolge, come il precedente, delle misurazioni cicliche e invia i dati rilevati.
+Un parte particolarmente complessa è stata quella della gestione del sensore per il battito. Il sensore, qualora interpellato, fornisce un singolo valore direttamente proporzionale alla dilatazione dei vasi sanguigni. Ne deriva la necessità di attuare misurazioni frequenti per non incorrere nella perdita della breve variazione di un battito. Abbiamo stabilito la frequenza di campionamento in base a quanto segue:
 Considerando che in condizioni di riposo, i battiti per minuto di un cane - da intendersi come pulsazioni - sono generalmente compresi tra 60 e 140 bpm, in base alla taglia, età e razza, e il valore può raggiungere valori anche più alti qualora in movimento, abbiamo preso come valore limite da rilevare 150 bpm. Ciò, significa che il tempo di ogni ciclo cardiaco $T_{cc}$ è:
 \begin{equation}
 T_{cc} = \frac{1}{bps} = \frac{1}{\frac{bpm}{60}}= \frac{60}{bpm} \Rightarrow \frac{60}{150 bpm} = 0.4s
@@ -27,27 +137,107 @@ Queste soglie non possono essere fisse, variando la pressione di animale in anim
         \centering
         \includegraphics[width=1\textwidth]{Images/heartbeatGraph.png}
     \end{figure}
+    \begin{lstlisting}
+       val = self.pulse_sensor.raw_measure()
+        self.history.append(val)  # add to history of values
+        # crop to MAX_HISTORY length, getting the tail (last ones)
+        self.history = self.history[-MAX_HISTORY:]
+        # get min max in the history
+        minima, maxima = min(self.history), max(self.history)
+        # get thresholds
+        threshold_on = (minima + maxima * 4) // 5  # 4/5
+        threshold_off = (minima + maxima) // 2  # 1/2
+        # if val goes above beat threshold and no beat has previously been detected.
+        if val > threshold_on and self.still_beat == False:
+            # beat detected
+            self.led.on()
+            self.still_beat = True  # prevents multiple appends for all the measures during a beat
+            # once every beat
+            self.beats.append(time.time())
+    \end{lstlisting}
 
 Una volta rilevati i singoli battiti con il modello matematico, il calcolo del battiti al minuto è stato realizzato salvando la cronologia degli istanti di tempo per gli ultimi N battiti $N_{beats}$. Sperimentalmente si è optato per 30 registrazioni per mantenere il valore dei bpm reattivo ma non dipendente solo da poche unità. Prelevando dalla cronologia il tempo passato $T_{diff}$ per questi battiti, si può facilmente derivare il rateo di $bpm$ attuale tramite la formula: 
 \begin{equation}
 bpm = \frac{ N_{beats}*60 s/min }{T_{diff}} = \frac{ N_{beats}*60 s/min }{T_{last}-T_{first}} 
 \end{equation}
 Il battito cardiaco risultante viene poi inviato periodicamente al Database e, qualora ci fossero anomalie, una notifica viene invece generata e inviata immediatamente.
+    \begin{lstlisting}
+        # calculate bpm
+        beats_time = self.beats[-1] - self.beats[0]  # time difference between end and start of the queue
+        if beats_time:
+            bpm = (len(self.beats) / beats_time) * 60
+            print("HeartBeat: {}".format(bpm))
+            # if outside range
+            if bpm < self.min_heartbeat or bpm > self.max_heartbeat:
+                # send notification now
+                self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"Heartbeat is abnormal: {}".format(bpm)}))
+    \end{lstlisting}
 
-\section{Raspberry}
-Il raspberry è stato scelto come board per la computazione delle immagini di video-sorveglianza. 
-Il principale concorrente a questa scelta, l'ESP32-CAM è stato testato per lo streaming video ma non è provvisto delle risorse computazionali necessarie per il rilevamento di anomalie. 
-Avendo un costo inferiore rispetto al Raspberry è stato comunque considerato come alternativa low-cost. 
+\paragraph{Comunicazioni}
+    I task di temperatura e battiti adottano anch'essi il protocollo MQTT per comunicare con il cloud. Lo scambio è bidirezionale per via della necessità di settare i range di temperatura e battiti per le notifiche di anomalia.
+    Ogni unità collare inizialmente si identifica mandando un messaggio al broker. Successivamente partono le rilevazioni per i battiti e la temperatura. I parametri vitali vengono periodicamente inviati al server assieme ai messaggi per le notifiche di anomalie.
+    \begin{figure}[H]
+        \caption{Sequenza scambio dei messaggi del sistema collare}
+        \label{fig:sequencesmartcollar}
+        \centering
+        \includegraphics[width=0.8\textwidth]{DrawIo/sequenceSmartCollar.png}
+    \end{figure}
+    
+\section{Software Videosorveglianza}
+Il Raspberry è stato scelto come board per la computazione delle immagini di video-sorveglianza. Il principale concorrente a questa scelta, l'ESP32-CAM è stato testato per lo streaming video ma non è provvisto delle risorse computazionali necessarie per il rilevamento di anomalie. 
+Ciononostante, avendo un costo inferiore rispetto al Raspberry è stato comunque considerato come alternativa low-cost. 
+Il linguaggio scelto per la programmazione è stato \textbf{Python} per continuità con i microcontrollori e per la flessibilità di utilizzo. 
+Sono state programmate multiple classi per di complessità crescente per agevolare l'utilizzo del software in caso di errori.
+La prima classe "camera tester" ha infatti semplicemente il ruolo di testare lo stream con ffmpeg e OpenCV.
+Un'altra classe "mqtt tester" si occupa di un semplice test di invio e ricezione attraverso il pacchetto mqtt di "awsiotsdk". 
+Infine l'ultima classe di test "stream base" si occupa di testare lo stream attraverso l'utilizzo del pacchetto "flask" per creare un webserver su cui verrà pubblicato il video feed.
+\paragraph{Comunicazione}
+La parte di comunicazione è stata gestita creando una classe MQTT apposita che permette di connettersi, disconnettersi, mandare dei messaggi e impostare le callback. Questa classe viene usata da tutte le classi successive per le comunicazioni.
+Infine, per passare lo stream video da un dispositivo ad un altro nella stessa rete, sono state incluse due classe "sender udp" e "receiver udp" atte allo scopo.
+
+\subsection{Motion Detection}
+Una delle due implementazioni proposte per il rilevamento di anomalie utilizza la motion detection. Questa tecnica si basa sul rilevare i cambiamenti dell'immagine corrente dato uno sfondo di riferimento.
 Il motion detector base è stato costruito come segue:
-Accumulating the weighted average of the previous N frames
-Taking the current frame and subtracting it from the weighted average of frames
-Thresholding the output of the subtraction to highlight the regions with substantial differences in pixel values (“white” for foreground and “black” for background)
-Applying basic image processing techniques such as erosions and dilations to remove noise
-Utilizing contour detection to extract the regions containing motion
+Viene preso il frame corrente e viene sfumato con un filtro gaussiano per rimuovere minime differenze.
+Il risultato viene sottratto al frame di riferimento per il background. 
+Nel nostro caso il frame di riferimento per il background viene aggiornato periodicamente. 
+L'immagine che contiene le differenze viene passata attraverso una soglia per rilevare le zone con cambiamenti sostanziali e non minimi.
+Viene applicata la dilatazione per unire le zone discontinue in modo tale da unire aree vicine di cambiamento. 
+Viene calcolata l'area delle zone di differenza e vengono scelte solo le zone con un'area maggiore di una soglia. 
+Le zone scelte sono zone effettive di cambiamento dell'immagine. 
+    \begin{lstlisting}
+    # blur
+    gray_frame = cv2.GaussianBlur(gray_frame, (21, 21), 0)
+    # compute the absolute difference between the current frame and reference frame
+    frameDelta = cv2.absdiff(referenceFrame, gray_frame)
+    thresh = cv2.threshold(frameDelta, 25, 255, cv2.THRESH_BINARY)[1]
+    # dilate the thresholded image to fill in holes, then find contours
+    # on thresholded image
+    thresh = cv2.dilate(thresh, None, iterations=2)
+    cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL,
+                            cv2.CHAIN_APPROX_SIMPLE)
+    \end{lstlisting}
+Il motion detector base è stato ampliato in altre due classi per comprendere l'invio di messaggi MQTT al rilevamento di un movimento ("motion detection mqtt") e lo streaming video assieme all'invio di messaggi ("motion detection mqtt stream"). 
+
+\subsection{Object Detection}
+La seconda implementazione proposta per la rilevazione di anomalie o intrusioni nel sistema di videosorveglianza fa uso di reti neurali per l'object detecion. 
+La classe "object detection base" fa uso della rete neurale Yolo (una più approfondita discussione sulla scelta delle reti è presente nel capitolo Testing) per predire la presenza di oggetti anomali nella scena.
+Il codice permette di venir usato per il forward alla rete di una singola immagine, di un video, o di uno streaming da webcam. Nel mentre vengono calcolati i tempi di computazione per derivare gli FPS a cui il sistema sta andando.
+Assieme a questa classe è stata implementata la variante "object detection mqtt" con l'invio su MQTT del messaggio di anomalia e dell'oggetto rilevato per la notifica.
+
+    \begin{lstlisting}
+            # capture frame
+            ret, image = cap.read()
+
+            #predition
+            boxes, confidences, classIDs, idxs = make_prediction(net, layer_names, labels, image, args.confidence, args.threshold)
+            #draw boxes
+            image = draw_bounding_boxes(image, boxes, confidences, classIDs, idxs, colors)
+    \end{lstlisting}
+
 
 \section{Web App}
 
-    
     La \textbf{Web App} è stata sviluppata come un prototipo funzionante, ma che per essere considerato completo richiederebbe ancora lavoro di rifinitura.
     
     \subsection{Considerazioni tecnologiche}
@@ -55,22 +245,21 @@ Utilizing contour detection to extract the regions containing motion
         L'applicazione è stata sviluppata utilizzando \textbf{nodeJS} e \textbf{VueJS}. 
         Una scelta guidata dalla semplicità del framework javascript, che a differenza di \textbf{React} e \textbf{Angular} offre una curva di apprendimento ben più bassa, favorendo lo sviluppo. 
         \textbf{VueJS} forniva inoltre il vantaggio di integrarsi perfettamente con AWS \textbf{Amplify}, a livello di \textbf{front-end}.
-        Mentre a livello di \textbf{back-end} le comunicazioni sono perfettamente supportate dato che anche l'applicativo \textbf{back-end} è stato sviluppato anch'esso \textbf{nodeJS}.
+        Mentre a livello di \textbf{back-end} le comunicazioni sono perfettamente supportate dato che anche l'applicativo \textbf{back-end} è stato sviluppato con \textbf{nodeJS}.
         
-        Il comparto estetico è sviluppato utilizzato \textbf{Vuetify} un estensione di \textbf{VueJS} che sembrava integrarsi meglio con il framework rispetto a \textbf{BootstrapVue}.
+        Il comparto estetico è sviluppato utilizzando \textbf{Vuetify}, questa è un'estensione di \textbf{VueJS} che sembrava integrarsi meglio con il framework rispetto a \textbf{BootstrapVue}.
         
-        Per la comunicazione con le API \textbf{REST} si è scelto di utilizzare \textbf{AXIOS} rispetto ad \textbf{AJAX} questo perche risulta di facile integrazione con \textbf{VueJS}, supporta le \textbf{SPA} e consente il facile utilizzo di \texttt{Async} e \texttt{Await}.
+        Per la comunicazione con le API \textbf{REST} si è scelto di utilizzare \textbf{AXIOS} rispetto ad \textbf{AJAX}, questo perché risulta di facile integrazione con \textbf{VueJS}, supporta le \textbf{SPA} e consente il facile utilizzo di \texttt{Async} e \texttt{Await}.
         
-        Mentre per le \texttt{websocket} si è scelto di usare le librerie di default, principalmente per la loro semplicità di utilizzo, è stata valutata l'adozione  \texttt{Socket.io} che forniva maggiori funzionalità  e supporto a comunicazioni   come l'utilizzo di \texttt{fall back}.
-        Tali funzionalità però per un uso base non erano utili è quindi stata accantonata.
+        Mentre per le \texttt{websocket} si è scelto di usare le librerie di default, principalmente per la loro semplicità di utilizzo. È stata valutata l'adozione di \texttt{Socket.io} che forniva maggiori funzionalità  e supporto a comunicazioni come l'utilizzo di \texttt{fall back}.
+        Tali funzionalità, tuttavia, non erano utili per un utilizzo così basilare, pertanto l'idea di utilizzare questa libreria è stata accantonata.
         
-        Per le rotte della pagina è stato utilizzato \textbf{VueRouter}
-        essendo l'unica alternativa.
+        Per quanto riguarda le \texttt{route} della pagina è stato utilizzato \textbf{VueRouter}, essendo l'unica alternativa.
         
-        Infine per facilitare lo sviluppo è stato utilizzato \textbf{Vuex} che consente di accedere da più punti ad un'oggetto condiviso.
+        Infine per facilitare lo sviluppo è stato utilizzato \textbf{Vuex} che consente di accedere da più punti ad un oggetto condiviso.
         
-    \subsection{Note sull'codice}
-        Per questini di velocità e leggibilità si è diciso di dividere l'applicativo su più \texttt{view} : \textbf{Home} e \textbf{Login}.
+    \subsection{Note sul codice}
+        Per questioni di velocità e leggibilità si è deciso di dividere l'applicativo su più \texttt{view} : \textbf{Home} e \textbf{Login}.
         
         Ogni \texttt{view} è composta da più componenti che a loro volta sono composti.
         
@@ -78,12 +267,11 @@ Utilizing contour detection to extract the regions containing motion
         
     \subsection{Difficoltà durante lo sviluppo}
     
-        Lo sviluppo della \textbf{Web App}  è stato fluido fino all'integrazione delle prima chiamata alle \textbf{API}, qui ci siamo resi conto che le api non potevano essere chiamate direttamente dal \textbf{Broswer}.
-        Mentre funzionavano perfettamente utilizzando sistemi come \textbf{Postman} e \textbf{Reqbin}. 
+        Lo sviluppo della \textbf{Web App}  è stato fluido fino all'integrazione della prima chiamata alle \textbf{API}. Qui ci si è resi conto che le api non potevano essere chiamate direttamente dal \textbf{Browser}, mentre funzionavano perfettamente utilizzando sistemi come \textbf{Postman} e \textbf{Reqbin}. 
         
-        L'errore \textbf{Cross-Origin Resource Sharing} (CORS), riguarda la possibilità di utilizzare altre sorgenti per attingere informazioni, questo genere di verifica è effettuata solo dal Broswer ed è invece saltata su Postman e simili.
+        E' stato più volte riscontrato l'errore \textbf{Cross-Origin Resource Sharing} (CORS), che riguarda la possibilità di utilizzare altre sorgenti per attingere alle informazioni. Questo genere di verifica viene effettuata solo dal Browser ed è invece saltata su Postman e simili.
         
-        Dopo un investigazione siamo giunti alla conclusione che in fase di \textbf{sviluppo} avremmo potuto consentire ogni richiesta. Abbiamo quindi aggiunto le seguenti linee di codice nel file \texttt{Template.yaml} di \textbf{SAM}, questo per istruire il proxy cors di AWS a rispondere alle richieste con i campi aggiunti:
+        Dopo un investigazione siamo giunti alla conclusione che in fase di \textbf{sviluppo} avremmo potuto consentire ogni richiesta. Abbiamo quindi aggiunto le seguenti linee di codice nel file \texttt{Template.yaml} di \textbf{SAM},  per istruire il proxy cors di AWS a rispondere alle richieste con i campi aggiunti:
         \begin{lstlisting}
         Globals:
           Api:
@@ -94,12 +282,11 @@ Utilizing contour detection to extract the regions containing motion
               AllowOrigin: "'*'"
         \end{lstlisting}
         
-        L'errore smise di apparire, ma con la necessità di testare sempre più funzioni e l'impossibilità effettuare il deploy di sam per ogni prova, abbiamo iniziato ad eseguire una istanza di AWS \textbf{Lambda} localmente tramite il comando : \texttt{sam build \&\& sam local start-api}.
+        L'errore ha smesso di presentarsi, ma poiché avevamo la necessità di testare sempre più funzioni e non era pensabile effettuare il deploy di sam per ogni prova, abbiamo iniziato ad eseguire un' istanza di AWS \textbf{Lambda} localmente tramite il comando : \texttt{sam build \&\& sam local start-api}.
         
-        Giunti a questo punto il problema si è ripresentato e questa volta la soluzione è stata molto più ostica da trovare.
-        Nonostante il problema fosse lo stesso e che quindi mancasse la risposta \textbf{CORS}.
+        Giunti a questo punto il problema si è ripresentato e questa volta la soluzione è stata molto più ostica da trovare, nonostante il problema fosse lo stesso, ovvero la mancanza della risposta \textbf{CORS}.
 
-        %CORS LATO BROSWER
+        %CORS LATO BROWSER
         \begin{figure}[H]
             \caption{Errore lato Broswer}
             \label{fig:ErrorCorsBroswer}
@@ -115,35 +302,33 @@ Utilizing contour detection to extract the regions containing motion
             \includegraphics[width=1\textwidth]{Images/CorsErrorConsole.PNG}
         \end{figure}
     
-        Volenterosi di utilizzare e testare le funzioni lambda localmente abbiamo cercato una soluzione in maniera esaustiva,
-        giunti finalmente \href{https://github.com/aws/aws-sam-cli/issues/323#issuecomment-483650280}{Issue} che ha fornito la soluzione se pur non ottimale.
+        Volenterosi di utilizzare e testare le funzioni lambda localmente abbiamo cercato una soluzione che risolvesse il problema in maniera esaustiva,
+        giungendo finalmente una \href{https://github.com/aws/aws-sam-cli/issues/323#issuecomment-483650280}{Issue} che ha fornito la soluzione se pur non ottimale.
         
         Il comando utilizzato: \texttt{npx lcp --proxyUrl http://localhost:3000/}
         
-        La soluzione adottata consiste nell'avviare un server proxy CORS che risponda alle richieste \textbf{OPTIONS} e poi reindirizzi all'immagine docker di lambda. 
+        La soluzione adottata implica  l'avviare un server proxy CORS che risponda alle richieste \textbf{OPTIONS} e poi reindirizzi all'immagine docker di lambda. 
         Ovviamente la WebApp dovra contattare il proxy e non direttamente il container.
         
         Nonostante gli sviluppatori di SAM confermino il supporto alle chiamate CORS locali non siamo riusciti a farle funzionare in altra maniera.
         
 \subsection{Deployment} 
-        Il repository è stato collegato e configurato per il continuous deploymnet, così da pubblicare e rilasciare le modifiche online non appena rilasciate se il sito compila, il sito essendo pubblico è stato protetto da password grazie ad amplify.
+        Il repository è stato collegato e configurato per il continuous deployment, così da pubblicare le modifiche online non appena rilasciate, se il sito compila. Il sito, essendo pubblico, è stato protetto da password con l'utilizzo di Amplify.
         
         
 \section{Funzioni Serverless}
-    Le principali difficoltà in questa parte del progetto sono legate all'apprendimento delle tecnologie \textbf{AWS} utilizzate,
-    quali:
+    In questa sezione del progetto sono, le principali difficoltà   affrontate sono state legate all'apprendimento delle tecnologie \textbf{AWS} utilizzate:
     \begin{itemize}
-        \item \textbf{Lambda} I due principali problemi incontrati sono stati:
+        \item \textbf{Lambda}: I due principali problemi incontrati sono stati:
          \begin{itemize}
              \item Lo sviluppo e il testing in locale che richiede l'ausilio della \textbf{SAM CLI} e della \textbf{AWS CLI}.
-             \item L'utilizzo del sdk di AWS per javascript sopratutto quando era necessario contattare altri servizi come IoT Core o API Gateways.
+             \item L'utilizzo del sdk di AWS per javascript, sopratutto quando era necessario contattare altri servizi come IoT Core o API Gateways.
          \end{itemize}
-
-        \item \textbf{IoT Core} Non sono stati riscontrate particolari difficolta se non con i certificati che non sono in un formato compatibile con la libreria \texttt{Umqtt} di micropython.
-        \item \textbf{CloudWatch} Consultare i log delle funzioni lambda non risulta complicato, stesso non si può dire per i log delle websocket.
-        \item \textbf{IAM} Il sistema dei permessi di AWS è molto articolato e ci sono più modi per fornire i permessi, in generale la gestione dei permessi è stata faticosa. Alcuni permessi sono molto immediati, altri come quello per consultare i log di \textbf{CloudWatch} delle websocket molto meno, non tanto per i permessi più per il tool grafico o la sintassi di SAM.
-        \item \textbf{API gateway} L'esposizione delle \texttt{API} \textbf{REST} e delle web socket non è stata difficoltosa.
-        \item \textbf{SAM} Forse la parte più complicata dell'applicativo serverless, fornisce la possibilità di effettuare il deploy di \textbf{Stack} su \textbf{AWS CloudFormation}, con una sintassi tutta sua, orchestrare il deploy di : Funzioni Lambda, Regole IoT Core, Permessi IAM, Tabelle DynamoDB, API REST, Websocket e CloudWatch Event via crono. Nonostante il grande sforzo per sfruttare al meglio SAM, il lavoro potrebbe essere ulteriormente automatizzato e perfezionato. 
+        \item \textbf{IoT Core}: Non sono state riscontrate particolari difficoltà se non con i certificati che non sono in un formato compatibile con la libreria \texttt{UMQTT} di Micropython.
+        \item \textbf{CloudWatch}: Consultare i log delle funzioni lambda non risulta complicato, stesso non si può dire per i log delle websocket.
+        \item \textbf{IAM}: Il sistema dei permessi di AWS è molto articolato e ci sono più modi per fornire i permessi, in generale la gestione dei permessi è stata faticosa. Alcuni permessi sono molto immediati, altri come quello per consultare i log di \textbf{CloudWatch} delle websocket molto meno, non tanto per i permessi più per il tool grafico o la sintassi di SAM.
+        \item \textbf{API gateway}: L'esposizione delle \texttt{API} \textbf{REST} e delle web socket non è stata difficoltosa.
+        \item \textbf{SAM}: Forse la parte più complicata dell'applicativo serverless, fornisce la possibilità di effettuare il deploy di \textbf{Stack} su \textbf{AWS CloudFormation}, con una sintassi tutta sua, orchestrare il deploy di : Funzioni Lambda, Regole IoT Core, Permessi IAM, Tabelle DynamoDB, API REST, Websocket e CloudWatch Event via Crono. Nonostante il grande sforzo per sfruttare al meglio SAM, il lavoro potrebbe essere ulteriormente automatizzato e perfezionato. 
     \end{itemize}
     
 \subsection{Deployment} 
@@ -161,7 +346,7 @@ Utilizing contour detection to extract the regions containing motion
         Questo comportava continue modifiche al DB e il testare e studiare sono diventati essenziali, motivo per cui abbiamo scelto di non includerlo all'interno del deploy \textbf{SAM}, non si voleva complicare il complicato.
         
 \subsection{Tool utilizzati}
-    Durante lo sviluppo abbiamo utilizzato due strimenti per aiutarci aiutatrci nella comprensione e nello sviluppo del sistema:
+    Durante lo sviluppo abbiamo utilizzato due strumenti per aiutarci aiutarci nella comprensione e nello sviluppo del sistema:
     \begin{itemize}
         \item \textbf{NoSQL Workbench} Il nuovo tool grafico di AWS ci ha permesso di visualizzare con maggiore chiarezza il database e di elaborare le query utilizzando \textbf{PartiQL}.
         Inoltre ci ha anche permesso di effettuare la creazione di tabelle utilizzando la connessione ad AWS.
@@ -169,8 +354,30 @@ Utilizing contour detection to extract the regions containing motion
     Purtroppo l'implementazione al supporto \textbf{PartiQL} non è supportata totalmente e quindi grossa parte della sintassi \textbf{SQL}
     come proiezioni e query annidate non sono disponibili.
     Questo rende l'implementazione delle query più frammentata, e ci ha obbligato a riscrivere varie parti di codice e DB.
-    Tali limiti sono intrinseci di DynamoDB e non una mancaza di sviluppo parziale.
+    Tali limiti sono intrinseci di DynamoDB e non una mancanza di sviluppo parziale.
+    
+\section{Immagini prototipi}
 
-\input{Tex/Implementation/IgorLirussi}
-\input{Tex/Implementation/SaraKiade}
-\input{Tex/Implementation/GyordanCaminati}
+        %CORS LATO CONSOLE
+        \begin{figure}[H]
+            \caption{Prototipo Smart Cam}
+            \label{fig:SmartCam}
+            \centering
+            \includegraphics[width=1\textwidth]{Images/SmartCam.jpeg}
+        \end{figure}
+        
+        %CORS LATO CONSOLE
+        \begin{figure}[H]
+            \caption{Prototipo Smart Collar}
+            \label{fig:SmartCollar}
+            \centering
+            \includegraphics[width=1\textwidth]{Images/SmartCollar.jpeg}
+        \end{figure}
+        
+        %CORS LATO CONSOLE
+        \begin{figure}[H]
+            \caption{Prototipo Smart Cage}
+            \label{fig:SmartCage}
+            \centering
+            \includegraphics[width=1\textwidth]{Images/SmartCage.png}
+        \end{figure}
