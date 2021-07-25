@@ -17,7 +17,13 @@ jobs:
         with:
           root_file: main.tex
           pre_compile: "tlmgr update --self --all"
-          args: "-pdf -file-line-error -halt-on-error -interaction=nonstopmode -logfilewarninglist -Werror"
+          args: "-pdf -jobname=main -file-line-error -halt-on-error -interaction=nonstopmode -logfilewarninglist -Werror -usepretex=\\def\\SmartCity{0} "
+          post_compile: "latexmk -c"
+      - name: Compile LaTeX document SmartCity
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: main.tex
+          args: "-pdf -jobname=main-SmartCity -file-line-error -halt-on-error -interaction=nonstopmode -logfilewarninglist -Werror -usepretex=\\def\\SmartCity{1} "
           post_compile: "latexmk -c"
       - name: Split log
         if: failure()
@@ -40,7 +46,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts
-          path: main.pdf
+          path: |
+            main.pdf
+            main-SmartCity.pdf
           
   TelegramJobFailure:
       needs: [BuildLatexJob] #when finished this job
@@ -182,7 +190,9 @@ jobs:
         # Optional converting Markdown to HTML (set content_type to text/html too):
         convert_markdown: true
         # Optional attachments:
-        attachments: main.pdf
+        attachments: |
+            main.pdf
+            main-SmartCity.pdf
 
   TelegramJobDeploy:
       needs: [DeployJob] #when finished this job
@@ -206,7 +216,9 @@ jobs:
               on github.com/${{ github.repository }}.
           format: markdown
           disable_web_page_preview: true
-          document: main.pdf
+          document: |
+            main.pdf
+            main-SmartCity.pdf
           
   PandocConverter:
     needs: DeployJob
