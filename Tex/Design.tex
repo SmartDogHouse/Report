@@ -84,7 +84,7 @@ Per il monitoraggio dei parametri vitali il design fisico è stato semplificato 
         \caption{Design Prototipo Collare}
         \label{fig:collare}
         \centering
-        \includegraphics[width=1\textwidth]{Images/collare.png}
+        \includegraphics[width=0.8\textwidth]{Images/collare.png}
     \end{figure}
 Il primo device di sensing necessario è quello di \textbf{temperatura}, che periodicamente deve inviare i valori letti al cloud. Eventualmente, se i valori sono fuori norma, deve segnalarlo inviando una notifica immediatamente.
 Il secondo sensore è necessariamente quello dei \textbf{battiti}. Anch'esso deve inviare a intervalli regolari i battiti per minuto in cloud, affinché vengano registrati. Opzionalmente sarà presente un LED per visualizzare i battiti in real-time. In caso di anomalie tali da portare i valori oltre il minimo o il massimo, una notifica deve essere mandata tempestivamente. 
