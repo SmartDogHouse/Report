@@ -81,13 +81,13 @@
 \section{Design Monitoraggio Parametri Vitali}
 Per il monitoraggio dei parametri vitali il design fisico è stato semplificato di molto, richiedendo due sensori e un microcontrollore. Il \textbf{design del prototipo fisico}, con i sensori in giallo e la spiegazione del suo funzionamento [Fig. \ref{fig:collare}] sono riportati di seguito.
     \begin{figure}[H]
-        \caption{Design Prototipo Collare (sensori in giallo)}
+        \caption{Design Prototipo Collare}
         \label{fig:collare}
         \centering
-        \includegraphics[width=0.6\textwidth]{Images/Collare.png}
+        \includegraphics[width=1\textwidth]{Images/collare.png}
     \end{figure}
 Il primo device di sensing necessario è quello di \textbf{temperatura}, che periodicamente deve inviare i valori letti al cloud. Eventualmente, se i valori sono fuori norma, deve segnalarlo inviando una notifica immediatamente.
-Il secondo sensore è necessariamente quello dei \textbf{battiti}. Anch'esso deve inviare a intervalli regolari i battiti per minuto in cloud, affinché vengano registrati. In caso di anomalie tali da portare i valori oltre il minimo o il massimo, una notifica deve essere mandata tempestivamente. 
+Il secondo sensore è necessariamente quello dei \textbf{battiti}. Anch'esso deve inviare a intervalli regolari i battiti per minuto in cloud, affinché vengano registrati. Opzionalmente sarà presente un LED per visualizzare i battiti in real-time. In caso di anomalie tali da portare i valori oltre il minimo o il massimo, una notifica deve essere mandata tempestivamente. 
 La macchina a stati si compone semplicemente di due stati divisi che ciclano su loro stessi, inviando periodicamente i valori letti ed eventualmente le notifiche per le anomalie.
     
 \section{Design Videosorveglianza}
@@ -233,9 +233,10 @@ La WebApp è stata suddivisa in due \textbf{Macro} aree:
     
     dove ogni scheda consente determinate operazioni:
     \begin{itemize}
-        \item \textbf{Gestore}: Consente di effettuare le principali azioni del sito, l'unica azione proibita e l'accesso alla videocamera.
-        \item \textbf{Addetto alla salute}: C
-        \item \textbf{Addetto ai rifornimenti}:
+        \item \textbf{Gestore}: Consente di effettuare le principali azioni del sito, inoltre può anche effettuare le azioni seguenti.
+        \item \textbf{Addetto alla salute}: Può visualizzare i parametri vitali e lo stato di salute degli animali.
+        \item \textbf{Addetto ai rifornimenti}: Può visualizzare i dati di un cane, i suoi consumi e impostare l'orario e la quantità di cibo.
+        \item \textbf{Addetto alla sorveglianza}: Puù visualizzare lo streaming video.
         \item \textbf{Altro addetto}: placeholder per funzioni future
     \end{itemize}    
     

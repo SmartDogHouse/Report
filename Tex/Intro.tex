@@ -4,25 +4,34 @@
 % 3000 - 6000 battute
 
 \chapter{Introduzione}
-Si vuole realizzare una soluzione in grado di fornire supporto alla
-\textbf{gestione di un canile} comunale, al fine di migliorarne le condizioni e alleggerire il carico di lavoro che grava sui gestori, il quale numero risulta essere sottodimensionato.
+Smart DogHouse è un progetto che nasce con l'intento di migliorare le condizioni dei cani che si trovano ospiti di un \textbf{canile}, mediante l'introduzione di un \textbf{supporto informatico} che possa, da un lato, \textbf{facilitare operazioni} che già prima venivano svolte e dall'altro \textbf{introdurre nuovi strumenti} che vadano a migliorare la gestione del canile.
 
 \section{Overview}
-Come riferimento è stato preso in considerazione il  canile comunale di Pisa, il quale gestore si è offerto di indirizzarci permettendoci di rivolgerci a lui per avere feedback e indicazioni basate su esperienze reali.
+Come riferimento è stato preso in considerazione il \textbf{ canile comunale di Pisa}, il quale gestore si è offerto di indirizzarci permettendoci di rivolgerci a lui per avere feedback e indicazioni basate su \textbf{esperienze reali}. 
 
-L'idea ha avuto origine dopo un colloquio con il gestore del canile che, raccontando la propria esperienza, ha evidenziato alcuni problemi che riscontra nello svolgimento del proprio lavoro, molti dei quali sono risolvibili attraverso gli strumenti e le competenze che abbiamo a disposizione. Tuttavia, questo non può essere considerato un progetto su commissione, ma abbiamo fede nel fatto che una volta sviluppata la nostra soluzione questa possa essere utilizzato come base per sviluppare altri sistemi o rendere più tecnologici canili e gattili che riscontrano le stesse difficoltà.
+L'idea ha avuto origine dopo un colloquio con il gestore del canile che, raccontando la propria esperienza, ha evidenziato alcuni \textbf{problemi} che riscontra nello svolgimento del proprio lavoro, molti dei quali sono risolvibili attraverso gli \textbf{strumenti} e le \textbf{competenze} che abbiamo a disposizione.
+Successivamente, le informazioni ottenute dal canile di Pisa sono state confrontate e integrate a fronte di un colloquio con il \textbf{canile Comunale di Cesena}, la quale consulenza è stata indispensabile per riuscire a discernere gli \textbf{aspetti comuni }alla maggior parte dei canili da quelle che invece sono \textbf{peculiarità} di un canile specifico. Questa capacità di \textbf{astrazione} ci ha permesso di definire meglio gli \textbf{obiettivi}. 
+Anche se questo non può essere considerato un progetto su commissione, abbiamo fede nel fatto che una volta sviluppata la nostra soluzione, essa possa essere utilizzata come base per sviluppare altri sistemi o rendere più tecnologici canili e gattili che riscontrano le stesse difficoltà.
+
+        %CANILI
+        \begin{figure}[H]
+            \caption{I due canili interpellati in qualità di \textbf{esperti del dominio}}
+            \label{fig:Canili}
+            \centering
+            \includegraphics[width=0.8\textwidth]{Images/canili.png}
+        \end{figure}
 
 \section{Problemi}
-Il canile di Pisa ospita circa una sessantina di cani e gatti di diversa taglia, randagi o abbandonati, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono adottati, mentre i gatti vengono rilasciati subito dopo aver ricevuto le cure  mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un \textbf{responsabile sanitario} sempre presente nella struttura, che coordina alcuni \textbf{veterinari} convenzionati con la struttura.
+Il canile di Pisa ospita circa una \textbf{sessantina} di cani e gatti di diversa \textbf{taglia}, \textbf{randagi} o \textbf{abbandonati}, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono \textbf{adottati}, mentre i gatti vengono \textbf{rilasciati} subito dopo aver ricevuto le cure  mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un \textbf{responsabile sanitario} sempre presente nella struttura, che coordina alcuni \textbf{veterinari} convenzionati con la struttura. La situazione al canile di Cesena è similare, con la differenza che quest'ultimo non si occupa più del recupero di gatti randagi e il responsabile sanitario non coordina altri veterinari ma si occupa \textbf{in autonomia} di tutto ciò che riguarda la salute del cane, dai problemi di routine alle \textbf{operazioni chirurgiche}.
 
 I principali problemi che vengono attualmente riscontrati sono i seguenti:
 \begin{itemize}
-    \item \textbf{responsabile sanitario:} responsabile sanitario e i veterinari convenzionati, risiedono all'interno del canile.
-    Attualmente non è possibile monitorare lo stato di salute di un animale, questo spesso si traduce in un intervento tardivo che se diagnosticato per tempo risulterebbe più gestibile.
-    \item \textbf{Rifornimento e consumi di cibo ed acqua:} la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.
-    \item \textbf{Sorveglianza:} il canile di Pisa, attualmente, non dispone di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole. E' assente anche un sistema che possa permettere di sorvegliare da remoto cani che hanno particolari problemi. Nel caso di una gravidanza che volge al termine, ad esempio, il personale del canile è costretto a recarsi frequentemente sul luogo, durante la notte, per controllare se ha avuto inizio il travaglio o se si stanno verificando delle complicanze. Questa necessità crea un disagio al personale che si trova a doversi recare in canile fuori dall'orario di lavoro.
+    \item \textbf{responsabile sanitario:} il responsabile sanitario e alcuni veterinari convenzionati, risiedono all'interno del canile.
+    Attualmente non è possibile monitorare in maniera continuativa lo stato di salute di un animale. Questo spesso si traduce in un intervento tardivo che porta con sé delle limitazioni che con una diagnosi più veloce si sarebbero potute evitare.
+    \item \textbf{Rifornimento e consumi di cibo ed acqua:} in entrambi i canili la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.
+    \item \textbf{Sorveglianza:} né il canile di Pisa, né quello di Cesena, attualmente, dispongono di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole. E' assente anche un sistema che possa permettere di sorvegliare da remoto cani che hanno particolari problemi. Nel caso di una gravidanza che volge al termine, ad esempio, il personale del canile è costretto a recarsi frequentemente sul luogo, durante la notte, per controllare se ha avuto inizio il travaglio o se si stanno verificando delle complicanze. Questa necessità crea un disagio al personale che si trova a doversi recare in canile fuori dall'orario di lavoro.
     
-    \item \textbf{Assenza di supporto informatico}: attualmente il canile non dispone di un'infrastruttura informatica già presente,da poter integrare; inoltre non dispone nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.
+    \item \textbf{Assenza di supporto informatico}: attualmente nessuno dei due canili dispone di un'infrastruttura informatica già presente, da poter integrare; inoltre non dispongono nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.
 \end{itemize}
  
 
@@ -31,6 +40,13 @@ I principali problemi che vengono attualmente riscontrati sono i seguenti:
 
 \section{Obiettivi}
 L'obiettivo è quello di rendere il canile più "Smart", introducendo della strumentazione che permetta di risolvere in maniera parziale o totale le problematiche descritte precedentemente, mantenendo un costo accessibile. 
+
+    \begin{figure}[H]
+        \caption{Obbiettivi principali}
+        \label{fig:Obbiettivi}
+        \centering
+       \includegraphics[width=1\textwidth]{Images/cani.png}
+    \end{figure}
 Nello specifico si vogliono incontrare le esigenze del gestore e degli addetti, agevolando le operazioni di:
 \begin{itemize}
     \item \textbf{monitoraggio dello stato di salute dei cani} tramite:
