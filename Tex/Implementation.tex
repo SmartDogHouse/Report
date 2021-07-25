@@ -49,10 +49,10 @@ In questo modo è facilmente programmabile il comportamento di un microcontrollo
     
     \begin{lstlisting}
         async def get_behaviour(self):
-        """ async method called returns a coroutine"""
-        while True:
-            # executes the current state
-            await self.state()
+        """async method called returns a coroutine"""
+            while True:
+                # executes the current state
+                await self.state()
     \end{lstlisting}
     Quando il task è creato, nel costruttore è possibile scegliere lo stato iniziale assegnando la funzione relativa allo stato corrente. 
     \begin{lstlisting}
@@ -238,7 +238,7 @@ Assieme a questa classe è stata implementata la variante "object detection mqtt
 
 \section{Web App}
 
-    La \textbf{Web App} è stata sviluppata come un prototipo funzionante, ma che per essere considerato completo richiederebbe ancora lavoro di rifinitura.
+    La \textbf{Web App} è stata sviluppata come un prototipo funzionante, tuttavia per essere considerato completo richiederebbe ancora del lavoro di rifinitura.
     
     \subsection{Considerazioni tecnologiche}
     
@@ -291,7 +291,7 @@ Assieme a questa classe è stata implementata la variante "object detection mqtt
             \caption{Errore lato Broswer}
             \label{fig:ErrorCorsBroswer}
             \centering
-            \includegraphics[width=1\textwidth]{Images/CorsErrorFrontEnd.PNG}
+            \includegraphics[width=0.8\textwidth]{Images/CorsErrorFrontEnd.PNG}
         \end{figure}
         
         %CORS LATO CONSOLE

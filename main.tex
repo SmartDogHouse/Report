@@ -12,6 +12,8 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{colortbl}
+\usepackage{color}
+\usepackage{multicol}
 \tcbuselibrary{skins}
 %\usepackage[italian]{babel}
 
@@ -54,11 +56,12 @@ sorting=ynt
 \usepackage{ifthen}
 %\usepackage[most]{tcolorbox}
 \usepackage{pgfplots}
-\usepackage{Style/pgfplotsthemetol}
+%\usepackage{Style/pgfplotsthemetol}
+
 \pgfplotsset{compat=1.16}
 \definecolor{lstgrey}{rgb}{0.94,0.95,1}
 \lstset{
-    language=scala,
+    language=python,
     backgroundcolor=\color{lstgrey},
     frame=single,
     rulecolor=\color{lstgrey}, % make frame "invisible"
@@ -107,7 +110,7 @@ coltitle=black,center title}}
 \def\SmartCity{1} % 1=True(SmartCity version (shorter)), 0=False(Full version)
 
     
-\ifthenelse{\SmartCity=1}{ % SOLO per smart-city
+\ifthenelse{\SmartCity=0}{ % SOLO per smart-city
     \title{\LARGE
         RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
         \hrulefill \\

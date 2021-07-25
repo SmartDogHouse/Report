@@ -4,16 +4,57 @@
 % 3000 - 6000 battute
 
 \chapter{Stato dell'Arte}
-Il topic scelto non gode di particolare attenzione in letteratura. Alcune ricerche sono state fatte riguardo l'automazione dell’alimentazione per gli allevamenti, ma si tratta di progetti con un forte imprinting economico. 
-Alcune soluzioni commerciali offrono la distribuzione automatica del cibo ad orari temporizzati, senza possibilità di dosaggio o di rilevamento dei consumi.
-Mentre altre soluzioni si focalizzano soprattutto sul monitoraggio e la notifica dei parametri vitali dell'animale.
+Il topic scelto non gode di particolare attenzione in letteratura.
+Dalle informazioni che abbiamo raccolto su ricerche, studi e applicazione di \textbf{idee similari} alla nostra è emerso quanto segue:
 
-La nostra soluzione tenta di fondere le due idee e di proporre un sistema remoto e scalabile, che sì, monitori i parametri vitali ma che possa anche fornire un automatismo alla gestione del cibo e dell'acqua del cane e che, inoltre, sia in grado di intercettare la presenza di sintomi riguardanti il consumo di cibo e acqua in base all'analisi dei dati precedenti .
+\begin{itemize}
+    \item \textbf{Automazione}: sono state condotte alcune ricerche che riguardano interventi di \textbf{automazione} del sistema di alimentazione per gli allevamenti, ma si tratta di progetti con un forte imprinting \textbf{economico}. 
+    \item \textbf{Distribuzione del cibo}: alcune soluzioni commerciali offrono la \textbf{distribuzione automatica }del cibo ad orari \textbf{temporizzati}, senza possibilità di \textbf{dosaggio} o di rilevamento dei \textbf{consumi}.
+    \item \textbf{Monitoraggio parametri}: in ambito commerciale esistono soluzioni che si focalizzano soprattutto sul \textbf{monitoraggio} e la \textbf{notifica} dei \textbf{parametri vitali} dell'animale.
+    \item \textbf{Fusione dei due ambiti}: \textbf{non} siamo riusciti a trovare progetti che fondono i due ambiti come invece fa la nostra proposta. La \textbf{nostra} soluzione, infatti, tenta di \textbf{fondere} le due idee e di proporre un \textbf{sistema remoto} e \textbf{scalabile}, che monitori i \textbf{parametri vitali}, che possa anche fornire un automatismo alla gestione del \textbf{cibo} e dell'\textbf{acqua} erogati al cane e, inoltre, che sia in grado sia di \textbf{intercettare} la presenza di \textbf{sintomi} riguardanti il consumo di cibo e acqua in base all'\textbf{analisi} dei dati raccolti.
+\end{itemize}
+ 
 
-Nell'ambito dei sensori, lo stato dell'arte è in continua evoluzione, e possiamo trovare sensori \href{https://ciigar.csc.ncsu.edu/files/bib/Brugarolas2015-DogHeartMonitor.pdf}{ad hoc} in ambito di ricerca e soluzioni  \href{https://petpace.com/}{proprietarie} simili in commercio, seppur poche.
+
+
+Per quanto riguarda, invece, l'ambito dei \textbf{sensori}; lo stato dell'arte è in continua evoluzione, e possiamo trovare:
+\begin{itemize}
+    \item \textbf{\href{https://ciigar.csc.ncsu.edu/files/bib/Brugarolas2015-DogHeartMonitor.pdf}{Sensori ad hoc}}: impiegati nell'ambito della \textbf{ricerca} per il monitoraggio dei parametri vitali dei cani
+    \item \textbf{\href{https://petpace.com/}{Collari smart}}: che si basano su un'idea simile alla nostra ma sono sistemi \textbf{proprietari}, commercializzati come prodotti ad uso domestico, completi di gps e altri sensori e supportati da un'\textbf{applicazione} che si rifà a quelle per gli smartwatch. Il costo di questi collari è dell'ordine delle centinaia di euro e deve essere associato ad un \textbf{abbonamento} mensile o annuale. 
+    
+    %PETPACE
+    \begin{figure}[H]
+        \label{fig:PetPace}
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/petpace.png}
+         \caption{\textbf{Pet Pace}: uno dei collari smart in commercio basati su un'idea simile alla nostra}
+    \end{figure}
+\end{itemize}
+
+
 
 I sensori di battiti tradizionali utilizzano un fascio luminoso per identificare la frequenza del battito cardiaco. Questa tecnologia si presta male per gli animali che presentano del pelo, come i cani, per questo sono in via di sviluppo sensori specifici che utilizzano principi diversi. Attualmente sono in corso delle
 \href{https://vcs.vetmed.wsu.edu/research/clinical-studies/clinincal-studies-detail/vcs-clinical-studies/2017/06/28/new-ecg-technology}{ricerche} su sensori di altro genere che possano essere adatti anche anche ai cani.
+
+\begin{tcolorbox}[width=12.1cm]
+\begin{frame}{Lorem Ipsum}
+    \begin{multicols}{2} % two columns
+            I sensori di battiti tradizionali utilizzano un fascio luminoso per identificare la frequenza del battito cardiaco. Questa tecnologia si presta male per gli animali che presentano del pelo, come i cani, per questo sono in via di sviluppo sensori specifici che utilizzano principi diversi. Attualmente sono in corso delle
+            \href{https://vcs.vetmed.wsu.edu/research/clinical-studies/clinincal-studies-detail/vcs-clinical-studies/2017/06/28/new-ecg-technology}{ricerche} su sensori di altro genere che possano essere adatti anche anche ai cani.
+            Nonostante ciò la nostra soluzione utilizza un sensore
+            \href{https://www.amazon.it/Haljia-Sensore-frequenza-cardiaca-Raspberry/dp/B01CBGH4N6}{classico}. Presupponendo che si utilizzi un collare smart solo per gli animali che, a causa del loro stato di salute, sono in osservazione, è possibile supporre che il pelo possa essere rasato durante il periodo di degenza.
+
+    %CANILI
+        \begin{figure}[H]
+            \caption{I due canili interpellati in qualità di \textbf{esperti del dominio}}
+            \label{fig:doggos}
+            \centering
+            \includegraphics[width=0.3\textwidth]{Images/canili.png}
+        \end{figure}
+    \end{multicols}
+\end{frame}
+\end{tcolorbox}
+
 Nonostante ciò la nostra soluzione utilizza un sensore
 \href{https://www.amazon.it/Haljia-Sensore-frequenza-cardiaca-Raspberry/dp/B01CBGH4N6}{classico}. Presupponendo che si utilizzi un collare smart solo per gli animali che, a causa del loro stato di salute, sono in osservazione, è possibile supporre che il pelo possa essere rasato durante il periodo di degenza.
 
