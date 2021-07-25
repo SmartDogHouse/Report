@@ -18,9 +18,6 @@
         <script src="./pandoc-uikit/jquery.sticky-kit.js"></script>
 
         <meta name="generator" content="pandoc-uikit" />
-                <meta name="author" content="Kiade Sara " />
-                <meta name="author" content="Caminati Gyordan " />
-                <meta name="author" content="Lirussi Igor    Numero Gruppo: 97" />
                         <title>main</title>
         <style type="text/css">code{white-space: pre;}</style>
                                                     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
@@ -112,26 +109,33 @@
                 <div class="uk-width-medium-3-4">
 <section id="introduzione" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduzione</h1>
-<p>Si vuole realizzare una soluzione in grado di fornire supporto alla <strong>gestione di un canile</strong> comunale, al fine di migliorarne le condizioni e alleggerire il carico di lavoro che grava sui gestori, il quale numero risulta essere sottodimensionato.</p>
+<p>Smart DogHouse è un progetto che nasce con l’intento di migliorare le condizioni dei cani che si trovano ospiti di un <strong>canile</strong>, mediante l’introduzione di un <strong>supporto informatico</strong> che possa, da un lato, <strong>facilitare operazioni</strong> che già prima venivano svolte e dall’altro <strong>introdurre nuovi strumenti</strong> che vadano a migliorare la gestione del canile.</p>
 <section id="overview" data-number="1.1">
 <h2 data-number="1.1"><span class="header-section-number">1.1</span> Overview</h2>
-<p>Come riferimento è stato preso in considerazione il canile comunale di Pisa, il quale gestore si è offerto di indirizzarci permettendoci di rivolgerci a lui per avere feedback e indicazioni basate su esperienze reali.</p>
-<p>L’idea ha avuto origine dopo un colloquio con il gestore del canile che, raccontando la propria esperienza, ha evidenziato alcuni problemi che riscontra nello svolgimento del proprio lavoro, molti dei quali sono risolvibili attraverso gli strumenti e le competenze che abbiamo a disposizione. Tuttavia, questo non può essere considerato un progetto su commissione, ma abbiamo fede nel fatto che una volta sviluppata la nostra soluzione questa possa essere utilizzato come base per sviluppare altri sistemi o rendere più tecnologici canili e gattili che riscontrano le stesse difficoltà.</p>
+<p>Come riferimento è stato preso in considerazione il <strong>canile comunale di Pisa</strong>, il quale gestore si è offerto di indirizzarci permettendoci di rivolgerci a lui per avere feedback e indicazioni basate su <strong>esperienze reali</strong>.</p>
+<p>L’idea ha avuto origine dopo un colloquio con il gestore del canile che, raccontando la propria esperienza, ha evidenziato alcuni <strong>problemi</strong> che riscontra nello svolgimento del proprio lavoro, molti dei quali sono risolvibili attraverso gli <strong>strumenti</strong> e le <strong>competenze</strong> che abbiamo a disposizione. Successivamente, le informazioni ottenute dal canile di Pisa sono state confrontate e integrate a fronte di un colloquio con il <strong>canile Comunale di Cesena</strong>, la quale consulenza è stata indispensabile per riuscire a discernere gli <strong>aspetti comuni</strong> alla maggior parte dei canili da quelle che invece sono <strong>peculiarità</strong> di un canile specifico. Questa capacità di <strong>astrazione</strong> ci ha permesso di definire meglio gli <strong>obiettivi</strong>. Anche se questo non può essere considerato un progetto su commissione, abbiamo fede nel fatto che una volta sviluppata la nostra soluzione, essa possa essere utilizzata come base per sviluppare altri sistemi o rendere più tecnologici canili e gattili che riscontrano le stesse difficoltà.</p>
+<figure>
+<img src="Images/canili.png" id="fig:Canili" style="width:80.0%" alt="" /><figcaption>I due canili interpellati in qualità di <strong>esperti del dominio</strong><span label="fig:Canili"></span></figcaption>
+</figure>
 </section>
 <section id="problemi" data-number="1.2">
 <h2 data-number="1.2"><span class="header-section-number">1.2</span> Problemi</h2>
-<p>Il canile di Pisa ospita circa una sessantina di cani e gatti di diversa taglia, randagi o abbandonati, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono adottati, mentre i gatti vengono rilasciati subito dopo aver ricevuto le cure mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un <strong>responsabile sanitario</strong> sempre presente nella struttura, che coordina alcuni <strong>veterinari</strong> convenzionati con la struttura.</p>
+<p>Il canile di Pisa ospita circa una <strong>sessantina</strong> di cani e gatti di diversa <strong>taglia</strong>, <strong>randagi</strong> o <strong>abbandonati</strong>, che vengono prelevati dagli addetti del canile su segnalazione dei cittadini. I cani restano poi in cura finché non vengono <strong>adottati</strong>, mentre i gatti vengono <strong>rilasciati</strong> subito dopo aver ricevuto le cure mediche ed essersi ripresi. Ad occuparsi della salute dei cani è un <strong>responsabile sanitario</strong> sempre presente nella struttura, che coordina alcuni <strong>veterinari</strong> convenzionati con la struttura. La situazione al canile di Cesena è similare, con la differenza che quest’ultimo non si occupa più del recupero di gatti randagi e il responsabile sanitario non coordina altri veterinari ma si occupa <strong>in autonomia</strong> di tutto ciò che riguarda la salute del cane, dai problemi di routine alle <strong>operazioni chirurgiche</strong>.</p>
 <p>I principali problemi che vengono attualmente riscontrati sono i seguenti:</p>
 <ul class="incremental">
-<li><p><strong>responsabile sanitario:</strong> responsabile sanitario e i veterinari convenzionati, risiedono all’interno del canile. Attualmente non è possibile monitorare lo stato di salute di un animale, questo spesso si traduce in un intervento tardivo che se diagnosticato per tempo risulterebbe più gestibile.</p></li>
-<li><p><strong>Rifornimento e consumi di cibo ed acqua:</strong> la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.</p></li>
-<li><p><strong>Sorveglianza:</strong> il canile di Pisa, attualmente, non dispone di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole. E’ assente anche un sistema che possa permettere di sorvegliare da remoto cani che hanno particolari problemi. Nel caso di una gravidanza che volge al termine, ad esempio, il personale del canile è costretto a recarsi frequentemente sul luogo, durante la notte, per controllare se ha avuto inizio il travaglio o se si stanno verificando delle complicanze. Questa necessità crea un disagio al personale che si trova a doversi recare in canile fuori dall’orario di lavoro.</p></li>
-<li><p><strong>Assenza di supporto informatico</strong>: attualmente il canile non dispone di un’infrastruttura informatica già presente,da poter integrare; inoltre non dispone nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.</p></li>
+<li><p><strong>responsabile sanitario:</strong> il responsabile sanitario e alcuni veterinari convenzionati, risiedono all’interno del canile. Attualmente non è possibile monitorare in maniera continuativa lo stato di salute di un animale. Questo spesso si traduce in un intervento tardivo che porta con sé delle limitazioni che con una diagnosi più veloce si sarebbero potute evitare.</p></li>
+<li><p><strong>Rifornimento e consumi di cibo ed acqua:</strong> in entrambi i canili la maggior parte del lavoro manuale viene svolta dai volontari che prestano attività in forma gratuita e fortemente discontinua. Non è possibile sapere a priori quanti volontari si presenteranno a dare una mano, ed essendo in tanti non è nemmeno possibile sapere chi ha svolto quali mansioni. Operazioni come il rifornimento di cibo ed acqua vanno quindi monitorate personalmente dal gestore che deve recarsi fisicamente nelle gabbie per controllare gli approvvigionamenti; inoltre non è nemmeno possibile conoscere la quantità di cibo ed acqua consumata da un cane, il che rende più difficile individuare i segnali alimentari che sono sintomi di alcuni problemi di salute.</p></li>
+<li><p><strong>Sorveglianza:</strong> né il canile di Pisa, né quello di Cesena, attualmente, dispongono di un sistema di sorveglianza da remoto, pertanto nel momento in cui si verificano furti, effrazioni ed atti vandalici, non è possibile risalire agevolmente al colpevole. E’ assente anche un sistema che possa permettere di sorvegliare da remoto cani che hanno particolari problemi. Nel caso di una gravidanza che volge al termine, ad esempio, il personale del canile è costretto a recarsi frequentemente sul luogo, durante la notte, per controllare se ha avuto inizio il travaglio o se si stanno verificando delle complicanze. Questa necessità crea un disagio al personale che si trova a doversi recare in canile fuori dall’orario di lavoro.</p></li>
+<li><p><strong>Assenza di supporto informatico</strong>: attualmente nessuno dei due canili dispone di un’infrastruttura informatica già presente, da poter integrare; inoltre non dispongono nemmeno di un gestionale che dia supporto nella catalogazione degli animali presi in cura.</p></li>
 </ul>
 </section>
 <section id="obiettivi" data-number="1.3">
 <h2 data-number="1.3"><span class="header-section-number">1.3</span> Obiettivi</h2>
-<p>L’obiettivo è quello di rendere il canile più "Smart", introducendo della strumentazione che permetta di risolvere in maniera parziale o totale le problematiche descritte precedentemente, mantenendo un costo accessibile. Nello specifico si vogliono incontrare le esigenze del gestore e degli addetti, agevolando le operazioni di:</p>
+<p>L’obiettivo è quello di rendere il canile più "Smart", introducendo della strumentazione che permetta di risolvere in maniera parziale o totale le problematiche descritte precedentemente, mantenendo un costo accessibile.</p>
+<figure>
+<img src="Images/cani.png" id="fig:Obbiettivi" style="width:100.0%" alt="" /><figcaption>Obbiettivi principali<span label="fig:Obbiettivi"></span></figcaption>
+</figure>
+<p>Nello specifico si vogliono incontrare le esigenze del gestore e degli addetti, agevolando le operazioni di:</p>
 <ul class="incremental">
 <li><p><strong>monitoraggio dello stato di salute dei cani</strong> tramite:</p>
 <ul class="incremental">
@@ -155,10 +159,26 @@
 </section>
 <section id="stato-dellarte" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Stato dell’Arte</h1>
-<p>Il topic scelto non gode di particolare attenzione in letteratura. Alcune ricerche sono state fatte riguardo l’automazione dell’alimentazione per gli allevamenti, ma si tratta di progetti con un forte imprinting economico. Alcune soluzioni commerciali offrono la distribuzione automatica del cibo ad orari temporizzati, senza possibilità di dosaggio o di rilevamento dei consumi. Mentre altre soluzioni si focalizzano soprattutto sul monitoraggio e la notifica dei parametri vitali dell’animale.</p>
-<p>La nostra soluzione tenta di fondere le due idee e di proporre un sistema remoto e scalabile, che sì, monitori i parametri vitali ma che possa anche fornire un automatismo alla gestione del cibo e dell’acqua del cane e che, inoltre, sia in grado di intercettare la presenza di sintomi riguardanti il consumo di cibo e acqua in base all’analisi dei dati precedenti .</p>
-<p>Nell’ambito dei sensori, lo stato dell’arte è in continua evoluzione, e possiamo trovare sensori <a href="https://ciigar.csc.ncsu.edu/files/bib/Brugarolas2015-DogHeartMonitor.pdf">ad hoc</a> in ambito di ricerca e soluzioni <a href="https://petpace.com/">proprietarie</a> simili in commercio, seppur poche.</p>
-<p>I sensori di battiti tradizionali utilizzano un fascio luminoso per identificare la frequenza del battito cardiaco. Questa tecnologia si presta male per gli animali che presentano del pelo, come i cani, per questo sono in via di sviluppo sensori specifici che utilizzano principi diversi. Attualmente sono in corso delle <a href="https://vcs.vetmed.wsu.edu/research/clinical-studies/clinincal-studies-detail/vcs-clinical-studies/2017/06/28/new-ecg-technology">ricerche</a> su sensori di altro genere che possano essere adatti anche anche ai cani. Nonostante ciò la nostra soluzione utilizza un sensore <a href="https://www.amazon.it/Haljia-Sensore-frequenza-cardiaca-Raspberry/dp/B01CBGH4N6">classico</a>. Presupponendo che si utilizzi un collare smart solo per gli animali che, a causa del loro stato di salute, sono in osservazione, è possibile supporre che il pelo possa essere rasato durante il periodo di degenza.</p>
+<p>Il topic scelto non gode di particolare attenzione in letteratura. Dalle informazioni che abbiamo raccolto su ricerche, studi e applicazione di <strong>idee similari</strong> alla nostra è emerso quanto segue:</p>
+<ul class="incremental">
+<li><p><strong>Automazione</strong>: sono state condotte alcune ricerche che riguardano interventi di <strong>automazione</strong> del sistema di alimentazione per gli allevamenti, ma si tratta di progetti con un forte imprinting <strong>economico</strong>.</p></li>
+<li><p><strong>Distribuzione del cibo</strong>: alcune soluzioni commerciali offrono la <strong>distribuzione automatica</strong> del cibo ad orari <strong>temporizzati</strong>, senza possibilità di <strong>dosaggio</strong> o di rilevamento dei <strong>consumi</strong>.</p></li>
+<li><p><strong>Monitoraggio parametri</strong>: in ambito commerciale esistono soluzioni che si focalizzano soprattutto sul <strong>monitoraggio</strong> e la <strong>notifica</strong> dei <strong>parametri vitali</strong> dell’animale.</p></li>
+<li><p><strong>Fusione dei due ambiti</strong>: <strong>non</strong> siamo riusciti a trovare progetti che fondono i due ambiti come invece fa la nostra proposta. La <strong>nostra</strong> soluzione, infatti, tenta di <strong>fondere</strong> le due idee e di proporre un <strong>sistema remoto</strong> e <strong>scalabile</strong>, che monitori i <strong>parametri vitali</strong>, che possa anche fornire un automatismo alla gestione del <strong>cibo</strong> e dell’<strong>acqua</strong> erogati al cane e, inoltre, che sia in grado sia di <strong>intercettare</strong> la presenza di <strong>sintomi</strong> riguardanti il consumo di cibo e acqua in base all’<strong>analisi</strong> dei dati raccolti.</p></li>
+</ul>
+<p>Per quanto riguarda, invece, l’ambito dei <strong>sensori</strong>; lo stato dell’arte è in continua evoluzione, e possiamo trovare:</p>
+<ul class="incremental">
+<li><p><strong><a href="https://ciigar.csc.ncsu.edu/files/bib/Brugarolas2015-DogHeartMonitor.pdf">Sensori ad hoc</a></strong>: impiegati nell’ambito della <strong>ricerca</strong> per il monitoraggio dei parametri vitali dei cani</p></li>
+<li><p><strong><a href="https://petpace.com/">Collari smart</a></strong>: che si basano su un’idea simile alla nostra ma sono sistemi <strong>proprietari</strong>, commercializzati come prodotti ad uso domestico, completi di gps e altri sensori e supportati da un’<strong>applicazione</strong> che si rifà a quelle per gli smartwatch. Il costo di questi collari è dell’ordine delle centinaia di euro e deve essere associato ad un <strong>abbonamento</strong> mensile o annuale.</p>
+<p><span id="fig:PetPace" label="fig:PetPace">[fig:PetPace]</span> <img src="Images/petpace.png" title="fig:" style="width:80.0%" alt="Pet Pace: uno dei collari smart in commercio basati su un’idea simile alla nostra" /></p></li>
+</ul>
+<p>I sensori di battiti tradizionali utilizzano un fascio luminoso per identificare la frequenza del battito cardiaco. Questa tecnologia si presta male per gli animali che presentano del pelo, come i cani, per questo sono in via di sviluppo sensori specifici che utilizzano principi diversi. Attualmente sono in corso delle <a href="https://vcs.vetmed.wsu.edu/research/clinical-studies/clinincal-studies-detail/vcs-clinical-studies/2017/06/28/new-ecg-technology">ricerche</a> su sensori di altro genere che possano essere adatti anche anche ai cani.</p>
+<p><span>Lorem Ipsum</span></p>
+<p><span>2</span> I sensori di battiti tradizionali utilizzano un fascio luminoso per identificare la frequenza del battito cardiaco. Questa tecnologia si presta male per gli animali che presentano del pelo, come i cani, per questo sono in via di sviluppo sensori specifici che utilizzano principi diversi. Attualmente sono in corso delle <a href="https://vcs.vetmed.wsu.edu/research/clinical-studies/clinincal-studies-detail/vcs-clinical-studies/2017/06/28/new-ecg-technology">ricerche</a> su sensori di altro genere che possano essere adatti anche anche ai cani. Nonostante ciò la nostra soluzione utilizza un sensore <a href="https://www.amazon.it/Haljia-Sensore-frequenza-cardiaca-Raspberry/dp/B01CBGH4N6">classico</a>. Presupponendo che si utilizzi un collare smart solo per gli animali che, a causa del loro stato di salute, sono in osservazione, è possibile supporre che il pelo possa essere rasato durante il periodo di degenza.</p>
+<figure>
+<img src="Images/canili.png" id="fig:doggos" style="width:30.0%" alt="" /><figcaption>I due canili interpellati in qualità di <strong>esperti del dominio</strong><span label="fig:doggos"></span></figcaption>
+</figure>
+<p>Nonostante ciò la nostra soluzione utilizza un sensore <a href="https://www.amazon.it/Haljia-Sensore-frequenza-cardiaca-Raspberry/dp/B01CBGH4N6">classico</a>. Presupponendo che si utilizzi un collare smart solo per gli animali che, a causa del loro stato di salute, sono in osservazione, è possibile supporre che il pelo possa essere rasato durante il periodo di degenza.</p>
 <p>Per quanto riguarda le soluzioni riguardanti l’automatizzazione del cibo e dell’acqua le soluzioni commerciali sono davvero <a href="https://www.fruugo.it/alimentatore-automatico-per-animali-domestici-a-43-l-capacita-alimentatore-intelligente-per-alimentazione-intelligente-per-lalimentazione-del-tempo-e-razionale-con-telecamera-telecomandato-tipo-di-lusso/p-55093501-111996468?language=it&amp;ac=croud">tante</a> molto simili.</p>
 <p>Da questo punto di vista la nostra soluzione può dirsi all’avanguardia pur non essendo incentrata sull’uso domestico. Grossa parte di questi sistemi, infatti, usano: sensori del livello dell’acqua, bilance e sensori luminosi. Inoltre alcuni sistemi più all’avanguardia consentono, tramite l’utilizzo di tecnologie come <strong>BLE</strong>, di monitorare da <strong>App</strong> i consumi e gli allarmi, non fornendo però alcun tipo di inferenza.</p>
 <p>Attualmente il nostro sistema fornisce un’inferenza banale, ciò non toglie che in un futuro sviluppo associato ad uno studio comportamentale dell’animale non sia possibile implementare inferenze più complesse.</p>
@@ -186,15 +206,15 @@
 <h2 data-number="3.2"><span class="header-section-number">3.2</span> Requisiti Utente</h2>
 <p>Di seguito vengono riportate le richieste mosse dal cliente in maniera informale evitando termini tecnici, successivamente tali richieste saranno formalizzate per quanto possibile. Il prodotto dovrà fornire:</p>
 <ul class="incremental">
-<li><p>l’accesso al sistema da qualunque dispositivo munito di connessione alla rete, anche esterna al canile</p></li>
-<li><p>prestazioni adeguate alle operazioni richieste (con soglie adeguate caso per caso), come il rilevare se il cane ha bisogno di cibo o acqua</p></li>
+<li><p>l’accesso al sistema da <strong>qualunque dispositivo</strong> munito di connessione alla rete, anche esterna al canile</p></li>
+<li><p><strong>prestazioni adeguate</strong> alle operazioni richieste (con soglie adeguate caso per caso), come il rilevare se il cane ha bisogno di cibo o acqua</p></li>
 <li><p>un interfaccia intuitiva, comprensiva di una pagina per l’accesso e un menu principale</p></li>
-<li><p>uno storico per ogni animale</p></li>
-<li><p>un accesso rapido e reattivo evitando tempi troppo lunghi per le operazioni</p></li>
-<li><p>un sistema di sorveglianza semi automatizzato in grado di identificare eventuali anomalie, come cani che escono senza permesso</p></li>
-<li><p><strong>opzionalmente</strong> delle notifiche sullo stato di salute dell’animale al personale</p></li>
-<li><p>delle notifiche in caso di malfunzionamento del sistema stesso</p></li>
-<li><p>delle notifiche, nel caso in cui il cibo sia in esaurimento</p></li>
+<li><p>uno <strong>storico</strong> per ogni animale</p></li>
+<li><p>un a<strong>accesso rapido e reattivo</strong> evitando tempi troppo lunghi per le operazioni</p></li>
+<li><p>un <strong>sistema di sorveglianza semi automatizzato</strong> in grado di identificare eventuali anomalie, come cani che escono senza permesso</p></li>
+<li><p><strong>opzionalmente</strong> delle <strong>notifiche sullo stato di salute</strong> dell’animale al personale</p></li>
+<li><p>delle <strong>notifiche</strong> in caso di <strong>malfunzionamento</strong> del sistema stesso</p></li>
+<li><p>delle <strong>notifiche</strong>, nel caso in cui il cibo sia in <strong>esaurimento</strong></p></li>
 </ul>
 <section id="user-stories" data-number="3.2.1">
 <h3 data-number="3.2.1"><span class="header-section-number">3.2.1</span> User stories</h3>
@@ -202,12 +222,12 @@
 <ul class="incremental">
 <li><p>Come <strong>gestore</strong> voglio:</p>
 <ul class="incremental">
-<li><p>poter visualizzare le i dati relativi all’occupante di una gabbia</p></li>
-<li><p>voglio poter impostare i dati dell’occupante di una gabbia</p></li>
-<li><p>poter aggiungere un cane a una gabbia</p></li>
-<li><p>poter rimuovere un cane da una gabbia</p></li>
-<li><p>poter visualizzare i consumi TOTALI del canile</p></li>
-<li><p><em>opzionalmente</em> poter visualizzare l’umidità e la temperatura ambientale</p></li>
+<li><p>poter <strong>visualizzare</strong> le i dati relativi all’<strong>occupante</strong> di una <strong>gabbia</strong></p></li>
+<li><p>voglio poter <strong>impostare</strong> i <strong>dati</strong> dell’occupante di una gabbia</p></li>
+<li><p>poter <strong>aggiungere un cane</strong> a una gabbia</p></li>
+<li><p>poter <strong>rimuovere un cane</strong> da una gabbia</p></li>
+<li><p>poter visualizzare i <strong>consumi TOTALI</strong> del canile</p></li>
+<li><p><em>opzionalmente</em> poter <strong>visualizzare</strong> l’<strong>umidità</strong> e la <strong>temperatura</strong> ambientale</p></li>
 <li><p>poter <strong>impostare</strong> i dati relativi allo <strong>stato di salute</strong> di un cane</p></li>
 <li><p>poter visualizzare i <strong>consumi di cibo</strong> relativi a un cane in un determinato lasso di tempo</p></li>
 <li><p>poter visualizzare i <strong>consumi di acqua</strong> relativi a un cane in un determinato lasso di tempo</p></li>
@@ -423,7 +443,7 @@
 <section id="hardware" data-number="4.2.3.1">
 <h4 data-number="4.2.3.1"><span class="header-section-number">4.2.3.1</span> Hardware</h4>
 <p>Le piattaforme di sviluppo per l’IoT tenute presente sono state molteplici, da board con potenza computazionale più elevata, come Raspberry Pi, a scendere fino a ESP e le varianti Arduino.</p>
-<p>Le board Arduino sono state scartate quasi subito, per la poca potenza computazionale e la necessità di moduli aggiuntivi per le connessioni. La board RaspBerry Pi è stata scelta per task più computazionalmente onerosi, legati alla gestione ambientale, quali la video sorveglianza e l’analisi immagini. Questa scelta non può essere invece adottata per la gestione delle gabbie. Le principali motivazioni risiedono nel fatto che il numero è variabile e il costo supererebbe molto superiore al budget. La scelta in questo caso è ricaduta sull’ESP, non solo per il forte fattore cost-competitive, e per il supporto a BlueTooth e WiFi integrati, ma anche per il supporto della community e l’ottima potenza computazionale. Inoltre, rinunciando all’analisi immagini e alla qualità video a favore dei costi, il cliente potrà anche scegliere di sostituire la board Raspberry con un più economico ESP32-CAM. Con l’ESP8266 le prime settimane il lavoro di indagine preliminare ha rilevato qualche che risultava troppo limitato per utilizzare MicroPython. Tra ESP8266 e ESP32 è stato preferito quest’ultimo, anche per lasciare della capacità di calcolo per eventuali future espansioni e richieste del committente.</p>
+<p>Le board Arduino sono state scartate quasi subito, per la poca potenza computazionale e la necessità di moduli aggiuntivi per le connessioni. La board RaspBerry Pi è stata scelta per task più computazionalmente onerosi, legati alla gestione ambientale, quali la video sorveglianza e l’analisi immagini. Questa scelta non può essere invece adottata per la gestione delle gabbie. Le principali motivazioni risiedono nel fatto che il numero è variabile e il costo supererebbe molto superiore al budget. La scelta in questo caso è ricaduta sull’ESP, non solo per il forte fattore cost-competitive, e per il supporto a Bluetooth e WiFi integrati, ma anche per il supporto della community e l’ottima potenza computazionale. Inoltre, rinunciando all’analisi immagini e alla qualità video a favore dei costi, il cliente potrà anche scegliere di sostituire la board Raspberry con un più economico ESP32-CAM. Con l’ESP8266 le prime settimane il lavoro di indagine preliminare ha rilevato qualche che risultava troppo limitato per utilizzare MicroPython. Tra ESP8266 e ESP32 è stato preferito quest’ultimo, anche per lasciare della capacità di calcolo per eventuali future espansioni e richieste del committente.</p>
 </section>
 <section id="linguaggio-di-programmazione" data-number="4.2.3.2">
 <h4 data-number="4.2.3.2"><span class="header-section-number">4.2.3.2</span> Linguaggio di programmazione</h4>
@@ -517,9 +537,9 @@
 <h2 data-number="5.2"><span class="header-section-number">5.2</span> Design Monitoraggio Parametri Vitali</h2>
 <p>Per il monitoraggio dei parametri vitali il design fisico è stato semplificato di molto, richiedendo due sensori e un microcontrollore. Il <strong>design del prototipo fisico</strong>, con i sensori in giallo e la spiegazione del suo funzionamento [Fig. <a href="#fig:collare" data-reference-type="ref" data-reference="fig:collare">5.4</a>] sono riportati di seguito.</p>
 <figure>
-<img src="Images/Collare.png" id="fig:collare" style="width:60.0%" alt="" /><figcaption>Design Prototipo Collare (sensori in giallo)<span label="fig:collare"></span></figcaption>
+<img src="Images/collare.png" id="fig:collare" style="width:100.0%" alt="" /><figcaption>Design Prototipo Collare<span label="fig:collare"></span></figcaption>
 </figure>
-<p>Il primo device di sensing necessario è quello di <strong>temperatura</strong>, che periodicamente deve inviare i valori letti al cloud. Eventualmente, se i valori sono fuori norma, deve segnalarlo inviando una notifica immediatamente. Il secondo sensore è necessariamente quello dei <strong>battiti</strong>. Anch’esso deve inviare a intervalli regolari i battiti per minuto in cloud, affinché vengano registrati. In caso di anomalie tali da portare i valori oltre il minimo o il massimo, una notifica deve essere mandata tempestivamente. La macchina a stati si compone semplicemente di due stati divisi che ciclano su loro stessi, inviando periodicamente i valori letti ed eventualmente le notifiche per le anomalie.</p>
+<p>Il primo device di sensing necessario è quello di <strong>temperatura</strong>, che periodicamente deve inviare i valori letti al cloud. Eventualmente, se i valori sono fuori norma, deve segnalarlo inviando una notifica immediatamente. Il secondo sensore è necessariamente quello dei <strong>battiti</strong>. Anch’esso deve inviare a intervalli regolari i battiti per minuto in cloud, affinché vengano registrati. Opzionalmente sarà presente un LED per visualizzare i battiti in real-time. In caso di anomalie tali da portare i valori oltre il minimo o il massimo, una notifica deve essere mandata tempestivamente. La macchina a stati si compone semplicemente di due stati divisi che ciclano su loro stessi, inviando periodicamente i valori letti ed eventualmente le notifiche per le anomalie.</p>
 </section>
 <section id="design-videosorveglianza" data-number="5.3">
 <h2 data-number="5.3"><span class="header-section-number">5.3</span> Design Videosorveglianza</h2>
@@ -647,9 +667,10 @@
 <li><p><strong>Home</strong>: fornisce tutte le funzioni principali dell’applicativo, la schermata è divisa in schede, ogni scheda è a sua volta divisa in più componenti, uno per la visualizzazione dei cani presenti e uno per le azioni specifiche da attuare su di esso, o in generale. L’unica scheda che contiene un solo</p>
 <p>dove ogni scheda consente determinate operazioni:</p>
 <ul class="incremental">
-<li><p><strong>Gestore</strong>: Consente di effettuare le principali azioni del sito, l’unica azione proibita e l’accesso alla videocamera.</p></li>
-<li><p><strong>Addetto alla salute</strong>: C</p></li>
-<li><p><strong>Addetto ai rifornimenti</strong>:</p></li>
+<li><p><strong>Gestore</strong>: Consente di effettuare le principali azioni del sito, inoltre può anche effettuare le azioni seguenti.</p></li>
+<li><p><strong>Addetto alla salute</strong>: Può visualizzare i parametri vitali e lo stato di salute degli animali.</p></li>
+<li><p><strong>Addetto ai rifornimenti</strong>: Può visualizzare i dati di un cane, i suoi consumi e impostare l’orario e la quantità di cibo.</p></li>
+<li><p><strong>Addetto alla sorveglianza</strong>: Puù visualizzare lo streaming video.</p></li>
 <li><p><strong>Altro addetto</strong>: placeholder per funzioni future</p></li>
 </ul></li>
 </ul>
@@ -704,10 +725,10 @@
 <h4 data-number="6.1.1.1"><span class="header-section-number">6.1.1.1</span> Cibo</h4>
 <p>L’implementazione del task relativo alla gestione del cibo da passare allo scheduler è stato implementato in una classe dedicata. Il comportamento che il task espone rispecchia la macchina a stati discussa nel design [Fig. <a href="#fig:statediagramFood" data-reference-type="ref" data-reference="fig:statediagramFood">5.3</a>]. Grazie alla possibilità di Python di avere funzioni higher-order, il loop principale esegue ciclicamente lo stato corrente:</p>
 <pre><code>        async def get_behaviour(self):
-        &quot;&quot;&quot; async method called returns a coroutine&quot;&quot;&quot;
-        while True:
-            # executes the current state
-            await self.state()</code></pre>
+        &quot;&quot;&quot;async method called returns a coroutine&quot;&quot;&quot;
+            while True:
+                # executes the current state
+                await self.state()</code></pre>
 <p>Quando il task è creato, nel costruttore è possibile scegliere lo stato iniziale assegnando la funzione relativa allo stato corrente.</p>
 <pre><code>        # state variable holds the current state, this is the initial state
         self.state = self.check_food_consumption</code></pre>
@@ -836,7 +857,7 @@
 </section>
 <section id="web-app" data-number="6.3">
 <h2 data-number="6.3"><span class="header-section-number">6.3</span> Web App</h2>
-<p>La <strong>Web App</strong> è stata sviluppata come un prototipo funzionante, ma che per essere considerato completo richiederebbe ancora lavoro di rifinitura.</p>
+<p>La <strong>Web App</strong> è stata sviluppata come un prototipo funzionante, tuttavia per essere considerato completo richiederebbe ancora del lavoro di rifinitura.</p>
 <section id="considerazioni-tecnologiche" data-number="6.3.1">
 <h3 data-number="6.3.1"><span class="header-section-number">6.3.1</span> Considerazioni tecnologiche</h3>
 <p>L’applicazione è stata sviluppata utilizzando <strong>nodeJS</strong> e <strong>VueJS</strong>. Una scelta guidata dalla semplicità del framework javascript, che a differenza di <strong>React</strong> e <strong>Angular</strong> offre una curva di apprendimento ben più bassa, favorendo lo sviluppo. <strong>VueJS</strong> forniva inoltre il vantaggio di integrarsi perfettamente con AWS <strong>Amplify</strong>, a livello di <strong>front-end</strong>. Mentre a livello di <strong>back-end</strong> le comunicazioni sono perfettamente supportate dato che anche l’applicativo <strong>back-end</strong> è stato sviluppato con <strong>nodeJS</strong>.</p>
@@ -867,7 +888,7 @@
 <p>L’errore ha smesso di presentarsi, ma poiché avevamo la necessità di testare sempre più funzioni e non era pensabile effettuare il deploy di sam per ogni prova, abbiamo iniziato ad eseguire un’ istanza di AWS <strong>Lambda</strong> localmente tramite il comando : <code>sam build &amp;&amp; sam local start-api</code>.</p>
 <p>Giunti a questo punto il problema si è ripresentato e questa volta la soluzione è stata molto più ostica da trovare, nonostante il problema fosse lo stesso, ovvero la mancanza della risposta <strong>CORS</strong>.</p>
 <figure>
-<img src="Images/CorsErrorFrontEnd.PNG" id="fig:ErrorCorsBroswer" style="width:100.0%" alt="" /><figcaption>Errore lato Broswer<span label="fig:ErrorCorsBroswer"></span></figcaption>
+<img src="Images/CorsErrorFrontEnd.PNG" id="fig:ErrorCorsBroswer" style="width:80.0%" alt="" /><figcaption>Errore lato Broswer<span label="fig:ErrorCorsBroswer"></span></figcaption>
 </figure>
 <figure>
 <img src="Images/CorsErrorConsole.PNG" id="fig:ErrorCorsConsole" style="width:100.0%" alt="" /><figcaption>Errore lato console<span label="fig:ErrorCorsConsole"></span></figcaption>
@@ -936,10 +957,7 @@
 <h3 data-number="7.1.1"><span class="header-section-number">7.1.1</span> Hardware</h3>
 <p>Per quanto riguarda l’automazione di cibo e acqua e il monitoraggio dei parametri vitali dell’animale sono state testate multiple soluzioni hardware. In fase di validazione del progetto sono stati prese in esame principalmente due board che soddisfacessero i requisiti di economicità, connettività e prestazioni: L’ESP8266 e il successore ESP32. Entrambi offrono la connettività Wi-Fi integrata e buona potenza computazionale, cosa di cui è carente la board Arduino, e un costo contenuto (5€ per il primo e 7€ per il secondo, dati del primo semestre 2021) rispetto alla board Raspberry. Quest’ultima board offre connettività e prestazioni ma i costi sono decisamente fuori budget per il committente e per la natura distribuita dei compiti. La piattaforma ESP si è rivelata un buon compromesso e quindi si è passati a testarne i due differenti modelli.</p>
 <p>Dopo i testing eseguiti in fase iniziale sono emerse differenze sostanziali nei tempi di avvio del programma e di connessione. Inoltre l’ESP8266 ha riscontrato spesso problemi nel caricamento dei file e nell’esecuzione di micropython. Di seguito si riporta la tabella riassuntiva per i tempi di esecuzione/comunicazione, accompagnati dalle caratteristiche dell’hardware.</p>
-<p>board &amp; velocità processore &amp; costo &amp; tempo medio avvio programma &amp; tempo medio connessione MQTT<br />
-<a href="#https://en.wikipedia.org/wiki/ESP8266">ESP8266</a> &amp; 160 MHz &amp; 5€ &amp; 8,1 s &amp; 9,3 s<br />
-<a href="#https://en.wikipedia.org/wiki/ESP32">ESP32</a> &amp; 240 MHz (dual core) &amp; 7€ &amp; 5,2 s &amp; 3,4 s<br />
-</p>
+<p><img src="DrawIo/ConfrontoMicrocontrollori.png" style="width:90.0%" alt="image" /></p>
 <p>Alla luce della minima differenza di prezzo tra i due device rispetto alla capacità computazionale, la scelta è ricaduta sul più recente ESP32.</p>
 </section>
 </section>
@@ -948,11 +966,7 @@
 <section id="hardware-2" data-number="7.2.1">
 <h3 data-number="7.2.1"><span class="header-section-number">7.2.1</span> Hardware</h3>
 <p>Come anticipato in precedenza, il lato visione, di per se più computazionalmente oneroso, ha reso necessaria un’analisi più approfondita delle performance e la scelta è ricaduta su Raspberry Pi e ESP32-CAM. Inizialmente stato implementato un server web in C, per l’ESP ma il development è stato in seguito interrotto per la scarsa potenza potenza di quest’ultimo nell’elaborazione delle immagini. E’ stato tuttavia ritenuto valido per un’alternativa economica per il semplice streaming video senza elaborazione e notifica. Le board Raspberry Pi testate sono state le seguenti, con i rispettivi tempi di elaborazione:</p>
-<p>board &amp; velocità processore &amp; memoria RAM &amp; costo &amp; tempo medio forward immagine NN*<br />
-<a href="#https://en.wikipedia.org/wiki/Raspberry_Pi">Pi 3 A+</a> &amp; 1.4 GHz (quad-core) &amp; 512 MB &amp; 20€ &amp; 6.3 s<br />
-<a href="#https://en.wikipedia.org/wiki/Raspberry_Pi">Pi 3 B+</a> &amp; 1.4 GHz (quad-core) &amp; 1 GB &amp; 30€ &amp; 3.1 s<br />
-<a href="#https://en.wikipedia.org/wiki/Raspberry_Pi">Pi 4</a> &amp; 1.5 GHz (quad-core) &amp; 2 GB &amp; 50€ &amp; 2.4 s<br />
-</p>
+<p><img src="DrawIo/ConfrontoRaspberry.png" style="width:90.0%" alt="image" /></p>
 <p>* i tempi si riferiscono all’attesa media per ottenere i risultati di object-detection attraverso una rete neurale con architettura Yolo3 con lo stesso set di immagini.</p>
 <p>Considerando il rapporto costo/prestazioni, la scelta è ricaduta sul Raspberry Pi 3 B+ che con soli 0.7 secondi di distacco dal suo successore si posiziona su una fascia decisamente più economica.</p>
 </section>
@@ -979,17 +993,12 @@
 <section id="object-detection-1" data-number="7.2.2.2">
 <h4 data-number="7.2.2.2"><span class="header-section-number">7.2.2.2</span> Object Detection</h4>
 <p>Il secondo metodo testato per la sorveglianza è l’object detection. Sono state confrontate 4 reti neurali per trovare la più adatta tra prestazioni e precisione. Nonostante sia stata scelta la board Raspberry tenendo il considerazione la potenza di calcolo, i fotogrammi al secondo hanno subito una brusca riduzione rispetto alla soluzione precedente. Il parametro minimo è stato fissato a 1 FPS, sotto il quale il divario temporale tra due immagini analizzate mancherebbe la rilevazione di possibili avvenimenti. La causa principale di tale crollo nelle prestazioni utilizzando questa soluzione è la mancanza di una GPU adatta nei Raspberry. Tale carenza è comunque colmabile con l’acquisto di espansioni USB dedicate all’espansione delle capacità grafiche della board (TPU). Immediatamente è risultato palese che le architetture delle reti tradizionalmente usate sui pc fossero troppo pesanti per il sistema ospitante. Per referenza è stata lasciata l’architettura (già di per se performante) Yolo3. Il focus quindi è stato soprattutto sull’individuazione di reti "leggere" che offrissero prestazioni adeguate. Sono state confrontate e testate le varie versioni "Tiny" della stessa rete come in tabella seguente:</p>
-<p>Architettura &amp; Dimensioni &amp; Frames al secondo &amp; Rilevazioni<br />
-<a href="#https://pjreddie.com/darknet/yolo/">Yolo V3</a> &amp; 280 MB &amp; 0.4 &amp; 699<br />
-<a href="#https://pjreddie.com/darknet/yolo/">Yolo V2-Tiny</a> &amp; 45 MB &amp; 3.5 &amp; 20<br />
-<a href="#https://pjreddie.com/darknet/yolo/">Yolo V3-Tiny</a> &amp; 35 MB &amp; 3.3 &amp; 214<br />
-<a href="#https://pjreddie.com/darknet/yolo/">Yolo V4-Tiny</a> &amp; 24 MB &amp; 2.9 &amp; 269<br />
-</p>
+<p><img src="DrawIo/ConfrontoNeuralNetworks.png" style="width:90.0%" alt="image" /></p>
 <p>Dopo l’analisi è risultato chiara la scelta della versione Yolo V4-Tiny, con il miglior numero di rilevazioni e una velocità adeguata alla videosorveglianza.</p>
 <figure>
 <img src="Images/ODcomparison.png" id="fig:ODcomparison" style="width:100.0%" alt="" /><figcaption>Surveillance with Object Detection<span label="fig:ODcomparison"></span></figcaption>
 </figure>
-<p>Le prestazioni sono state a livello di precisione sono state alte, come ci si aspetta da una rete neurale comparate "in the wild" a metodi tradizionali. Di seguito si riporta la matrice di confusione delle prove effettuate:</p>
+<p>Le prestazioni sono state a livello di precisione sono state alte, come ci si aspetta da una rete neurale comparata "in the wild" a metodi tradizionali. Di seguito si riporta la matrice di confusione delle prove effettuate:</p>
 <figure>
 <img src="DrawIo/ConfusionMatrixObjDet.png" id="fig:ODmatrix" style="width:90.0%" alt="" /><figcaption>Confusion matrix of Object Detection<span label="fig:ODmatrix"></span></figcaption>
 </figure>
