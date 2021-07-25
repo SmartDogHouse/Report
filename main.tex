@@ -106,7 +106,7 @@ coltitle=black,center title}}
 %\graphicspath{{Images/}{DrawIo/}}
 \newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
 
-%%%%% Full-Version or Smart City-Version Variable %%%%%%
+%%%%%   Full-Version or Smart City-Version Variable   %%%%%%
 \ifx\SmartCity\undefined %if variable undefined
     % Smart City Version 
     \def\SmartCity{0} 
@@ -118,7 +118,7 @@ coltitle=black,center title}}
 
 
     
-\ifthenelse{\SmartCity=1}{ % parte visualizzata SOLO smart-city version
+\ifthenelse{\SmartCity=1}{ 
     \title{\LARGE
         RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
         \hrulefill \\
@@ -165,14 +165,14 @@ coltitle=black,center title}}
     \include{Tex/Intro}
     \include{Tex/StateOfTheArt}
 
-\ifthenelse{\SmartCity=0}{ % NON per smart-city
+\ifthenelse{\SmartCity=0}{ % NON per Smart-city
     \include{Tex/DevProcess}
     \include{Tex/AnalysisProblemSpace}
 }
 
     \include{Tex/AnalysisRequirements}
 
-\ifthenelse{\SmartCity=0}{ % NON per smart-city
+\ifthenelse{\SmartCity=0}{ % NON per Smart-city
     \include{Tex/AspettiDDD}
 }
 
@@ -181,6 +181,7 @@ coltitle=black,center title}}
     \include{Tex/Implementation}
     \include{Tex/TestingAndPerformance}
     \include{Tex/LargeScaleDeployment}
+    \include{Tex/WorkPlan}
     \include{Tex/Sprints}
     \include{Tex/Conclusion}
 
