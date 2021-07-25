@@ -106,34 +106,52 @@ coltitle=black,center title}}
 %\graphicspath{{Images/}{DrawIo/}}
 \newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
 
-% Smart City Version
-\def\SmartCity{1} % 1=True(SmartCity version (shorter)), 0=False(Full version)
+%%%%% Full-Version or Smart City-Version Variable %%%%%%
+\ifx\SmartCity\undefined %if variable undefined
+    % Smart City Version 
+    \def\SmartCity{0} 
+    % 1=True (SmartCity-version, shorter)
+    % 0=False (Full-version)
+\else
+  %% Defined from argument passed when compiling
+\fi
+
 
     
-\ifthenelse{\SmartCity=0}{ % SOLO per smart-city
+\ifthenelse{\SmartCity=1}{ % parte visualizzata SOLO smart-city version
     \title{\LARGE
         RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
         \hrulefill \\
         Smart DogHouse \\ 
         \hrulefill \\
     }
-}{ % SOLO normale
+    \author{
+        Kiade Sara \\ \emailaddr{sara.kiade@studio.unibo.it}
+        \and 
+        Caminati Gyordan \\ \emailaddr{gyordan.caminati@studio.unibo.it} 
+        \and
+        Lirussi Igor \\ \emailaddr{igor.lirussi@studio.unibo.it}
+        \\ \\ \\ 
+        Numero Gruppo: 97 
+    }
+}{ % parte visualizzata SOLO full-version
     \title{\LARGE
+        RELAZIONE DI PROGETTO  \\
         \hrulefill \\
         Smart DogHouse \\
         \hrulefill \\
     }
+    \author{
+        Kiade Sara \\ \emailaddr{sara.kiade@studio.unibo.it}
+        \and 
+        Caminati Gyordan \\ \emailaddr{gyordan.caminati@studio.unibo.it} 
+        \and
+        Lirussi Igor \\ \emailaddr{igor.lirussi@studio.unibo.it}
+        \\ \\ \\ 
+    }
 }
 
-\author{
-    Kiade Sara \\ \emailaddr{sara.kiade@studio.unibo.it}
-    \and 
-    Caminati Gyordan \\ \emailaddr{gyordan.caminati@studio.unibo.it} 
-    \and
-    Lirussi Igor \\ \emailaddr{igor.lirussi@studio.unibo.it}
-    \\ \\ \\ 
-    Numero Gruppo: 97 
-}
+
 
 \date{\today}
 
