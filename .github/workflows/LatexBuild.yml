@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 jobs:
   BuildLatexJob:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Setup Git repo
         uses: actions/checkout@v2
@@ -53,7 +53,7 @@ jobs:
   TelegramJobFailure:
       needs: [BuildLatexJob] #when finished this job
       if: failure() # if its failed
-      runs-on: ubuntu-20.04
+      runs-on: ubuntu-latest
       steps:
       - name: Clone Repo with Checkout 
         uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
@@ -79,7 +79,7 @@ jobs:
   TelegramJobSuccess:
         needs: [BuildLatexJob] #when finished this job
         if: success() #only on success
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         steps:
         - name: Send custom Telegram message
           uses: appleboy/telegram-action@master
@@ -96,43 +96,54 @@ jobs:
             disable_web_page_preview: true
             
   FindTagJob:
-    needs: BuildLatexJob
-    if: success()
-    runs-on: ubuntu-20.04
-    # Map a step output to a job output
+    runs-on: ubuntu-latest
     outputs:
-      outputTagJob: ${{ steps.relese_msg.outputs.RELESE_NAME }}
+      outputTagJob: '${{ steps.relese_msg.outputs.RELESE_NAME }}'#The outuput of the job
     steps:
-      - name: Clone Repo with Checkout 
-        uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
+      - name: Clone Repo with Checkout
+        uses: actions/checkout@v2
       - name: Extract relese message if present
         shell: bash
-        id: relese_msg
+        id: extract_tag_msg
+        run: >
+          echo "::set-output name=TAG_MSG::$(echo
+          "${{github.event.head_commit.message}}" | grep -o -P
+          '(?<=-TAG{).*(?=})')" #Extract tag name if present
+      - name: Fetch tag
+        shell: bash
         run: |
-          echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
-  
+          git fetch --prune --unshallow --tags #Pull all tags
+      - name: Fill tag if empty
+        id: relese_msg
+        shell: bash
+        run: |
+          if [ "${{steps.extract_tag_msg.outputs.TAG_MSG}}" != "" ] #Check if the user has specified a name for the tag
+          then #if yes use it
+              echo "::set-output name=RELESE_NAME::$(echo ${{steps.extract_tag_msg.outputs.TAG_MSG}})" 
+          else #if generate one new tag incrementing fixes number like x.y.z+1
+              val=$(git describe --tags --abbrev=0)
+              newval=$(echo ${val##*.})
+              newval=$((newval+1))
+              newval="${val%.*}.$newval"
+              echo "::set-output name=RELESE_NAME::$(echo $newval)"
+              echo $newval 
+          fi
   DeployJob:
     needs: FindTagJob
-    if: ${{ needs.FindTagJob.outputs.outputTagJob != '' }} #if environment variable is set
-    runs-on: ubuntu-20.04
+    if: '${{ needs.FindTagJob.outputs.outputTagJob != '''' }}'
+    runs-on: ubuntu-latest
     steps:
-      - name: Clone Repo with Checkout 
-        uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
-      - name: Extract relese message if present
-        shell: bash
-        id: relese_msg
-        run: |
-          echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
+      - name: Clone Repo with Checkout
+        uses: actions/checkout@v2
       - name: Create relese if tag commit contain a tag message
         id: create_release
-        if: ${{ steps.relese_msg.outputs.RELESE_NAME != '' }}
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
         with:
-          tag_name: ${{ steps.relese_msg.outputs.RELESE_NAME }}
-          release_name: Release ${{ steps.relese_msg.outputs.RELESE_NAME }}
-          draft: false
+          tag_name: '${{ needs.FindTagJob.outputs.outputTagJob }}'
+          release_name: 'Release ${{ needs.FindTagJob.outputs.outputTagJob }}'
+          draft: falses
           prerelease: false
       - name: Download Artifacts
         uses: actions/download-artifact@v2
@@ -152,7 +163,7 @@ jobs:
   EmailJob:
     needs: [DeployJob] #when finished this job
     if: success() 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - name: Clone Repo with Checkout # first step
       uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
@@ -197,7 +208,7 @@ jobs:
   TelegramJobDeploy:
       needs: [DeployJob] #when finished this job
       if: success() # if its failed
-      runs-on: ubuntu-20.04
+      runs-on: ubuntu-latest
       steps:
       - name: Clone Repo with Checkout # first step
         uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
@@ -222,7 +233,7 @@ jobs:
           
   PandocConverter:
     needs: DeployJob
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Clone git repo
         uses: actions/checkout@v2
@@ -238,27 +249,8 @@ jobs:
         uses: docker://pandoc/latex:2.9.0
         with:
           args: >-
-            -s
-            -i
-            -N
-            -f latex+smart+auto_identifiers 
-            -t html5  
-            --filter=pandoc-citeproc 
-            --bibliography=./References.bib 
-            --listings 
-            --pdf-engine=pdflatex  
-            --template=./pandoc-uikit/standalone.html
-            --variable abstract="Abstract"
-            --wrap=auto
-            --mathjax 
-            --toc 
-            --toc-depth 2 
-            -V template_css:./pandoc-uikit/uikit.css
-            -V block-headings 
-            -V theme:Warsaw 
-            -V toc-title:"Table of Contents" 
-            -V biblio-title:Whatever  
-            -o ./index.html
+            -d ./pandoc-uikit/config.yaml 
+            -o ./index.html 
             main.tex
             
       - name: Commit the new gh-pages html
