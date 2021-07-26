@@ -1,4 +1,3 @@
-# This is a basic workflow to help you get started with Actions
 name: LateX Build
 on:
   push:
@@ -248,7 +247,7 @@ jobs:
         run: |
           git clone https://github.com/SmartDogHouse/pandoc-uikit.git
       - name: Pandoc tex conversion
-        uses: docker://pandoc/latex:2.9.0
+        uses: docker://pandoc/latex:latest
         with:
           args: >-
             -d ./pandoc-uikit/config.yaml 
