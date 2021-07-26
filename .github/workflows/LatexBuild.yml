@@ -96,6 +96,8 @@ jobs:
             disable_web_page_preview: true
             
   FindTagJob:
+    needs: BuildLatexJob
+    if: success()
     runs-on: ubuntu-latest
     outputs:
       outputTagJob: '${{ steps.relese_msg.outputs.RELESE_NAME }}'#The outuput of the job
