@@ -98,7 +98,7 @@ In questa sezione verrà spiegato come il progetto è stato organizzato dal punt
 \section{Continuous Integration e Automatizzazione}
 \label{chap:CI}
 In questo capitolo si analizza la parte di integrazione e automatizzazione sia del progetto software che della relazione. 
-    \paragraph{Relazione di Progetto}
+    \subsection{Relazione di Progetto}
         Considerato che anche la relazione deve essere versionata e automatizzata, essendo parte del software e descrivendolo, abbiamo iniziato partendo da essa. 
         Come linguaggio di markup è stato scelto {\LaTeX}, per la sua flessibilità e potenza. 
         Come strumento per la compilazione invece è stato scelto Overleaf.com, poiché ha 3 vantaggi principali che il team ha individuato. Permette di collaborare sullo stesso progetto, in real-time, osservando i cambiamenti fatti dai collaboratori con la compilazione immediata, discutendone vocalmente i dettagli tramite la piattaforma di comunicazione VoIP. Permette inoltre di non dipendere da diversi IDE per {\LaTeX} installati in locale, che creerebbero conflitti e mismatch visuali. Infine permette di integrarsi con GitHub (solo Overleaf Professional), pushando i commit con i nomi desiderati in tutta fluidità direttamente dalla piattaforma web.
@@ -139,9 +139,12 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
             \item GitHub Pages
         \end{itemize}
 
-    \paragraph{Progetto}
+    \subsection{Progetto}
         \subparagraph{Quality Assurance}
         Per quanto riguarda la parte di quality assurance, la scelta è ricaduta su tre servizi di aziende completamente diverse: Sonarcloud, Codacy e Codefactor. I relativi servizi offrono un'analisi della qualità codice completamente gratuita per il piano base. La scelta di diversificare i fornitori del servizio è motivata da due ragioni. La prima è che sono state riscontrate interruzioni e bug nei corrispettivi siti, la diversificazione offre una copertura 24/7. La seconda ragione consiste nel fatto che ognuno offre solo alcune misurazioni sul codice tra Maintainaility, Issues, Complexity, Duplicaizione, Coverage, Security, Vulnerabilities, Bugs. Usare tre sevizi offre una copertura maggiore sulla qualità.
+        \subsubsection{Utilizzo Stub per il Testing Automatico}
+        Si è fatto ricorso agli stub data la necessità di testare il codice per i microcontrollori e l'impossibilità di poterlo testare in maniera totalmente automatica su di essi. Infatti, la soluzione ideale per comodità e qualità è di poter eseguire i test su un normale computer, automatizzando il tutto in cloud. Tuttavia, per poter testare il codice Micropython devono essere presenti le classi che il firmware mette a disposizione quando installato sui microcontrollori. Purtroppo non è possibile installare il firmware su un computer, il che rende normalmente impossibile eseguire e testare il codice. 
+        Per ovviare al problema sono stati inseriti nel codice della repository degli stub che permettono di simulare il firmware installato sulla macchina fisica e il comportamento dei rispettivi sensori e attuatori. Gli Stub purtroppo devono essere inseriti a livello del codice, in quanto un'altra posizione modificherebbe i percorsi di import e il codice non sarebbe più eseguibile sul microcontrollore. In questo modo è possibile verificare continuamente il codice scritto attraverso i test eseguiti automaticamente sul repository.
         \subparagraph{Tool utilizzati}
         \begin{itemize}
             \item GitHub Actions
