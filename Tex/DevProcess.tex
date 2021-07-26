@@ -19,7 +19,7 @@ Il processo di sviluppo è stato guidato dalla filosofia data dal Domain Driven 
     Concetti chiave che DDD porta con sè:
     
         \begin{itemize}
-        \item \textbf{Strategia}: ogni problema ha la sua soluzione, non esiste il famosa silver bullet, bisogna trovare il giusto approccio e non cercare di eccedere con eccessivi strumenti o tecniche ove non richiesti.
+        \item \textbf{Strategia}: ogni problema ha la sua soluzione, non esiste il famoso silver bullet, bisogna trovare il giusto approccio e non cercare di eccedere con eccessivi strumenti o tecniche ove non richiesti.
         Non tutte le parti del prodotto necessitano la stessa modellazione, applicare ogni feature dell' approccio DDD per tutti i problemi può portare a problemi peggiori.
         DDD impone di identificare e distinguere il \textbf{Core Domain}; la parte che detiene il business value maggiore e di dedicarvi più risorse e tempo.
         Mentre per le restanti parti, i \textbf{subdomain}, è possibile utilizzare un approccio più conservativo.
@@ -59,7 +59,7 @@ Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permet
     All'interno del meeting iniziale dapprima le priorità degli item sono state assegnate da un membro del team, impersonando temporaneamente il product-owner. In seguito, è stato raffinato collaborativamente il product-backlog: gli item sono stati espansi e sono stati scelti sia i goals/obiettivi generali dello sprint corrente sia quali item prendere in carico per esso (unificando parte due dello Sprint Planning).
     Generato lo sprint-backlog, sottoinsieme del product-backlog, in cui sono presenti i task identificati in precedenza, questi vengono presi in base volontaria. 
     Ogni giorno, in seguito, è stato fatto il canonico daily-Scrum, per l'aggiornamento dei membri del team relativamente al potentially-shippable-product-increment dello sprint.
-    Per identificare questo la "Definition of Done" è stata formalizzata collettivamente come: "il task è inteso completo se sono stati sviluppati, testati con successo e documentati".
+    Per identificare questo la "Definition of Done" è stata formalizzata collettivamente come: "i task sono intesi completi se sono stati sviluppati, testati con successo e documentati".
     Infine è stato mantenuto il meeting finale, ma la suddivisione nelle tre parti anche qui è stata condensata. 
     Nel meeting la prima parte è stata dedicata al "refinement" del backlog, in cui si aggiorna in base a quello che è stato fatto. In seguito si è passati alla "sprint review" in cui si è condiviso con gli altri ciò che è stato fatto. Inoltre in questa fase è stato coinvolto il committente, spesso per mezzo della piattaforma Telegram, per renderlo partecipe del progresso del progetto e verificare che questo proceda nella giusta direzione. In ultimo, nella "Sprint Retrospective", è stato discusso cosa ha funzionato e cosa no, quali aspetti organizzativi sistemare e correggere per il prossimo sprint. 
     
@@ -69,17 +69,40 @@ Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permet
 
 \section{Gestione di Progetto}
 In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e tecnologie si è scelto di procedere.
-    \paragraph{Gantt Chart} Per ottimizzare il tempo di sviluppo si è scelto di utilizzarne uno per i vari \textbf{sprint}, questo ci aiuterà nell'ottimizzare il tempo e a rispettare le \textbf{deadline}. Nel capitolo relativo agli sprint, in [Fig. \ref{fig:Gantt}]  si riporta il diagramma di Gantt risultante. 
+    \paragraph{Gantt Chart} Per ottimizzare il tempo di sviluppo si è scelto di utilizzarne uno per dare un ritmo al progetto in generale e per i vari \textbf{sprint}, questo ci aiuterà nell'ottimizzare il tempo e a rispettare le \textbf{deadline}. Nel capitolo relativo agli sprint, in [Fig. \ref{fig:Gantt}]  si riporta il diagramma di Gantt risultante. 
     
     \paragraph{GitHub Projects Management}
     Per le Board di Scrum è stato utilizzato GitHub Projects. La scelta è ricaduta su questa opzione anziché sui competitor, quali Trello, data la possibilità di interazione con il progetto stesso e con le repository. 
-    La struttura delle board è stata organizzata ad albero:
-    Una board principale all'interno dell'organizzazione funge da Product-Backlog-Board. Questa viene mantenuta dal Product-Owner, egli sceglie per ogni Sprint la priorità degli Items. Questi vengono raffinati iterativamente, gli Item in cima infatti diverranno via via più specifici. Ad ogni sprint gli Item più importanti verranno inoltre eletti come Sprint Goals (COSA fare all'interno dello sprint). 
-    Nel progetto gli item sono stati scelti in base alle User Stories e trasformati in Issue, da risolvere ad ogni sprint.
-    All'interno delle repository invece sono stati incrementalmente implementate tante board quanti gli Sprint-Backlog. Questi tengono invece traccia degli specifici task da sviluppare all'interno dei singoli Sprint (COME raggiungere lo Sprint Goal) a partire dall/dagli Item selezionati. 
-    Per il completamento dello Sprint Goal è stata presa in considerazione  la "Definition of Done" specificata in precedenza.
-    Una board aggiuntiva è stata creata per tenere traccia dei progressi della relazione. Ogni capitolo è stato definito come milestone, completabile alla scrittura di tutti i sottocapitoli, identificati come task.
-    I vari task sono stati divisi in categorie standard per lo Scrum: "to Do", "in Progress", "Done".
+    La struttura delle varie board è stata organizzata ad albero:
+    Una board principale all'interno dell'organizzazione funge da Product-Backlog-Board. Questa viene mantenuta dal Product-Owner, egli sceglie per ogni Sprint la priorità degli Items. 
+    \begin{figure}[H]
+        \caption{Product Backlog Board con tutte le user-stories}
+        \centering
+       \includegraphics[width=1\textwidth]{Images/productBacklogBoard.png}
+    \end{figure}
+    All'inizio di ogni sprint, gli Item più importanti verranno inoltre eletti come Sprint Goals (COSA fare all'interno dello sprint). 
+    Nel progetto gli item corrispondono uno a uno le User Stories, trasformate in Issue, con relativo tag, da risolvere durante gli sprint.Gli Item principali vengono raffinati iterativamente, quelli in cima infatti diverranno via via più specifici.
+    
+    All'interno delle repository invece sono stati incrementalmente implementate tante board quanti gli Sprint-Backlog. Vi sarà infatti una board per ogni Sprint. Non sono state usate le milestone per gli spint poichè nella piattaforma una issue può essere assegnata ad una sola milestone, mentre è possibile condividerla tra più board qualora non venisse completata in un solo Sprint.
+    Le Sprint Backlog Boards tengono traccia degli specifici task da sviluppare all'interno dei singoli Sprint (COME raggiungere lo Sprint Goal) a partire dall/dagli Item selezionati. Le user stories selezionate dalla board del Product Backlog faranno parte anche della board per lo Sprint Backlog, assieme ai relativi raffinamenti. Gli Item principali vengono infatti raffinati iterativamente, quelli in cima diverranno via via più specifici.
+    \begin{figure}[H]
+        \caption{Sprint Backlog Board}
+        \centering
+       \includegraphics[width=1\textwidth]{Images/sprintBacklogBoard.png}
+    \end{figure}
+    I raffinamenti sono stati istanziati come altre issue, le quali vengono referenziate dalla user story principale, che acquisterà automaticamente in indicatore dei sottotask completati. Questo ci ha permesso di tenere traccia dell'andamento di uno sprint con granularità anche molto fine. Inoltre le sotto-issue possono essere condivise tra user-stories, evitando la ripetizione. Qualora una venga completata tramite l'aggiunta di una porzione di codice è possibile, tramite commit con sintassi closes \#NUMERO-ISSUE, chiudere in automatico la sotto-issue. Questa verrà inoltre spostata nella colonna \textit{Done}, e automaticamente l'indicatore dei task completati di una user-story avanzerà.
+    Una volta completato la/le user-stories dello Sprint anche nel Product Backlog la relativa issue si sposterà nella colonna \textit{Done}. 
+    Per il completamento dello Sprint Goal è stata considerata valida la "Definition of Done" specificata in precedenza.
+    \begin{figure}[H]
+        \caption{Milestone che descrivono i progressi della relazione}
+        \centering
+       \includegraphics[width=1\textwidth]{Images/milestone_relazione.png}
+    \end{figure}
+    Una board aggiuntiva è stata creata per tenere traccia dei progressi della relazione. In questo caso ogni capitolo è stato definito come milestone, completabile alla scrittura di tutti i sottocapitoli, identificati come task, quindi issue, appartenenti alla relativa milestone.
+    I vari task sono stati divisi in categorie standard per lo Scrum: \textit{"to Do", "in Progress", "Done"}.
+    Qualora un sottocapitolo della relazione venga completato, tramite Overleaf è semplicemente possibile chiudere la relativa issue tramite il messaggio di commit visto in precedenza.
+    Nel momento in cui un sottocapitolo viene chiuso, la relativa issue si sposta nella colonna \textit{Done} e il progresso relativo alla milestone del capitolo e dell'intero Report verrà aggiornato.
+    In entrambi i tipi di board, relative agli sprint o alla relazione, è possibile aprire delle issue inerenti bug trovati, problemi alla sicurezza, o accorgimenti. Queste Issue compaiono nella board e possono venire assegnate a un componente specifico del gruppo affinchè se ne occupi.
     
     \paragraph{Telegram}
     Come strumento di messaggistica informale all'interno del gruppo, si è scelta la piattaforma Telegram. Accessibile facilmente da smartphone e da computer permette di aggiornare i componenti del gruppo immediatamente qualora vi siano delle urgenze. Il punto di forza rimane la  possibilità di spedire file di tutti i formati e di poter inserire nel gruppo dei BOT per automatizzare alcune azioni, tra cui le notifiche. Un'overview più chiara dell'utilizzo dei BOT per l'automatizzione verrà fornita nella \autoref{chap:CI}.
