@@ -175,19 +175,30 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
         \end{itemize}
 
     \subsection{Progetto}
-
+        Riguardo al software del progetto, sono stati utilizzati parecchi linguaggi di programmazione differenti, quindi le soluzioni adottate variano in base alle implementazioni e all'importanza relativa. Di seguito si riporta una linea generale implementata nel repository principale per il software, poi seguita anche dagli altri repository, con dovute eccezioni in base alle limitazioni dei linguaggi.
+        Avendo usato Python (e il suo derivato MicroPython) per le parti principali non è stato necessario un vero e proprio strumento di build, in quanto basta un'interprete per far girare il codice.
+        Particolare attenzione è stata fatta ai test, implementati tramite \textit{unittest} in un package dedicato. Tramite il compando \textit{discover} tutti i test implementati vengono eseguiti in maniera automatica. Ciò ha permesso di scoprire parecchi bug prima di rilasciare il codice online. La procedura è stata automatizzata sfruttando la CI di GitHub Actions, la quale fallisce se i test non vengono eseguiti correttamente. 
         
-        \subparagraph{Quality Assurance}
-        Per quanto riguarda la parte di quality assurance, la scelta è ricaduta su tre servizi di aziende completamente diverse: Sonarcloud, Codacy e Codefactor. I relativi servizi offrono un'analisi della qualità codice completamente gratuita per il piano base. La scelta di diversificare i fornitori del servizio è motivata da due ragioni. La prima è che sono state riscontrate interruzioni e bug nei corrispettivi siti, la diversificazione offre una copertura 24/7. La seconda ragione consiste nel fatto che ognuno offre solo alcune misurazioni sul codice tra Maintainaility, Issues, Complexity, Duplicaizione, Coverage, Security, Vulnerabilities, Bugs. Usare tre sevizi offre una copertura maggiore sulla qualità.
         \subsubsection{Utilizzo Stub per il Testing Automatico}
         Si è fatto ricorso agli stub data la necessità di testare il codice per i microcontrollori e l'impossibilità di poterlo testare in maniera totalmente automatica su di essi. Infatti, la soluzione ideale per comodità e qualità è di poter eseguire i test su un normale computer, automatizzando il tutto in cloud. Tuttavia, per poter testare il codice Micropython devono essere presenti le classi che il firmware mette a disposizione quando installato sui microcontrollori. Purtroppo non è possibile installare il firmware su un computer, il che rende normalmente impossibile eseguire e testare il codice. 
-        Per ovviare al problema sono stati inseriti nel codice della repository degli stub che permettono di simulare il firmware installato sulla macchina fisica e il comportamento dei rispettivi sensori e attuatori. Gli Stub purtroppo devono essere inseriti a livello del codice, in quanto un'altra posizione modificherebbe i percorsi di import e il codice non sarebbe più eseguibile sul microcontrollore. In questo modo è possibile verificare continuamente il codice scritto attraverso i test eseguiti automaticamente sul repository.
+        Per ovviare al problema sono stati inseriti nel codice della repository degli stub che permettono di simulare il firmware installato sulla macchina fisica e il comportamento dei rispettivi sensori e attuatori. Gli Stub purtroppo devono essere inseriti a livello del codice, in quanto un'altra posizione modificherebbe i percorsi di import e il codice non sarebbe più eseguibile sul microcontrollore. In questo modo è possibile verificare continuamente il codice scritto attraverso i test eseguiti automaticamente sul repository. Un messaggio Telegram viene mandato anche qui sul gruppo dei developer per segnalarne l'esito.
+        
+        \subsubsection{Coverage} Eseguiti i test è buona norma osservare la coverage di questi. In questo caso per Python è stato usato il pacchetto \textit{coverage}, questo permette di generare la coverage dei test e il relativo sito web. Tramite GitHub Actions e GitHub Pages questo è stato messo online, per una rapida consultazione. Eventualmente è anche stata generata la coverage in xml per siti come CodeCov, i quali permettono di ottenere anch'essi un resoconto ordinato. La coverage creata viene pubblicata per entrambi i branch main e develop.
+        
+        \subparagraph{Versioning and Deployment} Anche in questo caso, come nel report, il versioning è automatico, con la possibilità di controllo manuale. Qualora non venga specificato un tag nel commit la CI implementata di GitHub Actions genera un tag con la versione bugfix incrementata di uno. Qualora un tag venisse specificato il progetto si porta avanti a quella versione. Ciò ha reso molto preciso e veloce il versionamento del nostro software in caso di cambiamenti minimi o estesi.
+        Il deploy del software viene fatto puntualmente in automatico con la versione elaborata all'interno delle Releases di GitHub.
+        
+        \subparagraph{Quality Assurance}
+        Per quanto riguarda la parte di quality assurance, la scelta è ricaduta su tre servizi di aziende completamente diverse: Sonarcloud, Codacy e Codefactor. I relativi servizi offrono un'analisi della qualità codice completamente gratuita per il piano base. La scelta di diversificare i fornitori del servizio è motivata da due ragioni. La prima è che sono state riscontrate interruzioni e bug nei corrispettivi siti, la diversificazione offre una copertura 24/7. La seconda ragione consiste nel fatto che ognuno offre solo alcune misurazioni sul codice tra Maintainaility, Issues, Complexity, Duplicaizione, Coverage, Security, Vulnerabilities, Bugs. Usare tre sevizi offre in conclusione una copertura maggiore sulla qualità. Qualora le pull request o il codice del repo non soddisfi gli standard ciò permette di immediata individuazione. 
+        Per l'aggiornamento delle dipendenze è stato attivato Dependabot su tutti i repository, questo permette di ottenere delle pull-request in automatico qualora venisse individuato un possibile aggiornamento.
+        
         \subparagraph{Tool utilizzati}
         \begin{itemize}
+            \item Test/Coverage
             \item GitHub Actions
+            \item GitHub Pages
             \item Telegram Bots
             \item Dependabot
-            \item Test/Coverage
         \end{itemize}
 
 
