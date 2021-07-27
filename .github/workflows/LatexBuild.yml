@@ -136,7 +136,7 @@ jobs:
     steps:
       - name: Clone Repo with Checkout
         uses: actions/checkout@v2
-      - name: Create relese if tag commit contain a tag message
+      - name: Create release if tag commit contain a tag message
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -159,7 +159,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./main.pdf
           asset_name: main.pdf
-          asset_content_type: Relese pdf
+          asset_content_type: Release pdf
 
   EmailJob:
     needs: [DeployJob] #when finished this job
