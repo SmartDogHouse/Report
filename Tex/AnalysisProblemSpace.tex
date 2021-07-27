@@ -63,18 +63,16 @@
     Lo scopo è eliminare le imprecisioni e le contraddizioni degli esperti di dominio, non è infatti imposto da questi, ma raggiunto collaborativamente.
     L'Ubiquitous Language si evolve nel tempo, non è definito interamente in una sola riunione, i concetti spesso si aggiungono, vengono sviscerati e partecipano nella comprensione del dominio. Infatti quelli che non fanno parte dell'Ubiquitous Language devono essere rifiutati.
     
-    \newcounter{tabellaDrawIo}
-    \setcounter{tabellaDrawIo}{1} %1=True, usa la tabella di DrawIo
-    \ifthenelse{\value{tabellaDrawIo}=1} {
-    
-        %TABELLA UBIQUITOUS LANGUAGE
-        \begin{figure}[ht]
-            \caption{Tabella ubiquitous language}
-            \centering
-            \includegraphics[width=0.9\textwidth]{DrawIo/ubiquitousLanguage.png}
-        \end{figure}
+    %TABELLA UBIQUITOUS LANGUAGE
+    \begin{figure}[ht]
+        \caption{Tabella ubiquitous language}
+        \centering
+        \includegraphics[width=0.9\textwidth]{DrawIo/ubiquitousLanguage.png}
+    \end{figure}
         
-    }{ %else
+    \newcounter{tabellaLatex}
+    \setcounter{tabellaLatex}{1} %1=True, usa la tabella ltx
+    \ifthenelse{\value{tabellaLatex}=1} {
     
         %tab prova
         \begin{tcolorbox}[tab2,tabularx={c||c|Y},title=Ubiquitous Language,boxrule=0.5pt]
