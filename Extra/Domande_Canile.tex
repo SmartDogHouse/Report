@@ -1,0 +1,550 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{longtable}
+\usepackage{graphicx}
+ \usepackage{array}
+ \usepackage{caption}
+ \usepackage{graphicx}
+ \usepackage{rotating}
+ \usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{color}
+\usepackage{multicol}
+\tcbuselibrary{skins}
+%\usepackage[italian]{babel}
+
+%Disable all warnings issued by latex starting with "You have..."
+\usepackage{silence}
+\WarningFilter{latex}{You have requested package}
+\pdfsuppresswarningpagegroup=1
+
+%Bib
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{References.bib}
+
+\usepackage{csquotes}
+%\usepackage{natbib}
+
+
+%Import
+
+\usepackage{tabularx}
+\usepackage{marvosym}
+\usepackage{fancyvrb}
+%\usepackage[usenames]{color}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{caption}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{listings}
+\usepackage{tocloft}
+\usepackage{ifthen}
+%\usepackage[most]{tcolorbox}
+\usepackage{pgfplots}
+%\usepackage{Style/pgfplotsthemetol}
+
+\pgfplotsset{compat=1.16}
+\definecolor{lstgrey}{rgb}{0.94,0.95,1}
+\lstset{
+    language=python,
+    backgroundcolor=\color{lstgrey},
+    frame=single,
+    rulecolor=\color{lstgrey}, % make frame "invisible"
+    captionpos=t,
+    tabsize=2,
+    numberbychapter=false,
+    showstringspaces=false,
+    basicstyle=\footnotesize,
+    breaklines=true,
+}
+%LINK CLICCABILI
+\hypersetup{
+    colorlinks = true,
+    linkcolor = .,
+    citecolor = {blue},
+    linkbordercolor = {white},
+    urlcolor = {blue},
+}
+%TABELLE TBCOLORBOX
+\tcbset{
+        enhanced,
+        colback=red!5!white,
+        boxrule=0.1pt,
+        colframe=red!75!black,
+        fonttitle=\bfseries
+       }
+       
+%TAB2
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+
+\tcbset{tab1/.style={fonttitle=\bfseries\large,fontupper=\normalsize\sffamily,
+colback=yellow!10!white,colframe=red!75!black,colbacktitle=Salmon!40!white,
+coltitle=black,center title,freelance,frame code={
+\foreach \n in {north east,north west,south east,south west}
+{\path [fill=red!75!black] (interior.\n) circle (3mm); };},}}
+
+\tcbset{tab2/.style={enhanced,fonttitle=\bfseries,fontupper=\normalsize\sffamily,
+colback=yellow!10!white,colframe=red!50!black,colbacktitle=Salmon!40!white,
+coltitle=black,center title}}
+
+%PATH IMMAGINI
+%\graphicspath{{Images/}{DrawIo/}}
+\newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
+
+
+
+\title{\LARGE
+        DOMANDE CANILI DI CESENA e PISA  \\
+        \hrulefill \\
+        Smart DogHouse \\
+        \hrulefill \\
+    }
+
+    \author{
+        Kiade Sara \\ \emailaddr{sara.kiade@studio.unibo.it}
+        \and 
+        Caminati Gyordan \\ \emailaddr{gyordan.caminati@studio.unibo.it} 
+        \and
+        Lirussi Igor \\ \emailaddr{igor.lirussi@studio.unibo.it}
+        \\ \\ \\ 
+    }
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Di cosa vi occupate?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``ci occupiamo di gestire segnalazioni riguardanti
+    cani randagi/abbandonati che ci arrivano dai vigili o dalla
+    cittadinanza. Una volta recuperato il cane cerchiamo di ritrovare la
+    famiglia a cui appartiene, se la ricerca non va a buon fine il cane
+    viene ospitato in canile. Trascorso un lasso di tempo in cui al
+    proprietario viene concesso di recuperare il cane, iniziamo la
+    ricerca di una nuova famiglia che lo ospiti. Per facilitare
+    l'incontro con una nuova famiglia, inoltre, al cane viene impartito
+    un addestramento di base che possa abituarlo, specie se in passato
+    veniva maltrattato, a una positiva interazione con le persone. Non
+    ci occupiamo di altri animali''.
+  \item
+    \textbf{Pisa: }``il nostro lavoro consiste nel recupero di cani e
+    gatti. I gatti vengono ospitati in canile solo quando hanno bisogno
+    di cure. Una volta che le condizioni di salute del gatto si sono
+    stabilizzate, esso viene rilasciato. I cani rimangono con noi fino
+    all'adozione. La nostra area di competenza si estende fino a Livorno
+    e ai comuni limitrofi. Se un cane recuperato non ha un
+    identificativo, esso viene chippato e, in caso il proprietario venga
+    a recuperarlo paga una penale. Ci arrivano anche cani sequestrati
+    per maltrattamento o allevamento abusivo''.
+  \end{itemize}
+\item
+  Come è strutturata la vostra attività?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Ricevuta una segnalazione cerchiamo di capire di
+    che cane si tratta, teniamo un archivio cartaceo con i cani che ci è
+    già capitato di recuperare in maniera tale da poterlo individuare
+    più facilmente incrociando zona e caratteristiche estetiche. Molte
+    volte si tratta di segnalazioni affrettate; per questo motivo ci
+    accertiamo della necessità del nostro intervento prima di muoverci,
+    anche perché tutte le volte che dobbiamo spostarci per recuperare un
+    cane con proprietario, quest'ultimo si trova a dover pagare una
+    penale. Recuperato un cane, questo viene chippato e custodito, viene
+    addestrato e gli vengono fornite tutte le cure di cui ha bisogno,
+    fino all'adozione. Ai cani assegniamo un bollino colorato in base
+    alla pericolosità: i cani contrassegnati con un bollino verde sono
+    mansueti e abituati al contatto con le persone, quelli con bollino
+    rosso sono estremamente aggressivi e spesso hanno alle spalle una
+    lunga storia di maltrattamenti; il bollino arancione, invece,
+    contrassegna i cani di media aggressività. In base al colore del
+    bollino cambia l'insieme delle persone a cui è permesso interagire
+    con quel cane. Manteniamo dei registri cartacei con tutti i dati dei
+    cani che ospitiamo, da quelli anagrafici a quelli sanitari''.
+  \item
+    \textbf{Pisa: }``Riceviamo telefonate in qualsiasi orario di persone
+    che ci segnalano l'avvistamento di un cane randagio. In realtà i
+    cani randagi non esistono praticamente più e al 98\% si tratta di
+    cani abbandonati o scappati. La prima cosa che facciamo è recarci
+    sul luogo dell'avvistamento e cercare di capire chi è il
+    proprietario, guardando soprattutto nelle zone vicine al luogo del
+    ritrovamento. Spesso ci capita che a fare la segnalazione siano i
+    vicini che, pur sapendo esattamente di chi è il cane scappato dal
+    cancello, si rivolgono a noi dicendo di aver avvisato un randagio
+    per dispetto. Recuperato il cane si procede alla lettura del chip,
+    se è presente. In molti casi sono sufficienti queste fasi per
+    ritrovare il proprietario, in altri il cane viene recuperato e
+    portato in canile. Vengono messi degli annunci sui social per
+    ritrovare il proprietario, ma, una volta in canile, capita che il
+    proprietario non lo venga più a recuperare perché non è disposto a
+    pagare la penale per l'assenza del chip. Ci è capitato molte volte
+    che, pur di non dover pagare, il proprietario di un cane venisse in
+    canile fingendosi un normale cittadino interessato ad un'adozione e
+    facendo ricadere casualmente la scelta proprio sul cane che aveva
+    perso. Una volta portato il cane in canile lo facciamo visitare dal
+    veterinario che ci dice se è sano o se ha bisogno di particolari
+    attenzioni, ad esempio per quanto riguarda il regime alimentare;
+    valutiamo il suo comportamento e decidiamo in quale gabbia
+    collocarlo, se da solo o in compagnia. ''.
+  \end{itemize}
+\item
+  Quali sono i ruoli e le figure all'interno del canile?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Per quanto riguarda il personale pagato non ci
+    sono separazioni particolari tra le figure. Tutti si occupano più o
+    meno di tutto. Siamo tutti addestratori e ci occupiamo tutti del
+    recupero dei cani e della burocrazia che c'è dietro. Alcuni sono più
+    bravi in una cosa piuttosto che in un'altra e quindi determinati
+    incarichi gli vengono assegnati più spesso, ma sulla carta siamo
+    tutti allo stesso livello. Per quanto riguarda i volontari, invece,
+    ognuno di loro si deve sempre rivolgere a un dipendente che
+    rappresenta una figura di riferimento. I volontari hanno delle
+    limitazioni, ad esempio non possono occuparsi di dare il cibo ai
+    cani, portarli fuori o interagire con quelli che non hanno il
+    bollino verde senza l'assistenza o il permesso di uno degli
+    addestratori''.
+  \item
+    \textbf{Pisa: }``Le figure principali sono: il gestore, che si
+    occupa interamente della gestione del canile, dalle mansioni più
+    umili a tutto ciò che riguarda l'aspetto burocratico, le spese e i
+    consumi; gli addetti, che si occupano di tutte le mansioni di
+    routine del canile come dare il cibo ai cani, pulire le gabbie,
+    portarli nello sgambatoio, gestire le persone che arrivano per
+    adottare; e i volontari che si occupano più che altro di giocare con
+    i cani, portarli fuori dalla gabbia e dargli affetto. Capita però
+    che in situazioni movimentate, in cui il carico di lavoro degli
+    addetti risulta essere eccessivo i volontari diano una mano anche
+    nelle altre mansioni, tipo la pulizia delle gabbie.''
+  \end{itemize}
+\item
+  Quali sono i collaboratori esterni?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Gestiamo interamente tutto ciò che riguarda il
+    canile, anche a livello sanitario, perciò non abbiamo collaboratori
+    esterni. Capita a volte di doverci rivolgere a una clinica per
+    operazioni chirurgiche particolarmente complesse, ma è molto raro
+    poiché il nostro responsabile sanitario riesce ad occuparsi
+    praticamente di tutto''.
+  \item
+    \textbf{Pisa: }``Come collaboratori esterni potremmo contare i
+    volontari, visto che non sono dipendenti diretti del canile e la
+    loro attività non è regolare e i veterinari. All'interno del canile
+    abbiamo un responsabile sanitario, che coordina dei veterinari che
+    hanno uno studio e un'attività loro ma si rendono disponibili anche
+    per il canile.''
+  \end{itemize}
+\item
+  Avete dei volontari? Che mansioni svolgono?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Sì. Imparano dai dipendenti come si gestisce un
+    cane, imparano nozioni sull'addestramento, sull'alimentazione e sui
+    modi corretti per giocare. Ci aiutano nelle mansioni, anche se
+    sempre sorvegliati e ci permettono di fornire ai cani un ricambio di
+    persone evitando così che i cani si affezionino solo ai dipendenti e
+    che si comportino in maniera socievole solo con loro, non essendo in
+    grado di replicare lo stesso comportamento anche con altre persone.
+    ''.
+  \item
+    \textbf{Pisa: }``Sì; i volontari sono una risorsa, tant'è che
+    durante il lockdown il canile ha risentito parecchio della loro
+    assenza. La loro mansione principale è quella di creare un rapporto
+    affettivo con i cani che ospitiamo, ma ci danno una mano anche nelle
+    altre mansioni quando ne abbiamo bisogno''
+  \end{itemize}
+\item
+  Dove si colloca la figura del veterinario?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Abbiamo un unico responsabile sanitario
+    all'interno del canile che si occupa della salute di tutti i cani e
+    svolge dalle più piccole mansioni come lo sverminamento alle
+    operazioni chirurgiche anche di medio-alta complessità''.
+  \item
+    \textbf{Pisa: }``Il veterinario principale è il responsabile
+    sanitario che ha lo studio all'interno del canile; esso coordina un
+    insieme di veterinari che hanno uno studio proprio e clienti propri
+    ma che decidono di offrire il loro servizio anche al canile.''
+  \end{itemize}
+\item
+  Quanto spesso il veterinario visita i cani?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Dipende dalla necessità. Se non succede niente fa
+    un giro di ricognizione un paio di volte a settimana; se invece uno
+    degli addetti nota un comportamento strano in un cane (ad esempio si
+    gratta spesso l'orecchio), il nostro veterinario lo visita e ne
+    approfitta per fare un giro anche degli altri cani. Una visita
+    approfondita, invece viene fatta con una regolarità diversa a
+    seconda del cane.''.
+  \item
+    \textbf{Pisa: }``I cani vengono visitati in caso in cui manifestino
+    un malessere. Periodicamente un veterinario esegue interventi di
+    routine come le vaccinazioni, lo sverminamento, il trattamento anti
+    pulci ecc..''
+  \end{itemize}
+\item
+  Cosa avrebbe senso automatizzare? A parte distribuzione cibo e acqua e
+  sorveglianza?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Sarebbe bello se si riuscisse ad avere un sistema
+    che riesca a capire se un cane ha davvero ingerito la pillola che
+    gli viene mischiata al cibo e che non l'abbia ad esempio sputata.
+    Sarebbe inoltre utile sapere quando un cane in gravidanza va in
+    travaglio. Sappiamo che per i cavalli viene inserito un dispositivo
+    che quando si rompono le acque si spezza e invia un segnale. Non è
+    un dispositivo adatto ai cani, ma ci chiedevamo se si potesse
+    implementare un sistema simile. Sarebbe utile anche solo una
+    videocamera che ci permetta di vedere il cane in gravidanza da casa,
+    evitandoci di dover fare numerosi sopralluoghi notturni fino alla
+    data del parto.''
+  \item
+    \textbf{Pisa: }``Non penso ci siano altre cose da poter
+    automatizzare, a parte magari la gestione dei turni del personale.
+    Il contatto umano è molto importante per i cani, pertanto anche solo
+    entrare nella gabbia di un cane per svolgere delle mansioni attiva
+    degli aspetti comportamentali del cane e può fungere da mezzo
+    educativo''
+  \end{itemize}
+\item
+  Avete una o più figure preposte alla sorveglianza?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``No, però capita di dover fare dei turni di notte
+    o dei sopralluoghi per controllare la situazione''
+  \item
+    \textbf{Pisa: }``No, non ci sono addetti con questa specifica
+    mansione, per una questione di fondi. In realtà sarebbe utile perché
+    ci è già capitato che qualcuno provasse a entrare di nascosto''
+  \end{itemize}
+\item
+  Avete un sistema di videosorveglianza?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``No, nessuno, ma stiamo pensando di installare
+    qualche telecamera per controllare le condizioni dei cani da remoto,
+    appena avremo la liquidità per farlo.''
+  \item
+    \textbf{Pisa: }``Attualmente non disponiamo di un sistema di
+    videosorveglianza, abbiamo le inferriate e teniamo le gabbie chiuse
+    e abbiamo un allarme.''
+  \end{itemize}
+\item
+  Avete un sistema informatico?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``No, ma ne sentiamo fortemente la mancanza. Un
+    sistema che ci permettesse di facilitare la gestione degli aspetti
+    burocratici e di mantenere registri digitali con le informazioni dei
+    nostri cani ci risparmierebbe molto lavoro. Attualmente l'unico
+    supporto che abbiamo è l'anagrafe canina, ma il sistema permette di
+    fare poche cose, a partire dalla ricerca di un cane''
+  \item
+    \textbf{Pisa: }``Utilizziamo il computer solo per leggere i chip e
+    consultare l'anagrafe canina, tutto il resto viene gestito in
+    maniera cartacea''
+  \end{itemize}
+\item
+  Avete un vostro gestionale?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``No''
+  \item
+    \textbf{Pisa: }``No''
+  \end{itemize}
+\item
+  Una connessione internet? Ethernet/Wi-Fi?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Utilizziamo la connessione che ci fornisce il
+    comune, ma ha molte limitazioni. Ci sarebbe utile mettere su
+    qualcosa di più performante''
+  \item
+    \textbf{Pisa: }``Solo connessione via cavo''
+  \end{itemize}
+\end{enumerate}
+
+\begin{quote}
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Chi si occupa della distribuzione del cibo? Come funziona? Avete dei
+  grossi contenitori che fanno da serbatoio di cibo, oppure riempite la
+  ciotola volta per volta?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Porgiamo direttamente la ciotola con il cibo al
+    cane, continuando a tenerla in mano. Terminato il pasto la togliamo,
+    senza lasciarla a disposizione del cane. In questo modo il cane non
+    diventa territoriale nei confronti del cibo e rimarchiamo la nostra
+    posizione di `alpha'. Per quanto riguarda la dieta abbiamo diversi
+    contenitori con crocchette di diverso tipo e le diamo ai cani in
+    base alla taglia, alle condizioni di salute e alle condizioni
+    meteorologiche''
+  \item
+    \textbf{Pisa: }``Le ciotole vengono riempite dagli addetti, mentre
+    l'acqua rimane sempre a disposizione. Al termine dei pasti le
+    ciotole vengono lavate e rimesse al loro posto. Le crocchette sono
+    le stesse per tutti, variano solo in base alla taglia o se il cane
+    non può mangiare quelle standard''
+  \end{itemize}
+\item
+  Come funziona la distribuzione dell'acqua? Avete tipo degli
+  abbeveratoi o riempite la ciotola e se quello la rovescia di notte
+  pace?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``La ciotola dell'acqua è fissata su un supporto
+    che non permette al cane di rovesciarla. L'acqua rimboccata quando
+    il cane la consuma e, a fine giornata, le ciotole vengono lavate e
+    riempite nuovamente per evitare che facciano `il verde', cosa che
+    rientra tra i principali segnali di maltrattamento''
+  \item
+    \textbf{Pisa: }``Le ciotole vengono riempite dagli addetti, mentre
+    l'acqua rimane sempre a disposizione. Al termine dei pasti le
+    ciotole vengono lavate e rimesse al loro posto. Le crocchette sono
+    le stesse per tutti, variano solo in base alla taglia o se il cane
+    non può mangiare quelle standard''
+  \end{itemize}
+\item
+  Avreste la possibilità di attaccarci un sistema di distribuzione di
+  acqua ad ogni gabbia?
+
+  \begin{itemize}
+  \tightlist
+  \item
+  \end{itemize}
+\item
+  Monitorate il consumo di cibo e acqua dei cani? Avrebbe senso farlo?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Non abbiamo modo di monitorarli in maniera
+    precisa, ci limitiamo a vedere ad occhio qual è la situazione.
+    Avrebbe molto senso se si riuscisse a fare perché sarebbe un valido
+    aiuto per il veterinario e ci permetterebbe di intercettare disturbi
+    alimentari che possono essere sintomo di un malessere anche grave.
+    In quasti casi è importante accorgersene per tempo e, con tanti cani
+    da gestire, questo risulta essere più difficile.
+  \item
+    \textbf{Pisa: }``Non monitoriamo i consumi di cibo e acqua ma sembra
+    essere un'idea interessante.''
+  \end{itemize}
+\item
+  È interessato ad avere notifiche sui parametri vitali dei cani?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Sicuramente! Sarebbe davvero un valido aiuto e ci
+    permetterebbe di avere molto più controllo sullo stato di salute dei
+    cani. Se si riuscisse a fare davvero, con costi contenuti,
+    porterebbe sicuramente una grande innovazione.''
+  \item
+    \textbf{Pisa: }``Anche questa sembra essere un'idea molto
+    interessante, più dell'automatizzazione di acqua e cibo che, per
+    quanto utile, si riesce già a gestire. Avere il controllo dei
+    parametri principali sarebbe un'ottima cosa, anche se sarebbe bello
+    monitorare anche altri parametri come l'attività fisica e la
+    pressione sanguigna''
+  \end{itemize}
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Avete cani con esigenze particolari? Incinta, con malattie, con un
+  regime alimentare particolare?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Sì, abbiamo cani con patologie più o meno gravi,
+    soprattutto quando cominciano ad essere anziani. Attualmente, ad
+    esempio, ospitiamo Chewbecca, un cane che soffre di leishmaniosi e
+    che pertanto necessita di cure specifiche e un regime alimentare
+    particolare.''
+  \item
+    \textbf{Pisa: }``Sì, ce ne sono diversi. Molti purtroppo vengono
+    abbandonati anche per questo motivo. Cerchiamo di prendercene cura
+    come possiamo, a volte anche tramite raccolte fondi.''
+  \end{itemize}
+\item
+  Siete interessati al rilevamento dei parametri ambientali del canile?
+  temperatura, umidità, rumore\ldots{}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{Cesena:} ``Non molto. Anche se a volte ci basiamo su
+    temperatura o umidità per la scelta delle crocchette da dare (ad
+    esempio di inverno diamo crocchette più proteiche), in linea di
+    massima non ci interessa avere questo tipo di rilevazioni perché è
+    facile che i valori siano facilmente influenzabili da mille fattori.
+    Se anche ci fosse la possibilità di conoscere queste rilevazioni non
+    credo che ci guarderemmo molto, preferendo fidarci della nostra
+    percezione ed esperienza. ''
+  \item
+    \textbf{Pisa: }``Sicuramente è una cosa in più, ma non vedo che
+    utilità possa avere nel concreto. Non è una pessima idea, ma non è
+    neanche la più utile.''
+  \end{itemize}
+\end{enumerate}
+
+
+
+\end{document}
