@@ -171,20 +171,19 @@ coltitle=black,center title}}
 \newcounter{var}
 \setcounter{var}{1} %1=True, usa la tabella ltx
 \ifthenelse{\value{var}=1} {
-    variable
+    variable active
 }
-\newcounter{test}
-\setcounter{test}{1} %1=True, usa la tabella ltx
-\ifthenelse{\value{test}=1} {
+
+%\ifthenelse{\value{SmartCity}=0}{ % NON per Smart-city
     \include{Tex/DevProcess}
     \include{Tex/AnalysisProblemSpace}
-} 
+%} 
 
     \include{Tex/AnalysisRequirements}
 
-\ifthenelse{\value{SmartCity}=0}{ % NON per Smart-city
+%\ifthenelse{\value{SmartCity}=0}{ % NON per Smart-city
     \include{Tex/AspettiDDD}
-}
+%}
 
     \include{Tex/ArchitecturalDesign}
     \include{Tex/Design}
