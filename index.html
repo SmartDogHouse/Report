@@ -131,7 +131,7 @@
                                                         <li><a href="#foopattern-architetturali-utilizzati"><span class="toc-section-number">7.3</span> Pattern Architetturali Utilizzati</a>
                                                         <ul>
                                                         <li><a href="#fooclient-server"><span class="toc-section-number">7.3.1</span> Client-Server</a></li>
-                                                        <li><a href="#foopusblish-subscribe"><span class="toc-section-number">7.3.2</span> Pusblish-Subscribe</a></li>
+                                                        <li><a href="#foopublish-subscribe"><span class="toc-section-number">7.3.2</span> Publish-Subscribe</a></li>
                                                         <li><a href="#foomaster-slave"><span class="toc-section-number">7.3.3</span> Master-Slave</a></li>
                                                         <li><a href="#fooscheduling-cooperativo"><span class="toc-section-number">7.3.4</span> Scheduling Cooperativo</a></li>
                                                         <li><a href="#foostate-machine"><span class="toc-section-number">7.3.5</span> State Machine</a></li>
@@ -439,16 +439,20 @@
 <section id="foocoverage" class="level4" data-number="3.4.2.2">
 <h4 data-number="3.4.2.2"><span class="header-section-number">3.4.2.2</span> Coverage</h4>
 <p>Eseguiti i test &#xE8; buona norma osservare la coverage di questi. In questo caso per Python &#xE8; stato usato il pacchetto <em>coverage</em>, questo permette di generare la coverage dei test e il relativo sito web. Tramite GitHub Actions e GitHub Pages questo &#xE8; stato messo online, per una rapida consultazione. Eventualmente &#xE8; anche stata generata la coverage in xml per siti come CodeCov, i quali permettono di ottenere anch&#x2019;essi un resoconto ordinato. La coverage creata viene pubblicata per entrambi i branch main e develop.</p>
-<section id="fooversioning-and-deployment" class="level6" data-number="3.4.2.2.0.1">
-<h6 data-number="3.4.2.2.0.1"><span class="header-section-number">3.4.2.2.0.1</span> Versioning and Deployment</h6>
+</section>
+<section id="foodocumentazione" class="level4" data-number="3.4.2.3">
+<h4 data-number="3.4.2.3"><span class="header-section-number">3.4.2.3</span> Documentazione</h4>
+<p>Il codice &#xE8; stato documentato per assicurare la qualit&#xE0;. Il pacchetto <em>pdoc</em> usato per il repo principale permette di generare la documentazione html a partire dai sorgenti. Anche qui &#xE8; stato automatizzata la creazione e il deploy del sito web tramite GitHub Actions e GitHub Pages per facilitarne la consultazione.</p>
+<section id="fooversioning-and-deployment" class="level6" data-number="3.4.2.3.0.1">
+<h6 data-number="3.4.2.3.0.1"><span class="header-section-number">3.4.2.3.0.1</span> Versioning and Deployment</h6>
 <p>Anche in questo caso, come nel report, il versioning &#xE8; automatico, con la possibilit&#xE0; di controllo manuale. Qualora non venga specificato un tag nel commit la CI implementata di GitHub Actions genera un tag con la versione bugfix incrementata di uno. Qualora un tag venisse specificato il progetto si porta avanti a quella versione. Ci&#xF2; ha reso molto preciso e veloce il versionamento del nostro software in caso di cambiamenti minimi o estesi. Il deploy del software viene fatto puntualmente in automatico con la versione elaborata all&#x2019;interno delle Releases di GitHub.</p>
 </section>
-<section id="fooquality-assurance" class="level6" data-number="3.4.2.2.0.2">
-<h6 data-number="3.4.2.2.0.2"><span class="header-section-number">3.4.2.2.0.2</span> Quality Assurance</h6>
+<section id="fooquality-assurance" class="level6" data-number="3.4.2.3.0.2">
+<h6 data-number="3.4.2.3.0.2"><span class="header-section-number">3.4.2.3.0.2</span> Quality Assurance</h6>
 <p>Per quanto riguarda la parte di quality assurance, la scelta &#xE8; ricaduta su tre servizi di aziende completamente diverse: Sonarcloud, Codacy e Codefactor. I relativi servizi offrono un&#x2019;analisi della qualit&#xE0; codice completamente gratuita per il piano base. La scelta di diversificare i fornitori del servizio &#xE8; motivata da due ragioni. La prima &#xE8; che sono state riscontrate interruzioni e bug nei corrispettivi siti, la diversificazione offre una copertura 24/7. La seconda ragione consiste nel fatto che ognuno offre solo alcune misurazioni sul codice tra Maintainaility, Issues, Complexity, Duplicaizione, Coverage, Security, Vulnerabilities, Bugs. Usare tre sevizi offre in conclusione una copertura maggiore sulla qualit&#xE0;. Qualora le pull request o il codice del repo non soddisfi gli standard ci&#xF2; permette di immediata individuazione. Per l&#x2019;aggiornamento delle dipendenze &#xE8; stato attivato Dependabot su tutti i repository, questo permette di ottenere delle pull-request in automatico qualora venisse individuato un possibile aggiornamento.</p>
 </section>
-<section id="footool-utilizzati-1" class="level6" data-number="3.4.2.2.0.3">
-<h6 data-number="3.4.2.2.0.3"><span class="header-section-number">3.4.2.2.0.3</span> Tool utilizzati</h6>
+<section id="footool-utilizzati-1" class="level6" data-number="3.4.2.3.0.3">
+<h6 data-number="3.4.2.3.0.3"><span class="header-section-number">3.4.2.3.0.3</span> Tool utilizzati</h6>
 <ul>
 <li><p>Test/Coverage</p></li>
 <li><p>GitHub Actions</p></li>
@@ -863,8 +867,8 @@
 <h3 data-number="7.3.1"><span class="header-section-number">7.3.1</span> Client-Server</h3>
 <p>L&#x2019;utilizzo del pattern client-server, nella videosorveglianza, ha permesso di esporre il flusso video su un server apposito e di accederci da qualunque dispositivo dotato di connessione.</p>
 </section>
-<section id="foopusblish-subscribe" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2"><span class="header-section-number">7.3.2</span> Pusblish-Subscribe</h3>
+<section id="foopublish-subscribe" class="level3" data-number="7.3.2">
+<h3 data-number="7.3.2"><span class="header-section-number">7.3.2</span> Publish-Subscribe</h3>
 <p>L&#x2019;utilizzo del pattern publish-subscribe, &#xE8; stata una scelta chiave per la modularit&#xE0; del sistema. La divisione in topic ha portato un maggiore ordine e una modellazione pi&#xF9; vicina al vero dominio.</p>
 </section>
 <section id="foomaster-slave" class="level3" data-number="7.3.3">
