@@ -174,10 +174,10 @@ coltitle=black,center title}}
     variable active
 }
 
-%\ifthenelse{\value{SmartCity}=0}{ % NON per Smart-city
+\ifthenelse{\value{var}=1} {
     \include{Tex/DevProcess}
     \include{Tex/AnalysisProblemSpace}
-%} 
+}
 
     \include{Tex/AnalysisRequirements}
 
