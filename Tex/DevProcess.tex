@@ -185,6 +185,8 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
         
         \subsubsection{Coverage} Eseguiti i test è buona norma osservare la coverage di questi. In questo caso per Python è stato usato il pacchetto \textit{coverage}, questo permette di generare la coverage dei test e il relativo sito web. Tramite GitHub Actions e GitHub Pages questo è stato messo online, per una rapida consultazione. Eventualmente è anche stata generata la coverage in xml per siti come CodeCov, i quali permettono di ottenere anch'essi un resoconto ordinato. La coverage creata viene pubblicata per entrambi i branch main e develop.
         
+        \subsubsection{Documentazione} Il codice è stato documentato per assicurare la qualità. Il pacchetto \textit{pdoc} usato per il repo principale permette di generare la documentazione html a partire dai sorgenti. Anche qui è stato automatizzata la creazione e il deploy del sito web tramite GitHub Actions e GitHub Pages per facilitarne la consultazione. 
+        
         \subparagraph{Versioning and Deployment} Anche in questo caso, come nel report, il versioning è automatico, con la possibilità di controllo manuale. Qualora non venga specificato un tag nel commit la CI implementata di GitHub Actions genera un tag con la versione bugfix incrementata di uno. Qualora un tag venisse specificato il progetto si porta avanti a quella versione. Ciò ha reso molto preciso e veloce il versionamento del nostro software in caso di cambiamenti minimi o estesi.
         Il deploy del software viene fatto puntualmente in automatico con la versione elaborata all'interno delle Releases di GitHub.
         
