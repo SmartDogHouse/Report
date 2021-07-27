@@ -110,7 +110,7 @@ coltitle=black,center title}}
 \newcounter{SmartCity}
 \ifx\SmartCity\undefined %if variable undefined
     % Smart City Version 
-    \setcounter{SmartCity}{0} % <-- to switch versions CHANGE HERE, remember to PUT IT BACK TO 0, the website version is generated taking this variable
+    \setcounter{SmartCity}{0} % <-- to switch versions CHANGE HERE, remember to PUT IT BACK TO 0
     % 1=True (SmartCity-version, shorter)
     % 0=False (Full-version)
 \else
@@ -168,22 +168,16 @@ coltitle=black,center title}}
     \include{Tex/Intro}
     \include{Tex/StateOfTheArt}
     
-\newcounter{var}
-\setcounter{var}{1} %1=True, usa la tabella ltx
-\ifthenelse{\value{var}=1} {
-    variable active
-}
-
-\ifthenelse{\value{var}=1} {
+\ifthenelse{\value{SmartCity}=0} { % NON per Smart-city
     \include{Tex/DevProcess}
     \include{Tex/AnalysisProblemSpace}
 }
 
     \include{Tex/AnalysisRequirements}
 
-%\ifthenelse{\value{SmartCity}=0}{ % NON per Smart-city
+\ifthenelse{\value{SmartCity}=0} { % NON per Smart-city
     \include{Tex/AspettiDDD}
-%}
+}
 
     \include{Tex/ArchitecturalDesign}
     \include{Tex/Design}
