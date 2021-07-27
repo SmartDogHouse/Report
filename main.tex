@@ -107,18 +107,21 @@ coltitle=black,center title}}
 \newcommand{\emailaddr}[1]{\href{mailto:#1}{\texttt{#1}}}
 
 %%%%%   Full-Version or Smart City-Version Variable   %%%%%%
+\newcounter{SmartCity}
 \ifx\SmartCity\undefined %if variable undefined
     % Smart City Version 
-    \def\SmartCity{0} 
+    \setcounter{SmartCity}{0} % <-- to switch versions change here, remember to set it back to 0, the website is generated taking this
     % 1=True (SmartCity-version, shorter)
     % 0=False (Full-version)
 \else
-  %% Defined from argument passed when compiling
+    %% Defined from argument passed when compiling
+    \setcounter{SmartCity}{\SmartCity}
 \fi
 
 
+
     
-\ifthenelse{\SmartCity=1}{ 
+\ifthenelse{\value{SmartCity}=1}{ 
     \title{\LARGE
         RELAZIONE DI PROGETTO  \\ DI \\ “SMART CITY E TECNOLOGIE MOBILI” \\
         \hrulefill \\
@@ -165,16 +168,16 @@ coltitle=black,center title}}
     \include{Tex/Intro}
     \include{Tex/StateOfTheArt}
 
-%\ifthenelse{\SmartCity=0}{ % NON per Smart-city
+\ifthenelse{\value{SmartCity}=0}{ % NON per Smart-city
     \include{Tex/DevProcess}
     \include{Tex/AnalysisProblemSpace}
-%} 
+} 
 
     \include{Tex/AnalysisRequirements}
 
-%\ifthenelse{\SmartCity=0}{ % NON per Smart-city
+\ifthenelse{\value{SmartCity}=0}{ % NON per Smart-city
     \include{Tex/AspettiDDD}
-%}
+}
 
     \include{Tex/ArchitecturalDesign}
     \include{Tex/Design}
