@@ -71,7 +71,7 @@ Per sviluppare il progetto è stata scelto il framework Scrum. Questo per permet
 In questa sezione verrà spiegato come il progetto è stato organizzato dal punto di vista pragmatico, con quali strumenti e tecnologie si è scelto di procedere.
     \paragraph{Gantt Chart} Per ottimizzare il tempo di sviluppo si è scelto di utilizzarne uno per dare un ritmo al progetto in generale e per i vari \textbf{sprint}, questo ci aiuterà nell'ottimizzare il tempo e a rispettare le \textbf{deadline}. Nel capitolo relativo agli sprint, in [Fig. \ref{fig:Gantt}]  si riporta il diagramma di Gantt risultante. 
     
-    \paragraph{Licensing} Per quanto riguarda la scelta della licenza da usare sono state prese in considerazione le \href{https://choosealicense.com/licenses/}{principali}: GNU GPL (general public licence), LGPL (lesser GPL), MIT LICENSE, APACHE LICENSE 2.0. La GNU GPL e la LGPS sono state ritenute troppo dure nella loro imposizione di gratis e open source per gli artefatti derivati, anche se la seconda permette il linking. E' stata concordata la natura libera e gratuita del software, senza fornire garanzia, per questo motivo è stata scelta la licenza MIT, estremamente permissiva, GPL compatibile e senza forte CopyLeft, per cui i derivati possono essere distribuiti con differente licenza. Questa non protegge marchi e brevetti, tuttavia non forza chi fa un lavoro derivato deve scrivere i cambiamenti al software come al Apache Licence 2.0.
+    \paragraph{Licensing} Per quanto riguarda la scelta della licenza da usare sono state prese in considerazione le \href{https://choosealicense.com/licenses/}{principali}: GNU GPL (general public licence), LGPL (lesser GPL), MIT LICENSE, APACHE LICENSE 2.0. La GNU GPL e la LGPS sono state ritenute troppo dure nella loro imposizione di gratis e open source per gli artefatti derivati, anche se la seconda permette il linking. E' stata concordata la natura libera e gratuita del software, senza fornire garanzia, per questo motivo è stata scelta la licenza MIT, estremamente permissiva, GPL compatibile e senza forte CopyLeft, per cui i derivati possono essere distribuiti con differente licenza. Questa non protegge marchi e brevetti, tuttavia non forza chi fa un lavoro derivato a scrivere i cambiamenti al software come la Apache Licence 2.0.
     
     \paragraph{Versioning}
     Lo scope del versioning scelto è stato interno, quindi le modifiche di maggiore impatto sul codice fanno progredire il numero di versione maggiormente rispetto alle modifiche grafiche percepite dall'utente. Per questo motivo è stato scelto l'utilizzo di semantic versioning: MAJOR.MINOR.PATCH per il prodotto, inclusa la relazione. La logica e il meccanismo retrostante per l'automazione di questo sono spiegati nel capitolo \ref{chap:CI} CI e Automazione..
@@ -196,11 +196,12 @@ In questo capitolo si analizza la parte di integrazione e automatizzazione sia d
         
         \subparagraph{Tool utilizzati}
         \begin{itemize}
-            \item Test/Coverage
+            \item Test/Coverage/Documentation Software
             \item GitHub Actions
             \item GitHub Pages
             \item Telegram Bots
             \item Dependabot
+            \item Sonarcloud/Codacy/Codefactor
         \end{itemize}
 
 
