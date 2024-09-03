@@ -57,7 +57,7 @@ jobs:
       - name: Clone Repo with Checkout 
         uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Logs
       - name: Send custom Telegram message
@@ -147,7 +147,7 @@ jobs:
           draft: falses
           prerelease: false
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Artifacts
       - name: Upload Release Asset
@@ -169,7 +169,7 @@ jobs:
     - name: Clone Repo with Checkout # first step
       uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
     - name: Download Artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4.1.7
       with:
         name: Artifacts
     - name: Send mail
@@ -214,7 +214,7 @@ jobs:
       - name: Clone Repo with Checkout # first step
         uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
       - name: Download Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: Artifacts
       - name: Send custom Telegram message
